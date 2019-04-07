@@ -21,7 +21,7 @@ public class FileReading {
 	private String line;
 	private ArrayList<String> source = new ArrayList<String>();
 	private ArrayList<String> destination = new ArrayList<String>();
-	private ArrayList<String> time = new ArrayList<String>();
+	private ArrayList<Double> time = new ArrayList<Double>();
 	private ArrayList<String> vehicle = new ArrayList<String>();
 	private ArrayList<Integer> numberOfStops = new ArrayList<Integer>();
 	private ArrayList<Double> ticketPrice = new ArrayList<Double>();
@@ -70,7 +70,7 @@ public class FileReading {
 			stringTokenizer.nextToken();
 			destination.add(stringTokenizer.nextToken());
 			stringTokenizer.nextToken();
-			time.add(stringTokenizer.nextToken());
+			time.add(Double.parseDouble(stringTokenizer.nextToken()));
 			stringTokenizer.nextToken();
 			vehicle.add(stringTokenizer.nextToken());
 			stringTokenizer.nextToken();
@@ -95,6 +95,17 @@ public class FileReading {
 			}
 		}
 	}
+	
+	public void readDriverFile() throws IOException {
+
+		File file = new File("DriverFile");
+
+		FileReader fileReader = new FileReader(file);
+		BufferedReader bufferedReader = new BufferedReader(fileReader);
+		while (bufferedReader.ready()) {
+			
+		}
+	}
 
 	public String[][] getPassengerLogin() {
 		return passengerLogin;
@@ -116,7 +127,7 @@ public class FileReading {
 		return destination;
 	}
 
-	public ArrayList<String> getTime() {
+	public ArrayList<Double> getTime() {
 		return time;
 	}
 

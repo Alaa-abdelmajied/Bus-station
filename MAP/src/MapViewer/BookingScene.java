@@ -98,7 +98,7 @@ public class BookingScene {
 				ArrayList<String> findTrip = passengerMenu.getTrip().findTrip(sourceSearch, destination);
 				//ArrayList<String> source1 = passengerMenu.getTrip().getSource();
 				for (int i = 0; i < findTrip.size(); i++)
-					//tableView.getItems().add(new );
+					//tableView.getItems().add(new);
 					listView.getItems().add(findTrip.get(i));
 
 				listView.setVisible(true);

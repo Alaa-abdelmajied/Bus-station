@@ -6,7 +6,7 @@ public class Trip {
 
 	private ArrayList<String> source = new ArrayList<String>();
 	private ArrayList<String> destination = new ArrayList<String>();
-	private ArrayList<String> time = new ArrayList<String>();
+	private ArrayList<Double> time = new ArrayList<Double>();
 	private ArrayList<String> vehicle = new ArrayList<String>();
 	private ArrayList<Integer> numberOfStops = new ArrayList<Integer>();
 	private ArrayList<Double> ticketPrice = new ArrayList<Double>();
@@ -49,7 +49,7 @@ public class Trip {
 		return allTrips;
 	}
 
-	public void addTrip(String source, String destination, String time, String vehicle, int numberOfStops, double ticketPrice) {
+	public void addTrip(String source, String destination, Double time, String vehicle, int numberOfStops, double ticketPrice) {
 		this.source.add(source);
 		this.destination.add(destination);
 		this.time.add(time);
