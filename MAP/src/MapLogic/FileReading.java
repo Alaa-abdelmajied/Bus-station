@@ -24,7 +24,10 @@ public class FileReading {
 	private ArrayList<String> vehicle = new ArrayList<String>();
 	private ArrayList<Integer> numberOfStops = new ArrayList<Integer>();
 	private ArrayList<Double> ticketPrice = new ArrayList<Double>();
-
+	private ArrayList<String> passengerName = new ArrayList<String>();
+	private ArrayList<Integer> numberOfTrips = new ArrayList<Integer>();
+	
+	
 	public void readLoginFile() throws IOException {
 
 		File file = new File("login.txt");
@@ -33,7 +36,7 @@ public class FileReading {
 		BufferedReader bufferedReader = new BufferedReader(fileReader);
 		while (bufferedReader.ready()) {
 			line = bufferedReader.readLine();
-			StringTokenizer stringTokenizer = new StringTokenizer(line, ":,");
+			StringTokenizer stringTokenizer = new StringTokenizer(line, ",");
 			accountType = stringTokenizer.nextToken();
 			if (accountType.equals("Manager") || accountType.equals("Driver")) {
 				if (accountType.equals("Driver")) {
@@ -77,6 +80,21 @@ public class FileReading {
 		}
 	}
 
+	public void readVipFile() throws IOException {
+		
+		File file = new File("vipFile.txt");
+
+		FileReader fileReader = new FileReader(file);
+		BufferedReader bufferedReader = new BufferedReader(fileReader);
+		while (bufferedReader.ready()) {
+			line = bufferedReader.readLine();
+			StringTokenizer stringTokenizer = new StringTokenizer(line, ",");
+			passengerName.add(stringTokenizer.nextToken());
+			numberOfTrips.add(Integer.parseInt(stringTokenizer.nextToken()));
+		}
+		
+	}
+	
 	public String[][] getPassengerLogin() {
 		return passengerLogin;
 	}
@@ -112,5 +130,14 @@ public class FileReading {
 	public ArrayList<Double> getTicketPrice() {
 		return ticketPrice;
 	}
+
+	public ArrayList<String> getPassengerName() {
+		return passengerName;
+	}
+
+	public ArrayList<Integer> getNumberOfTrips() {
+		return numberOfTrips;
+	}
+	
 	
 }
