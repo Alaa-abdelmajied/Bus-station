@@ -17,6 +17,7 @@ public class MapViewer extends Application {
 		ManagerMenu managerMenu = new ManagerMenu(primaryStage);
 		BookingScene bookingScene = new BookingScene(primaryStage);
 		AllTrips allTrips = new AllTrips(primaryStage);
+		ConfirmationScene confirmationScene = new ConfirmationScene(primaryStage);
 
 		loginForm.prepareScene();
 		passengerMenu.prepareScene();
@@ -24,6 +25,7 @@ public class MapViewer extends Application {
 		managerMenu.prepareScene();
 		bookingScene.prepareScene();
 		allTrips.prepareScene();
+		confirmationScene.prepareScene();
 
 		loginForm.setPassengerMenu(passengerMenu);
 		loginForm.setDriverMenu(driverMenu);
@@ -34,7 +36,10 @@ public class MapViewer extends Application {
 		managerMenu.setLoginForm(loginForm);
 		managerMenu.setAllTrips(allTrips);
 		bookingScene.setPassengerMenu(passengerMenu);
+		bookingScene.setConfirmationScene(confirmationScene);
 		allTrips.setManagerMenu(managerMenu);
+		confirmationScene.setBookingScene(bookingScene);
+
 
 		primaryStage.setScene(loginForm.getLoginForm());
 		primaryStage.setTitle("MAP");

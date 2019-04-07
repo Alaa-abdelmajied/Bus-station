@@ -22,6 +22,7 @@ public class BookingScene {
 	Stage stage;
 	Scene bookingScene;
 	PassengerMenu passengerMenu;
+	ConfirmationScene confirmationScene;
 	//ListView<String> listView;
 	TableView<Trip> tableView;
 	ChoiceBox<String> choiceBoxS = new ChoiceBox<String>();
@@ -133,5 +134,10 @@ public class BookingScene {
 	public void setChoiceBoxD(String destination) {
 		this.choiceBoxD.getItems().add(destination);
 	}
+
+	public void setConfirmationScene(ConfirmationScene confirmationScene) {
+		this.confirmationScene = confirmationScene;
+	}
+
 
 }
