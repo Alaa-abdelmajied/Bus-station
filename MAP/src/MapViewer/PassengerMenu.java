@@ -117,9 +117,5 @@ public class PassengerMenu {
 		this.passengerLabel.setText(text);
 	}
 
-	public void setVip(String text) {
-		this.vip.setText(text);
-	}
-	
 	
 }
