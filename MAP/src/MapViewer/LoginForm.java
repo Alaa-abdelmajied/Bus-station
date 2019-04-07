@@ -25,7 +25,7 @@ public class LoginForm {
 	DriverMenu driverMenu;
 	ManagerMenu managerMenu;
 	Validate validate = new Validate();
-	Passenger passenger =new Passenger();
+	Passenger passenger = new Passenger();
 	boolean showEmployee = false;
 	boolean showPassenger = false;
 	TextField userNameField = new TextField();
@@ -113,11 +113,13 @@ public class LoginForm {
 							stage.setScene(passengerMenu.getPassengerScene());
 							passengerMenu.setPassengerLabel("Hello, " + userNameField.getText() + "!");
 							try {
-								if(LoginForm.this.passenger.vipCheck(userNameField.getText())) {
-									passengerMenu.setVip("Book a limo");
+								if (LoginForm.this.passenger.vipCheck(userNameField.getText())) {
+									passengerMenu.limo.setVisible(true);
+									passengerMenu.becomeVip.setVisible(false);
+								} else {
+									passengerMenu.becomeVip.setVisible(true);
+									passengerMenu.limo.setVisible(false);
 								}
-								else
-									passengerMenu.setVip("Become a vip");
 							} catch (IOException e) {
 								e.printStackTrace();
 							}
@@ -169,6 +171,5 @@ public class LoginForm {
 	public void setPasswordField(String text) {
 		this.passwordField.setText(text);
 	}
-	
 
 }

@@ -18,7 +18,8 @@ public class PassengerMenu {
 	BookingScene bookingScene;
 	Trip trip = new Trip();
 	Label passengerLabel = new Label();
-	Button vip = new Button();
+	Button becomeVip = new Button("Become a vip");
+	Button limo = new Button("Book a limo");
 	
 	public PassengerMenu(Stage stage) {
 		this.stage = stage;
@@ -37,12 +38,17 @@ public class PassengerMenu {
 		GridPane.setHalignment(booking, HPos.CENTER);
 		passengerGrid.add(trips, 0, 2);
 		GridPane.setHalignment(trips, HPos.CENTER);
-		passengerGrid.add(vip, 0, 3);
-		GridPane.setHalignment(vip, HPos.CENTER);
+		passengerGrid.add(becomeVip, 0, 3);
+		GridPane.setHalignment(becomeVip, HPos.CENTER);
+		passengerGrid.add(limo, 0, 3);
+		GridPane.setHalignment(becomeVip, HPos.CENTER);
 		passengerGrid.add(logoutPassenger, 0, 4);
 		GridPane.setHalignment(logoutPassenger, HPos.CENTER);
 
 		passengerScene = new Scene(passengerGrid, 300, 300);
+		
+		limo.setVisible(false);
+		becomeVip.setVisible(false);
 
 		// actions
 
@@ -60,6 +66,24 @@ public class PassengerMenu {
 			}
 		});
 
+		becomeVip.setOnAction(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent event) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
+		limo.setOnAction(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent event) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
 		logoutPassenger.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
