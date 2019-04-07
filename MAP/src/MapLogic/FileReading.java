@@ -82,7 +82,7 @@ public class FileReading {
 
 	public void readVipFile() throws IOException {
 
-		File file = new File("vipPassenegers");
+		File file = new File("vipPassengers");
 
 		FileReader fileReader = new FileReader(file);
 		BufferedReader bufferedReader = new BufferedReader(fileReader);
