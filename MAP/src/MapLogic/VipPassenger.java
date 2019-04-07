@@ -1,5 +1,6 @@
 package MapLogic;
 
-public class VipPassenger extends Passenger{
+public class VipPassenger extends Passenger {
+
 
 }
