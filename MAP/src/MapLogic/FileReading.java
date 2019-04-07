@@ -27,6 +27,11 @@ public class FileReading {
 	private ArrayList<Double> ticketPrice = new ArrayList<Double>();
 	private ArrayList<String> passengerName = new ArrayList<String>();
 	private ArrayList<Integer> numberOfTrips = new ArrayList<Integer>();
+	private ArrayList<String> driverName = new ArrayList<String>();
+	private ArrayList<String> driverGender = new ArrayList<String>();
+	private ArrayList<Integer> driverNumber = new ArrayList<Integer>();
+	private ArrayList<String> driverVehicle = new ArrayList<String>();
+	private ArrayList<ArrayList<String>> driverTrips = new ArrayList<ArrayList<String>>();
 
 	public void readLoginFile() throws IOException {
 
@@ -103,6 +108,14 @@ public class FileReading {
 		FileReader fileReader = new FileReader(file);
 		BufferedReader bufferedReader = new BufferedReader(fileReader);
 		while (bufferedReader.ready()) {
+			line = bufferedReader.readLine();
+			StringTokenizer stringTokenizer = new StringTokenizer(line, ",");
+			driverName.add(stringTokenizer.nextToken());
+			driverGender.add(stringTokenizer.nextToken());
+			driverNumber.add(Integer.parseInt(stringTokenizer.nextToken()));
+			driverVehicle.add(stringTokenizer.nextToken());
+			
+			
 			
 		}
 	}
