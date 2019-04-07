@@ -14,6 +14,7 @@ public class DriverMenu {
 	Stage stage;
 	Scene driverScene;
 	LoginForm loginForm;
+	AssignedTrips assignedTrips;
 	Label driverLabel = new Label();
 
 	public DriverMenu(Stage stage) {
@@ -43,6 +44,16 @@ public class DriverMenu {
 
 		// actions
 
+		assignedTrips.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				stage.setScene(DriverMenu.this.assignedTrips.getAssignedTripsScene());
+
+			}
+
+		});
+
 		logoutDriver.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
@@ -65,6 +76,10 @@ public class DriverMenu {
 
 	public void setDriverLabel(String text) {
 		this.driverLabel.setText(text);
+	}
+
+	public void setAssignedTrips(AssignedTrips assignedTrips) {
+		this.assignedTrips = assignedTrips;
 	}
 
 }
