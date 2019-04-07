@@ -27,7 +27,7 @@ public class FileReading {
 
 	public void readLoginFile() throws IOException {
 
-		File file = new File("C:\\Users\\LOL\\Desktop\\files\\login.txt");
+		File file = new File("login.txt");
 
 		FileReader fileReader = new FileReader(file);
 		BufferedReader bufferedReader = new BufferedReader(fileReader);
@@ -55,7 +55,7 @@ public class FileReading {
 	
 	public void readTripFile() throws IOException {
 		
-		File file = new File("C:\\Users\\LOL\\Desktop\\files\\trips.txt");
+		File file = new File("trips.txt");
 
 		FileReader fileReader = new FileReader(file);
 		BufferedReader bufferedReader = new BufferedReader(fileReader);
