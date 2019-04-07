@@ -5,6 +5,8 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
@@ -79,7 +81,13 @@ public class PassengerMenu {
 			
 			@Override
 			public void handle(ActionEvent event) {
-				// TODO Auto-generated method stub
+				
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("Book a limousine");
+				alert.setHeaderText("");
+				alert.setContentText("The limousine is on the way to you");
+
+				alert.showAndWait();
 				
 			}
 		});

@@ -23,8 +23,8 @@ public class BookingScene {
 	Scene bookingScene;
 	PassengerMenu passengerMenu;
 	ConfirmationScene confirmationScene;
-	//ListView<String> listView;
-	TableView<Trip> tableView;
+	ListView<String> listView;
+	//TableView<Trip> tableView;
 	ChoiceBox<String> choiceBoxS = new ChoiceBox<String>();
 	ChoiceBox<String> choiceBoxD = new ChoiceBox<String>();
 
@@ -60,18 +60,18 @@ public class BookingScene {
 		source.setCellValueFactory(new PropertyValueFactory<>("ticketPrice"));
 		ticketPrce.setMinWidth(100);
 		
-		tableView = new TableView<>();
+		/*tableView = new TableView<>();
 		tableView.setItems(null);
 		tableView.getColumns().add(source);
 		tableView.getColumns().add(destination);
 		tableView.getColumns().add(time);
 		tableView.getColumns().add(vehicle);
 		tableView.getColumns().add(numberOfStops);
-		tableView.getColumns().add(ticketPrce);
+		tableView.getColumns().add(ticketPrce);*/
 		
-		//listView = new ListView<>();
-		//listView.setVisible(false);
-		//listView.setPrefSize(500, 200);
+		listView = new ListView<>();
+		listView.setVisible(false);
+		listView.setPrefSize(500, 200);
 
 		GridPane bookingGrid = new GridPane();
 		bookingGrid.add(sourceLabel, 0, 0);
@@ -81,7 +81,7 @@ public class BookingScene {
 		bookingGrid.add(search, 0, 4);
 		GridPane.setHalignment(search, HPos.RIGHT);
 		bookingGrid.add(space5, 0, 5);
-		bookingGrid.add(tableView, 0, 6);
+		bookingGrid.add(listView, 0, 6);
 		bookingGrid.add(back, 0, 7);
 		GridPane.setHalignment(back, HPos.RIGHT);
 		bookingScene = new Scene(bookingGrid, 500, 400);
@@ -94,14 +94,14 @@ public class BookingScene {
 			public void handle(ActionEvent event) {
 				String sourceSearch = choiceBoxS.getValue();
 				String destination = choiceBoxD.getValue();
-				//listView.getItems().clear();
-				//ArrayList<String> findTrip = passengerMenu.getTrip().findTrip(source, destination);
+				listView.getItems().clear();
+				ArrayList<String> findTrip = passengerMenu.getTrip().findTrip(sourceSearch, destination);
 				//ArrayList<String> source1 = passengerMenu.getTrip().getSource();
-				//for (int i = 0; i < source1.size(); i++)
+				for (int i = 0; i < findTrip.size(); i++)
 					//tableView.getItems().add(new );
-					//listView.getItems().add(findTrip.get(i));
+					listView.getItems().add(findTrip.get(i));
 
-				//listView.setVisible(true);
+				listView.setVisible(true);
 
 			}
 
