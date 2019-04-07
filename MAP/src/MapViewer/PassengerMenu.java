@@ -18,6 +18,7 @@ public class PassengerMenu {
 	BookingScene bookingScene;
 	Trip trip = new Trip();
 	Label passengerLabel = new Label();
+	Button vip = new Button();
 	
 	public PassengerMenu(Stage stage) {
 		this.stage = stage;
@@ -27,7 +28,6 @@ public class PassengerMenu {
 
 		Button booking = new Button("Book a trip");
 		Button trips = new Button("Your Trips");
-		Button vip = new Button("Become a VIP");
 		Button logoutPassenger = new Button("Logout");
 
 		GridPane passengerGrid = new GridPane();
@@ -93,4 +93,9 @@ public class PassengerMenu {
 		this.passengerLabel.setText(text);
 	}
 
+	public void setVip(String text) {
+		this.vip.setText(text);
+	}
+	
+	
 }

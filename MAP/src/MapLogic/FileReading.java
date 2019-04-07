@@ -1,4 +1,5 @@
 package MapLogic;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -26,8 +27,7 @@ public class FileReading {
 	private ArrayList<Double> ticketPrice = new ArrayList<Double>();
 	private ArrayList<String> passengerName = new ArrayList<String>();
 	private ArrayList<Integer> numberOfTrips = new ArrayList<Integer>();
-	
-	
+
 	public void readLoginFile() throws IOException {
 
 		File file = new File("login.txt");
@@ -55,9 +55,9 @@ public class FileReading {
 			}
 		}
 	}
-	
+
 	public void readTripFile() throws IOException {
-		
+
 		File file = new File("trips.txt");
 
 		FileReader fileReader = new FileReader(file);
@@ -81,20 +81,21 @@ public class FileReading {
 	}
 
 	public void readVipFile() throws IOException {
-		
-		File file = new File("vipFile.txt");
+
+		File file = new File("vipPassenegers");
 
 		FileReader fileReader = new FileReader(file);
 		BufferedReader bufferedReader = new BufferedReader(fileReader);
 		while (bufferedReader.ready()) {
 			line = bufferedReader.readLine();
 			StringTokenizer stringTokenizer = new StringTokenizer(line, ",");
-			passengerName.add(stringTokenizer.nextToken());
-			numberOfTrips.add(Integer.parseInt(stringTokenizer.nextToken()));
+			while (stringTokenizer.hasMoreTokens()) {
+				passengerName.add(stringTokenizer.nextToken());
+				numberOfTrips.add(Integer.parseInt(stringTokenizer.nextToken()));
+			}
 		}
-		
 	}
-	
+
 	public String[][] getPassengerLogin() {
 		return passengerLogin;
 	}
@@ -138,6 +139,5 @@ public class FileReading {
 	public ArrayList<Integer> getNumberOfTrips() {
 		return numberOfTrips;
 	}
-	
-	
+
 }
