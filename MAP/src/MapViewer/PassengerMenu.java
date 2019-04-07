@@ -22,7 +22,7 @@ public class PassengerMenu {
 	Label passengerLabel = new Label();
 	Button becomeVip = new Button("Become a vip");
 	Button limo = new Button("Book a limo");
-	
+
 	public PassengerMenu(Stage stage) {
 		this.stage = stage;
 	}
@@ -48,7 +48,7 @@ public class PassengerMenu {
 		GridPane.setHalignment(logoutPassenger, HPos.CENTER);
 
 		passengerScene = new Scene(passengerGrid, 300, 300);
-		
+
 		limo.setVisible(false);
 		becomeVip.setVisible(false);
 
@@ -63,35 +63,40 @@ public class PassengerMenu {
 					bookingScene.setChoiceBoxS(trip.getSource().get(i));
 					bookingScene.setChoiceBoxD(trip.getDestination().get(i));
 				}
-				
+
 				stage.setScene(bookingScene.getBookingScene());
 			}
 		});
 
 		becomeVip.setOnAction(new EventHandler<ActionEvent>() {
-			
+
 			@Override
 			public void handle(ActionEvent event) {
-				// TODO Auto-generated method stub
-				
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("Become a VIP");
+				alert.setHeaderText("You made " + loginForm.passenger.getTripsNumber() + "/6 trips");
+				alert.setContentText("Complete 6 rides to become a VIP.");
+
+				alert.showAndWait();
+
 			}
 		});
-		
+
 		limo.setOnAction(new EventHandler<ActionEvent>() {
-			
+
 			@Override
 			public void handle(ActionEvent event) {
-				
+
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("Book a limousine");
 				alert.setHeaderText("");
 				alert.setContentText("The limousine is on the way to you");
 
 				alert.showAndWait();
-				
+
 			}
 		});
-		
+
 		logoutPassenger.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
@@ -125,5 +130,4 @@ public class PassengerMenu {
 		this.passengerLabel.setText(text);
 	}
 
-	
 }

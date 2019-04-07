@@ -7,6 +7,7 @@ public class Passenger {
 
 	private ArrayList<String> passengerName = new ArrayList<String>();
 	private ArrayList<Integer> numberOfTrips = new ArrayList<Integer>();
+	int tripsNumber;
 
 	FileReading loader = new FileReading();
 
@@ -20,6 +21,7 @@ public class Passenger {
 		loader.readVipFile();
 		for (int i = 0; i < passengerName.size(); i++) {
 			if (name.equals(passengerName.get(i))) {
+				tripsNumber = numberOfTrips.get(i);
 				if (numberOfTrips.get(i) >= 6) {
 					return true;
 
@@ -30,4 +32,9 @@ public class Passenger {
 		}
 		return false;
 	}
+
+	public int getTripsNumber() {
+		return tripsNumber;
+	}
+
 }
