@@ -42,21 +42,23 @@ public class FileReading {
 		while (bufferedReader.ready()) {
 			line = bufferedReader.readLine();
 			StringTokenizer stringTokenizer = new StringTokenizer(line, ",");
-			accountType = stringTokenizer.nextToken();
-			if (accountType.equals("Manager") || accountType.equals("Driver")) {
-				if (accountType.equals("Driver")) {
-					driverLogin[driverCounter][0] = stringTokenizer.nextToken();
-					driverLogin[driverCounter][1] = stringTokenizer.nextToken();
-					driverCounter++;
-				} else if (accountType.equals("Manager")) {
-					mangerLogin[managerCounter][0] = stringTokenizer.nextToken();
-					mangerLogin[managerCounter][1] = stringTokenizer.nextToken();
-					managerCounter++;
+			while (stringTokenizer.hasMoreTokens()) {
+				accountType = stringTokenizer.nextToken();
+				if (accountType.equals("Manager") || accountType.equals("Driver")) {
+					if (accountType.equals("Driver")) {
+						driverLogin[driverCounter][0] = stringTokenizer.nextToken();
+						driverLogin[driverCounter][1] = stringTokenizer.nextToken();
+						driverCounter++;
+					} else if (accountType.equals("Manager")) {
+						mangerLogin[managerCounter][0] = stringTokenizer.nextToken();
+						mangerLogin[managerCounter][1] = stringTokenizer.nextToken();
+						managerCounter++;
+					}
+				} else if (accountType.equals("Passenger")) {
+					passengerLogin[passengerCounter][0] = stringTokenizer.nextToken();
+					passengerLogin[passengerCounter][1] = stringTokenizer.nextToken();
+					passengerCounter++;
 				}
-			} else if (accountType.equals("Passenger")) {
-				passengerLogin[passengerCounter][0] = stringTokenizer.nextToken();
-				passengerLogin[passengerCounter][1] = stringTokenizer.nextToken();
-				passengerCounter++;
 			}
 		}
 	}
@@ -70,18 +72,20 @@ public class FileReading {
 		while (bufferedReader.ready()) {
 			line = bufferedReader.readLine();
 			StringTokenizer stringTokenizer = new StringTokenizer(line, ":,");
-			stringTokenizer.nextToken();
-			source.add(stringTokenizer.nextToken());
-			stringTokenizer.nextToken();
-			destination.add(stringTokenizer.nextToken());
-			stringTokenizer.nextToken();
-			time.add(Double.parseDouble(stringTokenizer.nextToken()));
-			stringTokenizer.nextToken();
-			vehicle.add(stringTokenizer.nextToken());
-			stringTokenizer.nextToken();
-			numberOfStops.add(Integer.parseInt(stringTokenizer.nextToken()));
-			stringTokenizer.nextToken();
-			ticketPrice.add(Double.parseDouble(stringTokenizer.nextToken()));
+			while (stringTokenizer.hasMoreTokens()) {
+				stringTokenizer.nextToken();
+				source.add(stringTokenizer.nextToken());
+				stringTokenizer.nextToken();
+				destination.add(stringTokenizer.nextToken());
+				stringTokenizer.nextToken();
+				time.add(Double.parseDouble(stringTokenizer.nextToken()));
+				stringTokenizer.nextToken();
+				vehicle.add(stringTokenizer.nextToken());
+				stringTokenizer.nextToken();
+				numberOfStops.add(Integer.parseInt(stringTokenizer.nextToken()));
+				stringTokenizer.nextToken();
+				ticketPrice.add(Double.parseDouble(stringTokenizer.nextToken()));
+			}
 		}
 	}
 
@@ -100,7 +104,7 @@ public class FileReading {
 			}
 		}
 	}
-	
+
 	public void readDriverFile() throws IOException {
 
 		File file = new File("DriverFile");
@@ -110,14 +114,12 @@ public class FileReading {
 		while (bufferedReader.ready()) {
 			line = bufferedReader.readLine();
 			StringTokenizer stringTokenizer = new StringTokenizer(line, ",");
-			driverName.add(stringTokenizer.nextToken());
-			driverGender.add(stringTokenizer.nextToken());
-			driverNumber.add(Integer.parseInt(stringTokenizer.nextToken()));
-			driverVehicle.add(stringTokenizer.nextToken());
-			
-			
-			
-			
+			while (stringTokenizer.hasMoreTokens()) {
+				driverName.add(stringTokenizer.nextToken());
+				driverGender.add(stringTokenizer.nextToken());
+				driverNumber.add(Integer.parseInt(stringTokenizer.nextToken()));
+				driverVehicle.add(stringTokenizer.nextToken());
+			}
 		}
 	}
 
