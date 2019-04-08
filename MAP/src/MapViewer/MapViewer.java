@@ -38,16 +38,17 @@ public class MapViewer extends Application {
 		passengerMenu.setBookingScene(bookingScene);
 		passengerMenu.setLoginForm(loginForm);
 		driverMenu.setLoginForm(loginForm);
+		driverMenu.setAssignedTrips(assignedTrips);
 		managerMenu.setLoginForm(loginForm);
 		managerMenu.setAllTrips(allTrips);
+		managerMenu.setPassengerMenu(passengerMenu);
 		bookingScene.setPassengerMenu(passengerMenu);
 		bookingScene.setConfirmationScene(confirmationScene);
 		allTrips.setManagerMenu(managerMenu);
 		confirmationScene.setBookingScene(bookingScene);
 		assignedTrips.setDriverMenu(driverMenu);
-		driverMenu.setAssignedTrips(assignedTrips);
+
 		
-		managerMenu.setPassengerMenu(passengerMenu);
 
 		primaryStage.setScene(loginForm.getLoginForm());
 		primaryStage.setTitle("MAP");

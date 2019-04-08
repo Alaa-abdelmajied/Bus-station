@@ -41,8 +41,11 @@ public class BookingScene {
 		Label destinationLabel = new Label("Choose your destination:");
 		Label info = new Label("Source  Destination  Time  Vehicle  Number of Stops  Price(EGP)");
 		Button search = new Button("Search");
+		Button confirm = new Button("Confirm");
 		Button back = new Button("Back");
-		
+
+
+		confirm.setVisible(false);
 		info.setVisible(false);
 		
 		//tableView.setEditable(true);
@@ -87,7 +90,9 @@ public class BookingScene {
 		GridPane.setHalignment(search, HPos.RIGHT);
 		bookingGrid.add(info, 0, 5);
 		bookingGrid.add(listView, 0, 6);
-		bookingGrid.add(back, 0, 7);
+		bookingGrid.add(confirm, 0, 7);
+		GridPane.setHalignment(confirm, HPos.RIGHT);
+		bookingGrid.add(back, 0, 8);
 		GridPane.setHalignment(back, HPos.RIGHT);
 		bookingScene = new Scene(bookingGrid, 500, 400);
 
@@ -107,11 +112,21 @@ public class BookingScene {
 					listView.getItems().add(findTrip.get(i));
 					//tableView.getItems().add(new);
 					
+				confirm.setVisible(true);
 				info.setVisible(true);
 				listView.setVisible(true);
 
 			}
 
+		});
+		
+		confirm.setOnAction(new EventHandler<ActionEvent>() {
+			
+			@Override
+			public void handle(ActionEvent event) {
+				stage.setScene(confirmationScene.getConfirmationScene());
+				
+			}
 		});
 
 		back.setOnAction(new EventHandler<ActionEvent>() {

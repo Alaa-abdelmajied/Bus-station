@@ -14,6 +14,7 @@ public class ConfirmationScene {
 	Stage stage;
 	Scene confirmationScene;
 	BookingScene bookingScene;
+	int seatNumber = 1;
 
 	public ConfirmationScene(Stage stage) {
 		this.stage = stage;
@@ -27,7 +28,7 @@ public class ConfirmationScene {
 		Label price = new Label("Price: ");
 		Label seats = new Label();
 		Label seatsNum = new Label("No. of seats:");
-		Label numOfSeats = new Label(" 2 ");
+		Label numOfSeats = new Label(" 1 ");
 		Button addSeat = new Button("+");
 		Button removeSeat = new Button("-");
 		Button back = new Button("Back");
@@ -53,6 +54,28 @@ public class ConfirmationScene {
 		confirmationGrid.add(book, 1, 4);
 		GridPane.setHalignment(book, HPos.CENTER);
 		confirmationScene = new Scene(confirmationGrid, 500, 400);
+
+		addSeat.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				if (seatNumber < 8)
+					seatNumber++;
+				numOfSeats.setText(" " + String.valueOf(seatNumber) + " ");
+
+			}
+		});
+
+		removeSeat.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				if (seatNumber > 1)
+					seatNumber--;
+				numOfSeats.setText(" " + String.valueOf(seatNumber) + " ");
+
+			}
+		});
 
 		back.setOnAction(new EventHandler<ActionEvent>() {
 
