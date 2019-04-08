@@ -20,11 +20,11 @@ public class TripReader {
 
 		for (int i = 0; i < this.trips.size(); i++) {
 			if (source != null && destination != null) {
-				if (source.equals(trips.get(i).getSource()) || destination.equals(trips.get(i).getDest())) {
+				if (source.equals(trips.get(i).getSource()) || destination.equals(trips.get(i).getDestination())) {
 					searchResult.add(trips.get(i));
 				}
 			} else if (source == null && destination != null) {
-				if (destination.equals(trips.get(i).getDest())) {
+				if (destination.equals(trips.get(i).getDestination())) {
 					searchResult.add(trips.get(i));
 				}
 			} else if (source != null && destination == null) {
@@ -58,7 +58,7 @@ public class TripReader {
 	public ArrayList<String> getDestination() {
 		ArrayList<String> destinations = new ArrayList<String>();
 		for (int i = 0; i < trips.size(); i++) {
-			destinations.add(trips.get(i).getDest());
+			destinations.add(trips.get(i).getDestination());
 		}
 		return destinations;
 	}

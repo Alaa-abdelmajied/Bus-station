@@ -47,7 +47,7 @@ public class BookingScene {
 		source.setCellValueFactory(new PropertyValueFactory<>("source"));
 		source.setMinWidth(200);
 		TableColumn<Trip, String> destination = new TableColumn<Trip, String>("Destination");
-		destination.setCellValueFactory(new PropertyValueFactory<>("dest"));
+		destination.setCellValueFactory(new PropertyValueFactory<>("destination"));
 		destination.setMinWidth(200);
 		TableColumn<Trip, Double> time = new TableColumn<Trip, Double>("Time");
 		time.setCellValueFactory(new PropertyValueFactory<>("time"));
@@ -96,7 +96,7 @@ public class BookingScene {
 			public void handle(ActionEvent event) {
 				ArrayList<Trip> trips = passengerMenu.getTrip().showTrips();
 				tripsData.setAll(trips);
-
+				confirm.setVisible(true);
 			}
 		});
 
@@ -117,6 +117,9 @@ public class BookingScene {
 
 			@Override
 			public void handle(ActionEvent event) {
+				confirmationScene.setSource("Source:  " + tableView.getSelectionModel().getSelectedItem().getSource());
+				confirmationScene.setDestination("Destination:  " + tableView.getSelectionModel().getSelectedItem().getDestination());
+				confirmationScene.setPrice("Price:  " + tableView.getSelectionModel().getSelectedItem().getTicketPrice() + " EGP");
 				stage.setScene(confirmationScene.getConfirmationScene());
 
 			}

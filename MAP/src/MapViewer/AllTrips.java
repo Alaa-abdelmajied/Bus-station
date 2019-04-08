@@ -34,7 +34,7 @@ public class AllTrips {
 		source.setCellValueFactory(new PropertyValueFactory<>("source"));
 		source.setMinWidth(200);
 		TableColumn<Trip, String> destination = new TableColumn<Trip, String>("Destination");
-		destination.setCellValueFactory(new PropertyValueFactory<>("dest"));
+		destination.setCellValueFactory(new PropertyValueFactory<>("destination"));
 		destination.setMinWidth(200);
 		TableColumn<Trip, Double> time = new TableColumn<Trip, Double>("Time");
 		time.setCellValueFactory(new PropertyValueFactory<>("time"));

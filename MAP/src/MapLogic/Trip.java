@@ -3,15 +3,15 @@ package MapLogic;
 public class Trip {
 
 	private final String source;
-	private final String dest;
+	private final String destination;
 	private final String vehicle;
 	private final int numOfStops;
 	private final double time;
 	private final double ticketPrice;
 
-	public Trip(String source, String dest, String vehicle, int numOfStops, double time, double ticketPrice) {
+	public Trip(String source, String destination, String vehicle, int numOfStops, double time, double ticketPrice) {
 		this.source = source;
-		this.dest = dest;
+		this.destination = destination;
 		this.vehicle = vehicle;
 		this.numOfStops = numOfStops;
 		this.time = time;
@@ -22,8 +22,8 @@ public class Trip {
 		return source;
 	}
 
-	public String getDest() {
-		return dest;
+	public String getDestination() {
+		return destination;
 	}
 
 	public String getVehicle() {

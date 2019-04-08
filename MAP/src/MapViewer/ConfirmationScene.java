@@ -15,6 +15,9 @@ public class ConfirmationScene {
 	Scene confirmationScene;
 	BookingScene bookingScene;
 	int seatNumber = 1;
+	Label source = new Label();
+	Label destination = new Label();
+	Label price = new Label();
 
 	public ConfirmationScene(Stage stage) {
 		this.stage = stage;
@@ -23,9 +26,7 @@ public class ConfirmationScene {
 
 	public void prepareScene() {
 
-		Label source = new Label("Source: ");
-		Label destination = new Label("Destination: ");
-		Label price = new Label("Price: ");
+
 		Label seats = new Label();
 		Label seatsNum = new Label("No. of seats:");
 		Label numOfSeats = new Label(" 1 ");
@@ -94,4 +95,18 @@ public class ConfirmationScene {
 	public void setBookingScene(BookingScene bookingScene) {
 		this.bookingScene = bookingScene;
 	}
+
+	public void setSource(String text) {
+		this.source.setText(text);
+	}
+
+	public void setDestination(String text) {
+		this.destination.setText(text);
+	}
+
+	public void setPrice(String text) {
+		this.price.setText(text);
+	}
+	
+	
 }
