@@ -5,7 +5,13 @@ import java.util.Observable;
 import org.omg.CORBA.PUBLIC_MEMBER;
 
 import MapLogic.Trip;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.HPos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -18,15 +24,16 @@ public class AllTrips {
 	Scene alltrips;
 	ManagerMenu managerMenu;
 	PassengerMenu passengerMenu;
-	TableView<Trip> tableView;
-
+	//TableView<Trip> tableView;
+	ListView<String> listView;
+	
 	public AllTrips(Stage stage) {
 		this.stage = stage;
 	}
 
 	public void prepareScene() {
 
-		TableColumn<Trip, String> source = new TableColumn<Trip, String>("Source");
+		/*TableColumn<Trip, String> source = new TableColumn<Trip, String>("Source");
 		source.setCellValueFactory(new PropertyValueFactory<Trip, String>("source"));
 		source.setMinWidth(100);
 		TableColumn<Trip, String> destination = new TableColumn<Trip, String>("Destination");
@@ -54,11 +61,40 @@ public class AllTrips {
 		tableView.getColumns().add(numberOfStops);
 		tableView.getColumns().add(ticketPrce);
 
+		
+		allTripsGrid.add(tableView, 0, 1);*/
+		
+		listView = new ListView<>();
+		listView.setPrefSize(400, 200);
+		Label info = new Label("Source  Destination  Time  Vehicle  Number of Stops  Price(EGP)");
+		Button add = new Button("Add trip");
+		Button delete = new Button("Delete trip");
+		Button back = new Button("Back");
+		
 		GridPane allTripsGrid = new GridPane();
-		allTripsGrid.add(tableView, 0, 1);
+		
+		allTripsGrid.add(info,0, 0);
+		GridPane.setHalignment(info, HPos.LEFT);
+		allTripsGrid.add(listView,0, 2);
+		GridPane.setHalignment(listView, HPos.CENTER);
+		allTripsGrid.add(add,0, 4);
+		GridPane.setHalignment(add, HPos.LEFT);
+		allTripsGrid.add(delete,1, 4);
+		GridPane.setHalignment(delete, HPos.CENTER);
+		allTripsGrid.add(back,2, 4);
+		GridPane.setHalignment(back, HPos.RIGHT);
 
-		alltrips = new Scene(allTripsGrid, 600, 400);
+		
+		alltrips = new Scene(allTripsGrid, 400, 300);
+		
+		
+		back.setOnAction(new EventHandler<ActionEvent>() {
 
+			@Override
+			public void handle(ActionEvent event) {
+				stage.setScene(managerMenu.getManagerScene());
+			}
+		});
 	}
 
 	public Scene getAlltrips() {
@@ -69,4 +105,9 @@ public class AllTrips {
 		this.managerMenu = managerMenu;
 	}
 
+	public ListView<String> getListView() {
+		return listView;
+	}
+	
+	
 }

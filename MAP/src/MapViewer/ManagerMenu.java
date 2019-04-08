@@ -1,5 +1,7 @@
 package MapViewer;
 
+import java.util.ArrayList;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
@@ -15,6 +17,7 @@ public class ManagerMenu {
 	Scene managerScene;
 	LoginForm loginForm;
 	AllTrips allTrips;
+	PassengerMenu passengerMenu;
 	Label managerLabel = new Label();
 
 	public ManagerMenu(Stage stage) {
@@ -24,7 +27,7 @@ public class ManagerMenu {
 	public void prepareScene() {
 
 		Button Trips = new Button("Show All Trips");
-		Button addRemove = new Button("Add/Remove Trips");
+		Button assignTrips = new Button("Assign trips to drivers");
 		Button logoutManager = new Button("Logout");
 
 		GridPane managerGrid = new GridPane();
@@ -32,8 +35,8 @@ public class ManagerMenu {
 		GridPane.setHalignment(managerLabel, HPos.CENTER);
 		managerGrid.add(Trips, 0, 1);
 		GridPane.setHalignment(Trips, HPos.CENTER);
-		managerGrid.add(addRemove, 0, 2);
-		GridPane.setHalignment(addRemove, HPos.CENTER);
+		managerGrid.add(assignTrips, 0, 2);
+		GridPane.setHalignment(assignTrips, HPos.CENTER);
 		managerGrid.add(logoutManager, 0, 3);
 		GridPane.setHalignment(logoutManager, HPos.CENTER);
 
@@ -45,6 +48,11 @@ public class ManagerMenu {
 			
 			@Override
 			public void handle(ActionEvent event) {
+				passengerMenu.getTrip().loadTrips();
+				allTrips.getListView().getItems().clear();
+				ArrayList<String> showTrips = passengerMenu.getTrip().showTrips();
+				for (int i = 0; i < showTrips.size(); i++)
+					allTrips.getListView().getItems().add(showTrips.get(i));
 				stage.setScene(allTrips.getAlltrips());
 				
 			}
@@ -77,6 +85,12 @@ public class ManagerMenu {
 	public void setAllTrips(AllTrips allTrips) {
 		this.allTrips = allTrips;
 	}
+
+	public void setPassengerMenu(PassengerMenu passengerMenu) {
+		this.passengerMenu = passengerMenu;
+	}
+	
+	
 	
 
 }

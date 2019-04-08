@@ -1,9 +1,12 @@
 package MapViewer;
 
+import MapLogic.Trip;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
 public class MapViewer extends Application {
+	
+	Trip trip = new Trip();
 
 	public static void main(String[] args) {
 		launch(args);
@@ -43,6 +46,8 @@ public class MapViewer extends Application {
 		confirmationScene.setBookingScene(bookingScene);
 		assignedTrips.setDriverMenu(driverMenu);
 		driverMenu.setAssignedTrips(assignedTrips);
+		
+		managerMenu.setPassengerMenu(passengerMenu);
 
 		primaryStage.setScene(loginForm.getLoginForm());
 		primaryStage.setTitle("MAP");

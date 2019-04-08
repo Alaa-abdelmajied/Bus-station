@@ -1,10 +1,10 @@
-Source: victoria,Destination:faculty of engineering,Time:7.25,Vehicle:bus,Number of stops:0,Ticket price:10
-Source: faculty of engineering,Destination:victoria,Time:7.45,Vehicle:bus,Number of stops:0,Ticket price:10
-Source: el montazah,Destination:bahary,Time:8.55,Vehicle:Bus,Number of stops:2,Ticket price:8
-Source: bahary,Destination:el montazah,Time:8.55,Vehicle:Bus,Number of stops:2,Ticket price:8
-Source: victoria,Destination:faculty of engineering,Time:11.05,Vehicle:minibus,Number of stops:0,Ticket price:10
-Source: faculty of engineering,Destination:victoria,Time:11.35,Vehicle:minibus,Number of stops:0,Ticket price:10
-Source: sidigaber,Destination:cairo(nasr city),Time:13.15,Vehicle:bus,Number of stops:0,Ticket price:45
-Source: cairo(nasr city),Destination:sidigaber,Time:17.35,Vehicle:bus,Number of stops:0,Ticket price:45
-Source: victoria,Destination:faculty of engineering,Time:18.25,Vehicle:car,Number of stops:0,Ticket price:12
-Source: faculty of engineering,Destination:victoria,Time:15.05,Vehicle:car,Number of stops:0,Ticket price:12
+Source:victoria,Destination:faculty of engineering,Time:7.25,Vehicle:bus,Number of stops:0,Ticket price:10
+Source:faculty of engineering,Destination:victoria,Time:7.45,Vehicle:bus,Number of stops:0,Ticket price:10
+Source:el montazah,Destination:bahary,Time:8.55,Vehicle:Bus,Number of stops:2,Ticket price:8
+Source:bahary,Destination:el montazah,Time:8.55,Vehicle:Bus,Number of stops:2,Ticket price:8
+Source:victoria,Destination:faculty of engineering,Time:11.05,Vehicle:minibus,Number of stops:0,Ticket price:10
+Source:faculty of engineering,Destination:victoria,Time:11.35,Vehicle:minibus,Number of stops:0,Ticket price:10
+Source:sidigaber,Destination:cairo(nasr city),Time:13.15,Vehicle:bus,Number of stops:0,Ticket price:45
+Source:cairo(nasr city),Destination:sidigaber,Time:17.35,Vehicle:bus,Number of stops:0,Ticket price:45
+Source:victoria,Destination:faculty of engineering,Time:18.25,Vehicle:car,Number of stops:0,Ticket price:12
+Source:faculty of engineering,Destination:victoria,Time:15.05,Vehicle:car,Number of stops:0,Ticket price:12

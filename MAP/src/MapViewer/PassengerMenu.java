@@ -64,6 +64,7 @@ public class PassengerMenu {
 					bookingScene.setChoiceBoxD(trip.getDestination().get(i));
 				}
 
+				
 				stage.setScene(bookingScene.getBookingScene());
 			}
 		});

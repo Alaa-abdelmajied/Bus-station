@@ -3,6 +3,8 @@ package MapViewer;
 import java.util.ArrayList;
 
 import MapLogic.Trip;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
@@ -23,10 +25,11 @@ public class BookingScene {
 	Scene bookingScene;
 	PassengerMenu passengerMenu;
 	ConfirmationScene confirmationScene;
-	ListView<String> listView;
-	//TableView<Trip> tableView;
+	 ListView<String> listView;
+	//TableView<Trips> tableView;
 	ChoiceBox<String> choiceBoxS = new ChoiceBox<String>();
 	ChoiceBox<String> choiceBoxD = new ChoiceBox<String>();
+	ArrayList<String> findTrip = new ArrayList<>();
 
 	public BookingScene(Stage stage) {
 		this.stage = stage;
@@ -36,29 +39,31 @@ public class BookingScene {
 
 		Label sourceLabel = new Label("Choose your source:");
 		Label destinationLabel = new Label("Choose your destination:");
-		Label space5 = new Label("");
+		Label info = new Label("Source  Destination  Time  Vehicle  Number of Stops  Price(EGP)");
 		Button search = new Button("Search");
 		Button back = new Button("Back");
 		
+		info.setVisible(false);
+		
 		//tableView.setEditable(true);
-		TableColumn<Trip,String> source = new TableColumn<Trip, String>("Source");
+		/*TableColumn<Trips,String> source = new TableColumn<Trips, String>("Source");
 		source.setCellValueFactory(new PropertyValueFactory<>("source"));
 		source.setMinWidth(100);
-		TableColumn<Trip,String> destination = new TableColumn<Trip, String>("Destination");
+		TableColumn<Trips,String> destination = new TableColumn<Trips, String>("Destination");
 		source.setCellValueFactory(new PropertyValueFactory<>("destination"));
 		destination.setMinWidth(100);
-		TableColumn<Trip,String> time = new TableColumn<Trip, String>("Time");
+		TableColumn<Trips,String> time = new TableColumn<Trips, String>("Time");
 		source.setCellValueFactory(new PropertyValueFactory<>("time"));
 		time.setMinWidth(100);
-		TableColumn<Trip,String> vehicle = new TableColumn<Trip, String>("Vehicle");
+		TableColumn<Trips,String> vehicle = new TableColumn<Trips, String>("Vehicle");
 		source.setCellValueFactory(new PropertyValueFactory<>("vehicle"));
 		vehicle.setMinWidth(100);
-		TableColumn<Trip,Integer> numberOfStops = new TableColumn<Trip,Integer>("Number Of Stops");
+		TableColumn<Trips,Integer> numberOfStops = new TableColumn<Trips,Integer>("Number Of Stops");
 		source.setCellValueFactory(new PropertyValueFactory<>("numberOfStops"));
 		numberOfStops.setMinWidth(100);
-		TableColumn<Trip,Double> ticketPrce = new TableColumn<Trip, Double>("Price");
+		TableColumn<Trips,Double> ticketPrce = new TableColumn<Trips, Double>("Price");
 		source.setCellValueFactory(new PropertyValueFactory<>("ticketPrice"));
-		ticketPrce.setMinWidth(100);
+		ticketPrce.setMinWidth(100);*/
 		
 		/*tableView = new TableView<>();
 		tableView.setItems(null);
@@ -80,7 +85,7 @@ public class BookingScene {
 		bookingGrid.add(choiceBoxD, 0, 3);
 		bookingGrid.add(search, 0, 4);
 		GridPane.setHalignment(search, HPos.RIGHT);
-		bookingGrid.add(space5, 0, 5);
+		bookingGrid.add(info, 0, 5);
 		bookingGrid.add(listView, 0, 6);
 		bookingGrid.add(back, 0, 7);
 		GridPane.setHalignment(back, HPos.RIGHT);
@@ -95,12 +100,14 @@ public class BookingScene {
 				String sourceSearch = choiceBoxS.getValue();
 				String destination = choiceBoxD.getValue();
 				listView.getItems().clear();
-				ArrayList<String> findTrip = passengerMenu.getTrip().findTrip(sourceSearch, destination);
+				findTrip = passengerMenu.getTrip().findTrip(sourceSearch, destination);
+				//tableView.getColumns().add(source);
 				//ArrayList<String> source1 = passengerMenu.getTrip().getSource();
-				for (int i = 0; i < findTrip.size(); i++)
-					//tableView.getItems().add(new);
+				for(int i = 0; i < findTrip.size();i++)
 					listView.getItems().add(findTrip.get(i));
-
+					//tableView.getItems().add(new);
+					
+				info.setVisible(true);
 				listView.setVisible(true);
 
 			}
@@ -115,10 +122,7 @@ public class BookingScene {
 			}
 		});
 	}
-	
-	
-	
-	
+
 	public Scene getBookingScene() {
 		return bookingScene;
 	}
@@ -138,6 +142,5 @@ public class BookingScene {
 	public void setConfirmationScene(ConfirmationScene confirmationScene) {
 		this.confirmationScene = confirmationScene;
 	}
-
 
 }

@@ -31,10 +31,28 @@ public class Trip {
 	public ArrayList<String> findTrip(String source, String destination) {
 		searchResult.clear();
 		for (int i = 0; i < this.source.size(); i++) {
-			if (source.equals(this.source.get(i)) && destination.equals(this.destination.get(i))) {
-				searchResult.add("Source:" + this.source.get(i) + "Destination:" + this.destination.get(i) + "Time:"
-						+ time.get(i) + "Vehicle:" + vehicle.get(i) + "Number of stops:" + numberOfStops.get(i)
-						+ "Ticket price:" + ticketPrice.get(i));
+			if(source != null && destination != null) {
+				if (source.equals(this.source.get(i)) || destination.equals(this.destination.get(i))) {
+				searchResult.add(this.source.get(i) + "   " + this.destination.get(i) + "   "
+						+ time.get(i) + "   " + vehicle.get(i) + "   " + numberOfStops.get(i)
+						+ "   " + ticketPrice.get(i));
+				}
+			}else if(source == null && destination != null) {
+				if (destination.equals(this.destination.get(i))) {
+					searchResult.add(this.source.get(i) + "   " + this.destination.get(i) + "   "
+							+ time.get(i) + "   " + vehicle.get(i) + "   " + numberOfStops.get(i)
+							+ "   " + ticketPrice.get(i));
+					}
+			}else if(source != null &&destination == null) {
+				if (source.equals(this.source.get(i))) {
+					searchResult.add(this.source.get(i) + "   " + this.destination.get(i) + "   "
+							+ time.get(i) + "   " + vehicle.get(i) + "   " + numberOfStops.get(i)
+							+ "   " + ticketPrice.get(i));
+					}
+			} else if(source == null &&destination == null) {
+				searchResult.add(this.source.get(i) + "   " + this.destination.get(i) + "   "
+						+ time.get(i) + "   " + vehicle.get(i) + "   " + numberOfStops.get(i)
+						+ "   " + ticketPrice.get(i));
 			}
 		}
 		return searchResult;
@@ -42,9 +60,9 @@ public class Trip {
 
 	public ArrayList<String> showTrips() {
 		for (int i = 0; i < this.source.size(); i++) {
-			allTrips.add("Source:" + this.source.get(i) + "Destination:" + this.destination.get(i) + "Time:"
-					+ time.get(i) + "Vehicle:" + vehicle.get(i) + "Number of stops:" + numberOfStops.get(i)
-					+ "Ticket price:" + ticketPrice.get(i));
+			allTrips.add(this.source.get(i) + "  " + this.destination.get(i) + "  "
+					+ time.get(i) + "  " + vehicle.get(i) + "  " + numberOfStops.get(i)
+					+ "  " + ticketPrice.get(i));
 		}
 		return allTrips;
 	}
@@ -56,6 +74,8 @@ public class Trip {
 		this.vehicle.add(vehicle);
 		this.numberOfStops.add(numberOfStops);
 		this.ticketPrice.add(ticketPrice);
+	
+		
 	}
 
 	public ArrayList<String> getSource() {
@@ -65,6 +85,6 @@ public class Trip {
 	public ArrayList<String> getDestination() {
 		return destination;
 	}
-	
+
 
 }
