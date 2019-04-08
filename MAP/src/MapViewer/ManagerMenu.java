@@ -3,6 +3,8 @@ package MapViewer;
 import java.util.ArrayList;
 
 import MapLogic.Trip;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
@@ -44,18 +46,18 @@ public class ManagerMenu {
 		managerScene = new Scene(managerGrid, 500, 300);
 
 		// actions
-		
+
 		Trips.setOnAction(new EventHandler<ActionEvent>() {
-			
+
 			@Override
 			public void handle(ActionEvent event) {
 				passengerMenu.getTrip().loadTrips();
-				allTrips.getListView().getItems().clear();
-				ArrayList<Trip> showTrips = passengerMenu.getTrip().showTrips();
-//				for (int i = 0; i < showTrips.size(); i++)
-//					allTrips.getListView().getItems().add(showTrips.get(i));
-//				stage.setScene(allTrips.getAlltrips());
-				
+				final ObservableList<Trip> tripsData = FXCollections.observableArrayList();
+				ArrayList<Trip> trips = passengerMenu.getTrip().showTrips();
+				tripsData.setAll(trips);
+				allTrips.getTableView().setItems(tripsData);
+				stage.setScene(allTrips.getAlltrips());
+
 			}
 		});
 
@@ -90,8 +92,5 @@ public class ManagerMenu {
 	public void setPassengerMenu(PassengerMenu passengerMenu) {
 		this.passengerMenu = passengerMenu;
 	}
-	
-	
-	
 
 }

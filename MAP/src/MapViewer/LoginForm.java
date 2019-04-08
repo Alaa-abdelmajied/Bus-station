@@ -66,7 +66,7 @@ public class LoginForm {
 		loginGrid.add(passenger, 0, 6);
 		loginGrid.add(emlpoyee, 2, 6);
 
-		loginForm = new Scene(loginGrid, 300, 200);
+		loginForm = new Scene(loginGrid, 360, 200);
 
 		// actions
 

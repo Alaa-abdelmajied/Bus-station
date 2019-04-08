@@ -14,19 +14,16 @@ public class FileReaderUtils {
 	private String[][] passengerLogin = new String[100][2];
 	private String[][] mangerLogin = new String[100][2];
 	private String[][] driverLogin = new String[100][2];
-	private int driverCounter = 0;
-	private int passengerCounter = 0;
-	private int managerCounter = 0;
-	private String accountType;
 	private ArrayList<String> passengerName = new ArrayList<String>();
 	private ArrayList<Integer> numberOfTrips = new ArrayList<Integer>();
-	private ArrayList<String> driverName = new ArrayList<String>();
-	private ArrayList<String> driverGender = new ArrayList<String>();
-	private ArrayList<Integer> driverNumber = new ArrayList<Integer>();
-	private ArrayList<String> driverVehicle = new ArrayList<String>();
-	private ArrayList<ArrayList<String>> driverTrips = new ArrayList<ArrayList<String>>();
+
 
 	public void readLoginFile() throws IOException {
+		
+		int driverCounter = 0;
+		int passengerCounter = 0;
+		int managerCounter = 0;
+		String accountType;
 
 		File file = new File("login.txt");
 
@@ -72,17 +69,11 @@ public class FileReaderUtils {
 			line = bufferedReader.readLine();
 			StringTokenizer stringTokenizer = new StringTokenizer(line, ":,");
 			if (stringTokenizer.countTokens() > 0) {
-				stringTokenizer.nextToken();
 				source = stringTokenizer.nextToken();
-				stringTokenizer.nextToken();
 				destination = stringTokenizer.nextToken();
-				stringTokenizer.nextToken();
 				time = Double.parseDouble(stringTokenizer.nextToken());
-				stringTokenizer.nextToken();
 				vehicle = stringTokenizer.nextToken();
-				stringTokenizer.nextToken();
 				numberOfStops = Integer.parseInt(stringTokenizer.nextToken());
-				stringTokenizer.nextToken();
 				ticketPrice = Double.parseDouble(stringTokenizer.nextToken());
 				trips.add(new Trip(source, destination, vehicle, numberOfStops, time, ticketPrice));
 			}
@@ -108,6 +99,12 @@ public class FileReaderUtils {
 	}
 
 	public void readDriverFile() throws IOException {
+		
+		ArrayList<String> driverName = new ArrayList<String>();
+		ArrayList<String> driverGender = new ArrayList<String>();
+		ArrayList<Integer> driverNumber = new ArrayList<Integer>();
+		ArrayList<String> driverVehicle = new ArrayList<String>();
+		ArrayList<ArrayList<String>> driverTrips = new ArrayList<ArrayList<String>>();
 
 		File file = new File("DriverFile");
 

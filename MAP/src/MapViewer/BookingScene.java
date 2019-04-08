@@ -1,10 +1,7 @@
 package MapViewer;
 
 import java.util.ArrayList;
-import java.util.Vector;
-
 import MapLogic.Trip;
-import MapLogic.TripReader;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -14,7 +11,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -27,7 +23,6 @@ public class BookingScene {
 	Scene bookingScene;
 	PassengerMenu passengerMenu;
 	ConfirmationScene confirmationScene;
-	// ListView<String> listView;
 	TableView<Trip> tableView;
 	ChoiceBox<String> choiceBoxS = new ChoiceBox<String>();
 	ChoiceBox<String> choiceBoxD = new ChoiceBox<String>();
@@ -41,27 +36,25 @@ public class BookingScene {
 
 		Label sourceLabel = new Label("Choose your source:");
 		Label destinationLabel = new Label("Choose your destination:");
-		Label info = new Label("Source  Destination  Time  Vehicle  Number of Stops  Price(EGP)");
+		Label space = new Label(" ");
 		Button search = new Button("Search");
+		Button showAll = new Button("Show all trips");
 		Button confirm = new Button("Confirm");
+		confirm.setVisible(false);
 		Button back = new Button("Back");
 
-		confirm.setVisible(false);
-		info.setVisible(false);
-
-		// tableView.setEditable(true);
 		TableColumn<Trip, String> source = new TableColumn<Trip, String>("Source");
 		source.setCellValueFactory(new PropertyValueFactory<>("source"));
-		source.setMinWidth(100);
+		source.setMinWidth(200);
 		TableColumn<Trip, String> destination = new TableColumn<Trip, String>("Destination");
 		destination.setCellValueFactory(new PropertyValueFactory<>("dest"));
-		destination.setMinWidth(100);
+		destination.setMinWidth(200);
 		TableColumn<Trip, Double> time = new TableColumn<Trip, Double>("Time");
 		time.setCellValueFactory(new PropertyValueFactory<>("time"));
 		time.setMinWidth(100);
 		TableColumn<Trip, String> vehicle = new TableColumn<Trip, String>("Vehicle");
 		vehicle.setCellValueFactory(new PropertyValueFactory<>("vehicle"));
-		vehicle.setMinWidth(100);
+		vehicle.setMinWidth(150);
 		TableColumn<Trip, Integer> numberOfStops = new TableColumn<Trip, Integer>("Number Of Stops");
 		numberOfStops.setCellValueFactory(new PropertyValueFactory<>("numOfStops"));
 		numberOfStops.setMinWidth(100);
@@ -78,27 +71,34 @@ public class BookingScene {
 		tableView.getColumns().add(numberOfStops);
 		tableView.getColumns().add(ticketPrice);
 
-		/*
-		 * listView = new ListView<>(); listView.setVisible(false);
-		 * listView.setPrefSize(500, 200);
-		 */
-
 		GridPane bookingGrid = new GridPane();
 		bookingGrid.add(sourceLabel, 0, 0);
 		bookingGrid.add(choiceBoxS, 0, 1);
 		bookingGrid.add(destinationLabel, 0, 2);
 		bookingGrid.add(choiceBoxD, 0, 3);
-		bookingGrid.add(search, 0, 4);
+		bookingGrid.add(space, 0, 4);
+		bookingGrid.add(search, 0, 5);
 		GridPane.setHalignment(search, HPos.RIGHT);
-		bookingGrid.add(info, 0, 5);
+		bookingGrid.add(showAll, 0, 5);
+		GridPane.setHalignment(showAll, HPos.LEFT);
 		bookingGrid.add(tableView, 0, 6);
 		bookingGrid.add(confirm, 0, 7);
 		GridPane.setHalignment(confirm, HPos.RIGHT);
-		bookingGrid.add(back, 0, 8);
-		GridPane.setHalignment(back, HPos.RIGHT);
-		bookingScene = new Scene(bookingGrid, 500, 400);
+		bookingGrid.add(back, 0, 7);
+		GridPane.setHalignment(back, HPos.LEFT);
+		bookingScene = new Scene(bookingGrid, 500, 500);
 
 		// actions
+
+		showAll.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				ArrayList<Trip> trips = passengerMenu.getTrip().showTrips();
+				tripsData.setAll(trips);
+
+			}
+		});
 
 		search.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -106,19 +106,9 @@ public class BookingScene {
 			public void handle(ActionEvent event) {
 				String sourceSearch = choiceBoxS.getValue();
 				String destination = choiceBoxD.getValue();
-				// listView.getItems().clear();
 				ArrayList<Trip> trips = passengerMenu.getTrip().findTrip(sourceSearch, destination);
 				tripsData.setAll(trips);
-				// tableView.getColumns().add(source);
-				// ArrayList<String> source1 = passengerMenu.getTrip().getSource();
-				// for(int i = 0; i < findTrip.size();i++)
-				// listView.getItems().add(findTrip.get(i));
-				// tableView.getItems().add(new);
-
 				confirm.setVisible(true);
-				info.setVisible(true);
-				// listView.setVisible(true);
-
 			}
 
 		});
