@@ -1,4 +1,5 @@
 package MapLogic;
+
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -18,19 +19,19 @@ public class TripReader {
 		ArrayList<Trip> searchResult = new ArrayList<Trip>();
 
 		for (int i = 0; i < this.trips.size(); i++) {
-			if(source != null && destination != null) {
+			if (source != null && destination != null) {
 				if (source.equals(trips.get(i).getSource()) || destination.equals(trips.get(i).getDest())) {
 					searchResult.add(trips.get(i));
 				}
-			}else if(source == null && destination != null) {
+			} else if (source == null && destination != null) {
 				if (destination.equals(trips.get(i).getDest())) {
-						searchResult.add(trips.get(i));
+					searchResult.add(trips.get(i));
 				}
-			}else if(source != null &&destination == null) {
+			} else if (source != null && destination == null) {
 				if (source.equals(trips.get(i).getSource())) {
 					searchResult.add(trips.get(i));
 				}
-			} else if(source == null &&destination == null) {
+			} else if (source == null && destination == null) {
 				searchResult.add(trips.get(i));
 			}
 		}
@@ -41,7 +42,8 @@ public class TripReader {
 		return trips;
 	}
 
-	public void addTrip(String source, String destination, Double time, String vehicle, int numberOfStops, double ticketPrice) {
+	public void addTrip(String source, String destination, Double time, String vehicle, int numberOfStops,
+			double ticketPrice) {
 		trips.add(new Trip(source, destination, vehicle, numberOfStops, time, ticketPrice));
 	}
 
@@ -60,6 +62,5 @@ public class TripReader {
 		}
 		return destinations;
 	}
-
 
 }

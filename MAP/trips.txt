@@ -1,10 +1,10 @@
-victoria,faculty of engineering,7.25,bus,0,10
-faculty of engineering,victoria,7.45,bus,0,10
-el montazah,bahary,8.55,Bus,2,8
-bahary,el montazah,8.55,Bus,2,8
-victoria,faculty of engineering,11.05,minibus,0,10
-faculty of engineering,victoria,11.35,minibus,0,10
-sidigaber,cairo(nasr city),13.15,bus,0,45
-cairo(nasr city),sidigaber,17.35,bus,0,45
-victoria,faculty of engineering,18.25,car,0,12
-faculty of engineering,victoria,15.05,car,0,12
+Victoria,Faculty of Engineering,7.25,Bus,0,10
+Faculty of Engineering,Victoria,7.45,Bus,0,10
+El Montazah,Bahary,8.55,Bus,2,8
+Bahary,El Montazah,8.55,Bus,2,8
+Victoria,Faculty of Engineering,11.05,Minibus,0,10
+Faculty of Engineering,Victoria,11.35,Minibus,0,10
+Sidigaber,Cairo(Nasr City),13.15,Bus,0,45
+Cairo(Nasr City),Sidigaber,17.35,Bus,0,45
+Victoria,Faculty of Engineering,18.25,Car,0,12
+Faculty of Engineering,Victoria,15.05,Car,0,12
