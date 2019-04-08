@@ -1,8 +1,10 @@
 package MapViewer;
 
 import java.util.ArrayList;
+import java.util.Vector;
 
 import MapLogic.Trip;
+import MapLogic.TripReader;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -25,11 +27,11 @@ public class BookingScene {
 	Scene bookingScene;
 	PassengerMenu passengerMenu;
 	ConfirmationScene confirmationScene;
-	 ListView<String> listView;
-	//TableView<Trips> tableView;
+	// ListView<String> listView;
+	TableView<Trip> tableView;
 	ChoiceBox<String> choiceBoxS = new ChoiceBox<String>();
 	ChoiceBox<String> choiceBoxD = new ChoiceBox<String>();
-	ArrayList<String> findTrip = new ArrayList<>();
+	private final ObservableList<Trip> tripsData = FXCollections.observableArrayList();
 
 	public BookingScene(Stage stage) {
 		this.stage = stage;
@@ -44,42 +46,42 @@ public class BookingScene {
 		Button confirm = new Button("Confirm");
 		Button back = new Button("Back");
 
-
 		confirm.setVisible(false);
 		info.setVisible(false);
-		
-		//tableView.setEditable(true);
-		/*TableColumn<Trips,String> source = new TableColumn<Trips, String>("Source");
+
+		// tableView.setEditable(true);
+		TableColumn<Trip, String> source = new TableColumn<Trip, String>("Source");
 		source.setCellValueFactory(new PropertyValueFactory<>("source"));
 		source.setMinWidth(100);
-		TableColumn<Trips,String> destination = new TableColumn<Trips, String>("Destination");
-		source.setCellValueFactory(new PropertyValueFactory<>("destination"));
+		TableColumn<Trip, String> destination = new TableColumn<Trip, String>("Destination");
+		destination.setCellValueFactory(new PropertyValueFactory<>("dest"));
 		destination.setMinWidth(100);
-		TableColumn<Trips,String> time = new TableColumn<Trips, String>("Time");
-		source.setCellValueFactory(new PropertyValueFactory<>("time"));
+		TableColumn<Trip, Double> time = new TableColumn<Trip, Double>("Time");
+		time.setCellValueFactory(new PropertyValueFactory<>("time"));
 		time.setMinWidth(100);
-		TableColumn<Trips,String> vehicle = new TableColumn<Trips, String>("Vehicle");
-		source.setCellValueFactory(new PropertyValueFactory<>("vehicle"));
+		TableColumn<Trip, String> vehicle = new TableColumn<Trip, String>("Vehicle");
+		vehicle.setCellValueFactory(new PropertyValueFactory<>("vehicle"));
 		vehicle.setMinWidth(100);
-		TableColumn<Trips,Integer> numberOfStops = new TableColumn<Trips,Integer>("Number Of Stops");
-		source.setCellValueFactory(new PropertyValueFactory<>("numberOfStops"));
+		TableColumn<Trip, Integer> numberOfStops = new TableColumn<Trip, Integer>("Number Of Stops");
+		numberOfStops.setCellValueFactory(new PropertyValueFactory<>("numOfStops"));
 		numberOfStops.setMinWidth(100);
-		TableColumn<Trips,Double> ticketPrce = new TableColumn<Trips, Double>("Price");
-		source.setCellValueFactory(new PropertyValueFactory<>("ticketPrice"));
-		ticketPrce.setMinWidth(100);*/
-		
-		/*tableView = new TableView<>();
-		tableView.setItems(null);
+		TableColumn<Trip, Double> ticketPrice = new TableColumn<Trip, Double>("Price");
+		ticketPrice.setCellValueFactory(new PropertyValueFactory<>("ticketPrice"));
+		ticketPrice.setMinWidth(100);
+
+		tableView = new TableView<>();
+		tableView.setItems(tripsData);
 		tableView.getColumns().add(source);
 		tableView.getColumns().add(destination);
 		tableView.getColumns().add(time);
 		tableView.getColumns().add(vehicle);
 		tableView.getColumns().add(numberOfStops);
-		tableView.getColumns().add(ticketPrce);*/
-		
-		listView = new ListView<>();
-		listView.setVisible(false);
-		listView.setPrefSize(500, 200);
+		tableView.getColumns().add(ticketPrice);
+
+		/*
+		 * listView = new ListView<>(); listView.setVisible(false);
+		 * listView.setPrefSize(500, 200);
+		 */
 
 		GridPane bookingGrid = new GridPane();
 		bookingGrid.add(sourceLabel, 0, 0);
@@ -89,7 +91,7 @@ public class BookingScene {
 		bookingGrid.add(search, 0, 4);
 		GridPane.setHalignment(search, HPos.RIGHT);
 		bookingGrid.add(info, 0, 5);
-		bookingGrid.add(listView, 0, 6);
+		bookingGrid.add(tableView, 0, 6);
 		bookingGrid.add(confirm, 0, 7);
 		GridPane.setHalignment(confirm, HPos.RIGHT);
 		bookingGrid.add(back, 0, 8);
@@ -104,28 +106,29 @@ public class BookingScene {
 			public void handle(ActionEvent event) {
 				String sourceSearch = choiceBoxS.getValue();
 				String destination = choiceBoxD.getValue();
-				listView.getItems().clear();
-				findTrip = passengerMenu.getTrip().findTrip(sourceSearch, destination);
-				//tableView.getColumns().add(source);
-				//ArrayList<String> source1 = passengerMenu.getTrip().getSource();
-				for(int i = 0; i < findTrip.size();i++)
-					listView.getItems().add(findTrip.get(i));
-					//tableView.getItems().add(new);
-					
+				// listView.getItems().clear();
+				ArrayList<Trip> trips = passengerMenu.getTrip().findTrip(sourceSearch, destination);
+				tripsData.setAll(trips);
+				// tableView.getColumns().add(source);
+				// ArrayList<String> source1 = passengerMenu.getTrip().getSource();
+				// for(int i = 0; i < findTrip.size();i++)
+				// listView.getItems().add(findTrip.get(i));
+				// tableView.getItems().add(new);
+
 				confirm.setVisible(true);
 				info.setVisible(true);
-				listView.setVisible(true);
+				// listView.setVisible(true);
 
 			}
 
 		});
-		
+
 		confirm.setOnAction(new EventHandler<ActionEvent>() {
-			
+
 			@Override
 			public void handle(ActionEvent event) {
 				stage.setScene(confirmationScene.getConfirmationScene());
-				
+
 			}
 		});
 

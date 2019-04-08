@@ -1,12 +1,12 @@
 package MapViewer;
 
-import MapLogic.Trip;
+import MapLogic.TripReader;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
 public class MapViewer extends Application {
 	
-	Trip trip = new Trip();
+	TripReader trip = new TripReader();
 
 	public static void main(String[] args) {
 		launch(args);

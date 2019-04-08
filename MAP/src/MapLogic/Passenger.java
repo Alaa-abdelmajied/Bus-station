@@ -9,7 +9,7 @@ public class Passenger {
 	private ArrayList<Integer> numberOfTrips = new ArrayList<Integer>();
 	int tripsNumber;
 
-	FileReading loader = new FileReading();
+	FileReaderUtils loader = new FileReaderUtils();
 
 	public Passenger() {
 		passengerName = loader.getPassengerName();

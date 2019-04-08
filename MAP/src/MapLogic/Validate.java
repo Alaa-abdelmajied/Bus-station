@@ -12,7 +12,7 @@ public class Validate {
 	private int accountType;
 	private int counter = 0;
 	private boolean isCorrect = false;
-	FileReading loader = new FileReading();
+	FileReaderUtils loader = new FileReaderUtils();
 
 	public void setType(String type) {
 		this.type = type;

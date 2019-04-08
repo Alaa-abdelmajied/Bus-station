@@ -9,7 +9,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
-public class FileReading {
+public class FileReaderUtils {
 
 	private String[][] passengerLogin = new String[100][2];
 	private String[][] mangerLogin = new String[100][2];
@@ -18,13 +18,6 @@ public class FileReading {
 	private int passengerCounter = 0;
 	private int managerCounter = 0;
 	private String accountType;
-	private String line;
-	private ArrayList<String> source = new ArrayList<String>();
-	private ArrayList<String> destination = new ArrayList<String>();
-	private ArrayList<Double> time = new ArrayList<Double>();
-	private ArrayList<String> vehicle = new ArrayList<String>();
-	private ArrayList<Integer> numberOfStops = new ArrayList<Integer>();
-	private ArrayList<Double> ticketPrice = new ArrayList<Double>();
 	private ArrayList<String> passengerName = new ArrayList<String>();
 	private ArrayList<Integer> numberOfTrips = new ArrayList<Integer>();
 	private ArrayList<String> driverName = new ArrayList<String>();
@@ -39,6 +32,7 @@ public class FileReading {
 
 		FileReader fileReader = new FileReader(file);
 		BufferedReader bufferedReader = new BufferedReader(fileReader);
+		String line;
 		while (bufferedReader.ready()) {
 			line = bufferedReader.readLine();
 			StringTokenizer stringTokenizer = new StringTokenizer(line, ",");
@@ -63,30 +57,37 @@ public class FileReading {
 		}
 	}
 
-	public void readTripFile() throws IOException {
+	public static ArrayList<Trip> readTripFile() throws IOException {
 
 		File file = new File("trips.txt");
 
 		FileReader fileReader = new FileReader(file);
 		BufferedReader bufferedReader = new BufferedReader(fileReader);
+		ArrayList<Trip> trips = new ArrayList<Trip>();
+		String line;
+		String source = null, destination = null, vehicle = null;
+		double time = 0.0, ticketPrice = 0.0;
+		int numberOfStops = 0;
 		while (bufferedReader.ready()) {
 			line = bufferedReader.readLine();
 			StringTokenizer stringTokenizer = new StringTokenizer(line, ":,");
-			while (stringTokenizer.hasMoreTokens()) {
+			if (stringTokenizer.countTokens() > 0) {
 				stringTokenizer.nextToken();
-				source.add(stringTokenizer.nextToken());
+				source = stringTokenizer.nextToken();
 				stringTokenizer.nextToken();
-				destination.add(stringTokenizer.nextToken());
+				destination = stringTokenizer.nextToken();
 				stringTokenizer.nextToken();
-				time.add(Double.parseDouble(stringTokenizer.nextToken()));
+				time = Double.parseDouble(stringTokenizer.nextToken());
 				stringTokenizer.nextToken();
-				vehicle.add(stringTokenizer.nextToken());
+				vehicle = stringTokenizer.nextToken();
 				stringTokenizer.nextToken();
-				numberOfStops.add(Integer.parseInt(stringTokenizer.nextToken()));
+				numberOfStops = Integer.parseInt(stringTokenizer.nextToken());
 				stringTokenizer.nextToken();
-				ticketPrice.add(Double.parseDouble(stringTokenizer.nextToken()));
+				ticketPrice = Double.parseDouble(stringTokenizer.nextToken());
+				trips.add(new Trip(source, destination, vehicle, numberOfStops, time, ticketPrice));
 			}
 		}
+		return trips;
 	}
 
 	public void readVipFile() throws IOException {
@@ -95,6 +96,7 @@ public class FileReading {
 
 		FileReader fileReader = new FileReader(file);
 		BufferedReader bufferedReader = new BufferedReader(fileReader);
+		String line;
 		while (bufferedReader.ready()) {
 			line = bufferedReader.readLine();
 			StringTokenizer stringTokenizer = new StringTokenizer(line, ",");
@@ -111,6 +113,7 @@ public class FileReading {
 
 		FileReader fileReader = new FileReader(file);
 		BufferedReader bufferedReader = new BufferedReader(fileReader);
+		String line;
 		while (bufferedReader.ready()) {
 			line = bufferedReader.readLine();
 			StringTokenizer stringTokenizer = new StringTokenizer(line, ",");
@@ -133,30 +136,6 @@ public class FileReading {
 
 	public String[][] getDriverLogin() {
 		return driverLogin;
-	}
-
-	public ArrayList<String> getSource() {
-		return source;
-	}
-
-	public ArrayList<String> getDestination() {
-		return destination;
-	}
-
-	public ArrayList<Double> getTime() {
-		return time;
-	}
-
-	public ArrayList<String> getVehicle() {
-		return vehicle;
-	}
-
-	public ArrayList<Integer> getNumberOfStops() {
-		return numberOfStops;
-	}
-
-	public ArrayList<Double> getTicketPrice() {
-		return ticketPrice;
 	}
 
 	public ArrayList<String> getPassengerName() {

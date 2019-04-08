@@ -1,6 +1,6 @@
 package MapViewer;
 
-import MapLogic.Trip;
+import MapLogic.TripReader;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
@@ -18,7 +18,7 @@ public class PassengerMenu {
 	Scene passengerScene;
 	LoginForm loginForm;
 	BookingScene bookingScene;
-	Trip trip = new Trip();
+	TripReader trip = new TripReader();
 	Label passengerLabel = new Label();
 	Button becomeVip = new Button("Become a vip");
 	Button limo = new Button("Book a limo");
@@ -123,7 +123,7 @@ public class PassengerMenu {
 		this.bookingScene = bookingScene;
 	}
 
-	public Trip getTrip() {
+	public TripReader getTrip() {
 		return trip;
 	}
 

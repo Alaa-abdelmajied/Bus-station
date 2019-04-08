@@ -2,6 +2,7 @@ package MapViewer;
 
 import java.util.ArrayList;
 
+import MapLogic.Trip;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
@@ -50,10 +51,10 @@ public class ManagerMenu {
 			public void handle(ActionEvent event) {
 				passengerMenu.getTrip().loadTrips();
 				allTrips.getListView().getItems().clear();
-				ArrayList<String> showTrips = passengerMenu.getTrip().showTrips();
-				for (int i = 0; i < showTrips.size(); i++)
-					allTrips.getListView().getItems().add(showTrips.get(i));
-				stage.setScene(allTrips.getAlltrips());
+				ArrayList<Trip> showTrips = passengerMenu.getTrip().showTrips();
+//				for (int i = 0; i < showTrips.size(); i++)
+//					allTrips.getListView().getItems().add(showTrips.get(i));
+//				stage.setScene(allTrips.getAlltrips());
 				
 			}
 		});
