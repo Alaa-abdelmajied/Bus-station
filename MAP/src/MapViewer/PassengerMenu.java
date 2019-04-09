@@ -64,7 +64,6 @@ public class PassengerMenu {
 					bookingScene.setChoiceBoxD(trip.getDestination().get(i));
 				}
 
-				
 				stage.setScene(bookingScene.getBookingScene());
 			}
 		});
@@ -102,8 +101,9 @@ public class PassengerMenu {
 
 			@Override
 			public void handle(ActionEvent event) {
-				loginForm.setUserNameField("");
-				loginForm.setPasswordField("");
+
+				loginForm.setUserNameField(null);
+				loginForm.setPasswordField(null);
 				stage.setScene(loginForm.getLoginForm());
 
 			}

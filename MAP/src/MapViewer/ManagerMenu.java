@@ -65,8 +65,8 @@ public class ManagerMenu {
 
 			@Override
 			public void handle(ActionEvent event) {
-				loginForm.setUserNameField("");
-				loginForm.setPasswordField("");
+				loginForm.setUserNameField(null);
+				loginForm.setPasswordField(null);
 				stage.setScene(loginForm.getLoginForm());
 
 			}

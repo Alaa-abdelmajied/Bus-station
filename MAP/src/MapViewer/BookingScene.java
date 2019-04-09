@@ -118,8 +118,10 @@ public class BookingScene {
 			@Override
 			public void handle(ActionEvent event) {
 				confirmationScene.setSource("Source:  " + tableView.getSelectionModel().getSelectedItem().getSource());
-				confirmationScene.setDestination("Destination:  " + tableView.getSelectionModel().getSelectedItem().getDestination());
-				confirmationScene.setPrice("Price:  " + tableView.getSelectionModel().getSelectedItem().getTicketPrice() + " EGP");
+				confirmationScene.setDestination(
+						"Destination:  " + tableView.getSelectionModel().getSelectedItem().getDestination());
+				confirmationScene.setPrice(
+						"Price:  " + tableView.getSelectionModel().getSelectedItem().getTicketPrice() + " EGP");
 				stage.setScene(confirmationScene.getConfirmationScene());
 
 			}
@@ -129,6 +131,11 @@ public class BookingScene {
 
 			@Override
 			public void handle(ActionEvent event) {
+				choiceBoxS.getSelectionModel().clearSelection();
+				choiceBoxS.setValue(null);
+				choiceBoxD.getSelectionModel().clearSelection();
+				choiceBoxD.setValue(null);
+				tableView.getItems().clear();
 				stage.setScene(passengerMenu.getPassengerScene());
 			}
 		});
