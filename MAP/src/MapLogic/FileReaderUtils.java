@@ -97,7 +97,7 @@ public class FileReaderUtils {
 		}
 	}
 
-	public static String[][] readDriverFile() throws IOException {
+	public static ArrayList<Driver> readDriverFile() throws IOException {
 
 		// ArrayList<String> driverName = new ArrayList<String>();
 		// ArrayList<String> driverGender = new ArrayList<String>();
@@ -105,9 +105,10 @@ public class FileReaderUtils {
 		// ArrayList<String> driverVehicle = new ArrayList<String>();
 		// ArrayList<ArrayList<String>> driverTrips = new
 		// ArrayList<ArrayList<String>>();
-		String[][] driverInfo = new String[10][10];
-		int driverCounter = 0;
-		int tripsCounter = 5;
+		String driverName, driverGender;
+		int driverNumber;
+		ArrayList<String> assignedTrips = new ArrayList<String>();
+		ArrayList<Driver> driverInfo = new ArrayList<Driver>();
 
 		File file = new File("DriverFile");
 
@@ -117,20 +118,16 @@ public class FileReaderUtils {
 		while (bufferedReader.ready()) {
 			line = bufferedReader.readLine();
 			StringTokenizer stringTokenizer = new StringTokenizer(line, ",");
-			while (stringTokenizer.hasMoreTokens()) {
-				driverInfo[driverCounter][0] = stringTokenizer.nextToken();
-				driverInfo[driverCounter][1] = stringTokenizer.nextToken();
-				driverInfo[driverCounter][3] = stringTokenizer.nextToken();
-				driverInfo[driverCounter][4] = stringTokenizer.nextToken();
+			if (stringTokenizer.hasMoreTokens()) {
+				driverName = stringTokenizer.nextToken();
+				driverGender = stringTokenizer.nextToken();
+				driverNumber = Integer.parseInt(stringTokenizer.nextToken());
 				while (stringTokenizer.hasMoreTokens()) {
 
-					driverInfo[driverCounter][tripsCounter++] = stringTokenizer.nextToken();
+					assignedTrips.add(stringTokenizer.nextToken());
 				}
-
+				driverInfo.add(new Driver(driverName, driverGender, driverNumber, assignedTrips));
 			}
-		}
-		for(int i=0;i<driverCounter;i++) {
-			System.out.println(driverInfo[driverCounter][0]);
 		}
 		return driverInfo;
 	}

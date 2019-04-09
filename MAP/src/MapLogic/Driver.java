@@ -1,19 +1,36 @@
 package MapLogic;
 
-import java.io.IOException;
+import java.util.ArrayList;
 
 public class Driver {
 
-	String[][] driverInfo = new String[10][10];
-	FileReaderUtils loader = new FileReaderUtils();
+	private final String driverName;
+	private final String driverGender;
+	private final int driverNumber;
+	private ArrayList<String> assignedTrips = new ArrayList<String>();
 
-	public Driver() {
+	public Driver(String driverName, String driverGender, int driverNumber, ArrayList<String> assignedTrips) {
+		this.driverName = driverName;
+		this.driverGender = driverGender;
+		this.driverNumber = driverNumber;
+		this.assignedTrips = assignedTrips;
 
-		try {
-			this.driverInfo = loader.readDriverFile();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	}
+
+	public String getDriverName() {
+		return driverName;
+	}
+
+	public String getDriverGender() {
+		return driverGender;
+	}
+
+	public int getDriverNumber() {
+		return driverNumber;
+	}
+
+	public ArrayList<String> getAssignedTrips() {
+		return assignedTrips;
 	}
 
 }
