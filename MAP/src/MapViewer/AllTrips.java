@@ -61,9 +61,9 @@ public class AllTrips {
 
 		allTripsGrid.add(tableView, 0, 0);
 		allTripsGrid.add(add, 0, 4);
-		GridPane.setHalignment(add, HPos.RIGHT);
+		GridPane.setHalignment(add, HPos.CENTER);
 		allTripsGrid.add(delete, 0, 4);
-		GridPane.setHalignment(delete, HPos.CENTER);
+		GridPane.setHalignment(delete, HPos.RIGHT);
 		allTripsGrid.add(back, 0, 4);
 		GridPane.setHalignment(back, HPos.LEFT);
 

@@ -1,6 +1,9 @@
 package MapViewer;
 
 import java.util.ArrayList;
+
+import javax.security.auth.callback.ChoiceCallback;
+
 import MapLogic.Trip;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -42,9 +45,9 @@ public class BookingScene {
 		Label space = new Label(" ");
 		Button search = new Button("Search");
 		Button showAll = new Button("Show all trips");
-		Button confirm = new Button("Confirm");
+		Button select = new Button("Select");
 		Alert alert = new Alert(AlertType.WARNING);
-		confirm.setVisible(false);
+		select.setVisible(false);
 		Button back = new Button("Back");
 
 		TableColumn<Trip, String> source = new TableColumn<Trip, String>("Source");
@@ -86,8 +89,8 @@ public class BookingScene {
 		bookingGrid.add(showAll, 0, 5);
 		GridPane.setHalignment(showAll, HPos.LEFT);
 		bookingGrid.add(tableView, 0, 6);
-		bookingGrid.add(confirm, 0, 7);
-		GridPane.setHalignment(confirm, HPos.RIGHT);
+		bookingGrid.add(select, 0, 7);
+		GridPane.setHalignment(select, HPos.RIGHT);
 		bookingGrid.add(back, 0, 7);
 		GridPane.setHalignment(back, HPos.LEFT);
 		bookingScene = new Scene(bookingGrid, 500, 500);
@@ -100,7 +103,7 @@ public class BookingScene {
 			public void handle(ActionEvent event) {
 				ArrayList<Trip> trips = passengerMenu.getTrip().showTrips();
 				tripsData.setAll(trips);
-				confirm.setVisible(true);
+				select.setVisible(true);
 			}
 		});
 
@@ -112,12 +115,12 @@ public class BookingScene {
 				String destination = choiceBoxD.getValue();
 				ArrayList<Trip> trips = passengerMenu.getTrip().findTrip(sourceSearch, destination);
 				tripsData.setAll(trips);
-				confirm.setVisible(true);
+				select.setVisible(true);
 			}
 
 		});
 
-		confirm.setOnAction(new EventHandler<ActionEvent>() {
+		select.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
 			public void handle(ActionEvent event) {

@@ -34,6 +34,7 @@ public class ConfirmationScene {
 		Button removeSeat = new Button("-");
 		Button back = new Button("Back");
 		Button book = new Button("Confirm your trip");
+		Label successfulBooking = new Label();
 
 		GridPane confirmationGrid = new GridPane();
 		confirmationGrid.add(source, 0, 0);
@@ -44,16 +45,18 @@ public class ConfirmationScene {
 		GridPane.setHalignment(price, HPos.LEFT);
 		confirmationGrid.add(seatsNum, 0, 3);
 		GridPane.setHalignment(seatsNum, HPos.LEFT);
-		confirmationGrid.add(removeSeat, 2, 3);
+		confirmationGrid.add(removeSeat, 1, 3);
 		GridPane.setHalignment(removeSeat, HPos.LEFT);
-		confirmationGrid.add(numOfSeats, 3, 3);
+		confirmationGrid.add(numOfSeats, 1, 3);
 		GridPane.setHalignment(numOfSeats, HPos.CENTER);
-		confirmationGrid.add(addSeat, 4, 3);
+		confirmationGrid.add(addSeat, 1, 3);
 		GridPane.setHalignment(addSeat, HPos.RIGHT);
 		confirmationGrid.add(back, 0, 4);
 		GridPane.setHalignment(back, HPos.CENTER);
 		confirmationGrid.add(book, 1, 4);
 		GridPane.setHalignment(book, HPos.CENTER);
+		confirmationGrid.add(successfulBooking, 0, 5);
+		GridPane.setHalignment(successfulBooking, HPos.CENTER);
 		confirmationScene = new Scene(confirmationGrid, 500, 400);
 
 		addSeat.setOnAction(new EventHandler<ActionEvent>() {
@@ -76,6 +79,14 @@ public class ConfirmationScene {
 				numOfSeats.setText(" " + String.valueOf(seatNumber) + " ");
 				price.setText("Price:  " + String.valueOf(seatNumber * bookingScene.getTicketPrice()) + " EGP");
 
+			}
+		});
+
+		book.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				successfulBooking.setText("You successfully booked your trip!");
 			}
 		});
 
