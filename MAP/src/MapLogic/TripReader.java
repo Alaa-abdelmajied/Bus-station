@@ -8,6 +8,7 @@ public class TripReader {
 	private final ArrayList<Trip> trips = new ArrayList<Trip>();
 
 	public void loadTrips() {
+		this.trips.clear();
 		try {
 			this.trips.addAll(FileReaderUtils.readTripFile());
 		} catch (IOException e) {
