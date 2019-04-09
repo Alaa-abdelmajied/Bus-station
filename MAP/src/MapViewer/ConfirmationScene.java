@@ -6,6 +6,7 @@ import javafx.geometry.HPos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableView;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
@@ -25,7 +26,6 @@ public class ConfirmationScene {
 	}
 
 	public void prepareScene() {
-
 
 		Label seats = new Label();
 		Label seatsNum = new Label("No. of seats:");
@@ -60,10 +60,10 @@ public class ConfirmationScene {
 
 			@Override
 			public void handle(ActionEvent event) {
-				if (seatNumber < 8)
+				if (seatNumber < 4)
 					seatNumber++;
 				numOfSeats.setText(" " + String.valueOf(seatNumber) + " ");
-
+				price.setText("Price:  " + String.valueOf(seatNumber * bookingScene.getTicketPrice()) + " EGP");
 			}
 		});
 
@@ -74,6 +74,7 @@ public class ConfirmationScene {
 				if (seatNumber > 1)
 					seatNumber--;
 				numOfSeats.setText(" " + String.valueOf(seatNumber) + " ");
+				price.setText("Price:  " + String.valueOf(seatNumber * bookingScene.getTicketPrice()) + " EGP");
 
 			}
 		});
@@ -107,6 +108,5 @@ public class ConfirmationScene {
 	public void setPrice(String text) {
 		this.price.setText(text);
 	}
-	
-	
+
 }

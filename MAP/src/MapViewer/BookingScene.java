@@ -27,6 +27,7 @@ public class BookingScene {
 	ChoiceBox<String> choiceBoxS = new ChoiceBox<String>();
 	ChoiceBox<String> choiceBoxD = new ChoiceBox<String>();
 	private final ObservableList<Trip> tripsData = FXCollections.observableArrayList();
+	double ticketPrice;
 
 	public BookingScene(Stage stage) {
 		this.stage = stage;
@@ -122,6 +123,7 @@ public class BookingScene {
 						"Destination:  " + tableView.getSelectionModel().getSelectedItem().getDestination());
 				confirmationScene.setPrice(
 						"Price:  " + tableView.getSelectionModel().getSelectedItem().getTicketPrice() + " EGP");
+				BookingScene.this.ticketPrice = tableView.getSelectionModel().getSelectedItem().getTicketPrice();
 				stage.setScene(confirmationScene.getConfirmationScene());
 
 			}
@@ -159,6 +161,10 @@ public class BookingScene {
 
 	public void setConfirmationScene(ConfirmationScene confirmationScene) {
 		this.confirmationScene = confirmationScene;
+	}
+
+	public double getTicketPrice() {
+		return ticketPrice;
 	}
 
 }
