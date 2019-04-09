@@ -1,5 +1,7 @@
 package MapViewer;
 
+import java.awt.List;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
@@ -48,6 +50,7 @@ public class DriverMenu {
 
 			@Override
 			public void handle(ActionEvent event) {
+				//DriverMenu.this.assignedTrips.setListView(text);
 				stage.setScene(DriverMenu.this.assignedTrips.getAssignedTripsScene());
 
 			}

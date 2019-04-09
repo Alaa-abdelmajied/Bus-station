@@ -17,9 +17,8 @@ public class FileReaderUtils {
 	private ArrayList<String> passengerName = new ArrayList<String>();
 	private ArrayList<Integer> numberOfTrips = new ArrayList<Integer>();
 
-
 	public void readLoginFile() throws IOException {
-		
+
 		int driverCounter = 0;
 		int passengerCounter = 0;
 		int managerCounter = 0;
@@ -98,13 +97,17 @@ public class FileReaderUtils {
 		}
 	}
 
-	public void readDriverFile() throws IOException {
-		
-		ArrayList<String> driverName = new ArrayList<String>();
-		ArrayList<String> driverGender = new ArrayList<String>();
-		ArrayList<Integer> driverNumber = new ArrayList<Integer>();
-		ArrayList<String> driverVehicle = new ArrayList<String>();
-		ArrayList<ArrayList<String>> driverTrips = new ArrayList<ArrayList<String>>();
+	public static String[][] readDriverFile() throws IOException {
+
+		// ArrayList<String> driverName = new ArrayList<String>();
+		// ArrayList<String> driverGender = new ArrayList<String>();
+		// ArrayList<Integer> driverNumber = new ArrayList<Integer>();
+		// ArrayList<String> driverVehicle = new ArrayList<String>();
+		// ArrayList<ArrayList<String>> driverTrips = new
+		// ArrayList<ArrayList<String>>();
+		String[][] driverInfo = new String[10][10];
+		int driverCounter = 0;
+		int tripsCounter = 5;
 
 		File file = new File("DriverFile");
 
@@ -115,12 +118,21 @@ public class FileReaderUtils {
 			line = bufferedReader.readLine();
 			StringTokenizer stringTokenizer = new StringTokenizer(line, ",");
 			while (stringTokenizer.hasMoreTokens()) {
-				driverName.add(stringTokenizer.nextToken());
-				driverGender.add(stringTokenizer.nextToken());
-				driverNumber.add(Integer.parseInt(stringTokenizer.nextToken()));
-				driverVehicle.add(stringTokenizer.nextToken());
+				driverInfo[driverCounter][0] = stringTokenizer.nextToken();
+				driverInfo[driverCounter][1] = stringTokenizer.nextToken();
+				driverInfo[driverCounter][3] = stringTokenizer.nextToken();
+				driverInfo[driverCounter][4] = stringTokenizer.nextToken();
+				while (stringTokenizer.hasMoreTokens()) {
+
+					driverInfo[driverCounter][tripsCounter++] = stringTokenizer.nextToken();
+				}
+
 			}
 		}
+		for(int i=0;i<driverCounter;i++) {
+			System.out.println(driverInfo[driverCounter][0]);
+		}
+		return driverInfo;
 	}
 
 	public String[][] getPassengerLogin() {

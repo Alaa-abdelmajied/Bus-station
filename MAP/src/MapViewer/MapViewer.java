@@ -5,7 +5,7 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 
 public class MapViewer extends Application {
-	
+
 	TripReader trip = new TripReader();
 
 	public static void main(String[] args) {
@@ -47,8 +47,6 @@ public class MapViewer extends Application {
 		allTrips.setManagerMenu(managerMenu);
 		confirmationScene.setBookingScene(bookingScene);
 		assignedTrips.setDriverMenu(driverMenu);
-
-		
 
 		primaryStage.setScene(loginForm.getLoginForm());
 		primaryStage.setTitle("MAP");

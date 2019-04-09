@@ -51,4 +51,9 @@ public class AssignedTrips {
 		this.driverMenu = driverMenu;
 	}
 
+	public void setListView(String text) {
+		this.listView.getItems().add(text);
+	}
+	
+
 }

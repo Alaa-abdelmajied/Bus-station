@@ -8,11 +8,13 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -41,6 +43,7 @@ public class BookingScene {
 		Button search = new Button("Search");
 		Button showAll = new Button("Show all trips");
 		Button confirm = new Button("Confirm");
+		Alert alert = new Alert(AlertType.WARNING);
 		confirm.setVisible(false);
 		Button back = new Button("Back");
 
@@ -118,14 +121,21 @@ public class BookingScene {
 
 			@Override
 			public void handle(ActionEvent event) {
-				confirmationScene.setSource("Source:  " + tableView.getSelectionModel().getSelectedItem().getSource());
-				confirmationScene.setDestination(
-						"Destination:  " + tableView.getSelectionModel().getSelectedItem().getDestination());
-				confirmationScene.setPrice(
-						"Price:  " + tableView.getSelectionModel().getSelectedItem().getTicketPrice() + " EGP");
-				BookingScene.this.ticketPrice = tableView.getSelectionModel().getSelectedItem().getTicketPrice();
-				stage.setScene(confirmationScene.getConfirmationScene());
-
+				if (tableView.getSelectionModel().getSelectedItem() == null) {
+					alert.setTitle("WARNING");
+					alert.setHeaderText("");
+					alert.setContentText("You must choose a trip first");
+					alert.showAndWait();
+				} else {
+					confirmationScene
+							.setSource("Source:  " + tableView.getSelectionModel().getSelectedItem().getSource());
+					confirmationScene.setDestination(
+							"Destination:  " + tableView.getSelectionModel().getSelectedItem().getDestination());
+					confirmationScene.setPrice(
+							"Price:  " + tableView.getSelectionModel().getSelectedItem().getTicketPrice() + " EGP");
+					BookingScene.this.ticketPrice = tableView.getSelectionModel().getSelectedItem().getTicketPrice();
+					stage.setScene(confirmationScene.getConfirmationScene());
+				}
 			}
 		});
 
