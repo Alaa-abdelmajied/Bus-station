@@ -1,7 +1,9 @@
 package MapViewer;
 
 import java.awt.List;
+import java.util.ArrayList;
 
+import MapLogic.DriverReader;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
@@ -17,6 +19,7 @@ public class DriverMenu {
 	Scene driverScene;
 	LoginForm loginForm;
 	AssignedTrips assignedTrips;
+	DriverReader driverReader = new DriverReader();
 	Label driverLabel = new Label();
 
 	public DriverMenu(Stage stage) {
@@ -50,7 +53,13 @@ public class DriverMenu {
 
 			@Override
 			public void handle(ActionEvent event) {
-				//DriverMenu.this.assignedTrips.setListView(text);
+				driverReader.loadInfo();
+				DriverMenu.this.assignedTrips.clearListView();
+				ArrayList<String> assignedTrips = new ArrayList<String>();
+				assignedTrips = driverReader.getAssignedTrips(loginForm.userNameField.getText());
+				for (int i = 0; i < assignedTrips.size(); i++) {
+					DriverMenu.this.assignedTrips.setListView(assignedTrips.get(i));
+				}
 				stage.setScene(DriverMenu.this.assignedTrips.getAssignedTripsScene());
 
 			}

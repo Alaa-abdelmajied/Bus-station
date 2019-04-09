@@ -13,7 +13,7 @@ public class AssignedTrips {
 	Stage stage;
 	Scene assignedTripsScene;
 	DriverMenu driverMenu;
-	ListView<String> listView;
+	private ListView<String> listView;
 
 	public AssignedTrips(Stage stage) {
 		this.stage = stage;
@@ -55,5 +55,8 @@ public class AssignedTrips {
 		this.listView.getItems().add(text);
 	}
 	
+	public void clearListView() {
+		this.listView.getItems().clear();
+	}
 
 }

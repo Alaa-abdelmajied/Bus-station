@@ -126,6 +126,7 @@ public class LoginForm {
 						} else if (validate.getAccountType() == 1) {
 							stage.setScene(driverMenu.getDriverScene());
 							driverMenu.setDriverLabel("Hello, " + userNameField.getText() + "!");
+							
 						} else if (validate.getAccountType() == 2) {
 							stage.setScene(managerMenu.getManagerScene());
 							managerMenu.setManagerLabel("Hello, " + userNameField.getText() + "!");
