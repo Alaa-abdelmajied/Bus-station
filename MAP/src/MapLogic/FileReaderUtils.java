@@ -60,20 +60,21 @@ public class FileReaderUtils {
 		BufferedReader bufferedReader = new BufferedReader(fileReader);
 		ArrayList<Trip> trips = new ArrayList<Trip>();
 		String line;
-		String source = null, destination = null, vehicle = null;
-		double time = 0.0, ticketPrice = 0.0;
-		int numberOfStops = 0;
+		String source = null, destination = null, vehicle = null, time = null;
+		double ticketPrice = 0.0;
+		int numberOfStops = 0 , numberOfSeats = 0;
 		while (bufferedReader.ready()) {
 			line = bufferedReader.readLine();
 			StringTokenizer stringTokenizer = new StringTokenizer(line, ":,");
 			if (stringTokenizer.countTokens() > 0) {
 				source = stringTokenizer.nextToken();
 				destination = stringTokenizer.nextToken();
-				time = Double.parseDouble(stringTokenizer.nextToken());
+				time = stringTokenizer.nextToken();
 				vehicle = stringTokenizer.nextToken();
 				numberOfStops = Integer.parseInt(stringTokenizer.nextToken());
 				ticketPrice = Double.parseDouble(stringTokenizer.nextToken());
-				trips.add(new Trip(source, destination, vehicle, numberOfStops, time, ticketPrice));
+				numberOfSeats = Integer.parseInt(stringTokenizer.nextToken());
+				trips.add(new Trip(source, destination, vehicle, numberOfStops, time, ticketPrice, numberOfSeats));
 			}
 		}
 		return trips;
@@ -131,6 +132,8 @@ public class FileReaderUtils {
 		}
 		return driverInfo;
 	}
+	
+	
 
 	public String[][] getPassengerLogin() {
 		return passengerLogin;

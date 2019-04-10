@@ -18,6 +18,7 @@ public class AllTrips {
 	Scene alltrips;
 	ManagerMenu managerMenu;
 	PassengerMenu passengerMenu;
+	AddTrip addTrip;
 	TableView<Trip> tableView;
 
 	public AllTrips(Stage stage) {
@@ -69,6 +70,25 @@ public class AllTrips {
 
 		alltrips = new Scene(allTripsGrid, 500, 500);
 
+		// actions
+
+		add.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+
+			}
+		});
+
+		delete.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				tableView.getSelectionModel().getSelectedItem();
+
+			}
+		});
+
 		back.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
@@ -84,6 +104,10 @@ public class AllTrips {
 
 	public void setManagerMenu(ManagerMenu managerMenu) {
 		this.managerMenu = managerMenu;
+	}
+
+	public void setAddTrip(AddTrip addTrip) {
+		this.addTrip = addTrip;
 	}
 
 	public TableView<Trip> getTableView() {

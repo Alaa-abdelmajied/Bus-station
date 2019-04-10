@@ -43,9 +43,9 @@ public class TripReader {
 		return trips;
 	}
 
-	public void addTrip(String source, String destination, Double time, String vehicle, int numberOfStops,
-			double ticketPrice) {
-		trips.add(new Trip(source, destination, vehicle, numberOfStops, time, ticketPrice));
+	public void addTrip(String source, String destination, String time, String vehicle, int numberOfStops,
+			double ticketPrice, int numberOfSeats) {
+		trips.add(new Trip(source, destination, vehicle, numberOfStops, time, ticketPrice, numberOfSeats));
 	}
 
 	public ArrayList<String> getSource() {

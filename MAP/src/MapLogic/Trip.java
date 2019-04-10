@@ -6,16 +6,18 @@ public class Trip {
 	private final String destination;
 	private final String vehicle;
 	private final int numOfStops;
-	private final double time;
+	private final String time;
 	private final double ticketPrice;
+	private final int numberOfSeats;
 
-	public Trip(String source, String destination, String vehicle, int numOfStops, double time, double ticketPrice) {
+	public Trip(String source, String destination, String vehicle, int numOfStops, String time, double ticketPrice, int numberOfSeats) {
 		this.source = source;
 		this.destination = destination;
 		this.vehicle = vehicle;
 		this.numOfStops = numOfStops;
 		this.time = time;
 		this.ticketPrice = ticketPrice;
+		this.numberOfSeats = numberOfSeats;
 	}
 
 	public String getSource() {
@@ -34,11 +36,16 @@ public class Trip {
 		return numOfStops;
 	}
 
-	public double getTime() {
+	public String getTime() {
 		return time;
 	}
 
 	public double getTicketPrice() {
 		return ticketPrice;
 	}
+
+	public int getNumberOfSeats() {
+		return numberOfSeats;
+	}
+	
 }
