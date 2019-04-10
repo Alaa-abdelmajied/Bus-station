@@ -14,7 +14,6 @@ public class Driver {
 		this.driverGender = driverGender;
 		this.driverNumber = driverNumber;
 		this.assignedTrips = assignedTrips;
-
 	}
 
 	public String getDriverName() {
@@ -32,5 +31,6 @@ public class Driver {
 	public ArrayList<String> getAssignedTrips() {
 		return assignedTrips;
 	}
+
 
 }
