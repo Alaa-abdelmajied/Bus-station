@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class DriverReader {
 	
-	private final ArrayList<Driver> driverInfo = new ArrayList<Driver>();
+	private  ArrayList<Driver> driverInfo = new ArrayList<Driver>();
 
 	public void loadInfo() {
 		this.driverInfo.clear();
@@ -16,16 +16,10 @@ public class DriverReader {
 		}
 	}
 	
-	public ArrayList<String> getAssignedTrips(String driverName) {
+	public ArrayList<String> getAssignedTrips() {
 		ArrayList<String> assignedTrips = new ArrayList<String>();
-		int index = 0;
 		for (int i = 0; i < driverInfo.size(); i++) {
-			if(driverName.equals(driverInfo.get(i).getDriverName())) {
-				index = i;
-				break;
-			}
-		for(i = 0 ; i < index ; i ++)
-			assignedTrips.add(driverInfo.get(i).getAssignedTrips().get(i));
+			assignedTrips.add(driverInfo.get(1).getAssignedTrips().get(i));
 		}
 		return assignedTrips;
 	}

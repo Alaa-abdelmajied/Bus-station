@@ -1,5 +1,5 @@
 package MapLogic;
 
-public class NormalPassenger extends Passenger{
+public class NormalPassenger extends PassengerReader{
 
 }

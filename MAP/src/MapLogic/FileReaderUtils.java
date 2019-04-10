@@ -14,8 +14,6 @@ public class FileReaderUtils {
 	private String[][] passengerLogin = new String[100][2];
 	private String[][] mangerLogin = new String[100][2];
 	private String[][] driverLogin = new String[100][2];
-	private ArrayList<String> passengerName = new ArrayList<String>();
-	private ArrayList<Integer> numberOfTrips = new ArrayList<Integer>();
 
 	public void readLoginFile() throws IOException {
 
@@ -32,7 +30,7 @@ public class FileReaderUtils {
 		while (bufferedReader.ready()) {
 			line = bufferedReader.readLine();
 			StringTokenizer stringTokenizer = new StringTokenizer(line, ",");
-			while (stringTokenizer.hasMoreTokens()) {
+			if (stringTokenizer.hasMoreTokens()) {
 				accountType = stringTokenizer.nextToken();
 				if (accountType.equals("Manager") || accountType.equals("Driver")) {
 					if (accountType.equals("Driver")) {
@@ -51,6 +49,7 @@ public class FileReaderUtils {
 				}
 			}
 		}
+
 	}
 
 	public static ArrayList<Trip> readTripFile() throws IOException {
@@ -80,21 +79,26 @@ public class FileReaderUtils {
 		return trips;
 	}
 
-	public void readVipFile() throws IOException {
+	public static ArrayList<Passenger> readVipFile() throws IOException {
 
 		File file = new File("vipPassengers");
 
 		FileReader fileReader = new FileReader(file);
 		BufferedReader bufferedReader = new BufferedReader(fileReader);
+		ArrayList<Passenger> passengers = new ArrayList<Passenger>();
+		String passengerName;
+		int numberOfTrips;
 		String line;
 		while (bufferedReader.ready()) {
 			line = bufferedReader.readLine();
 			StringTokenizer stringTokenizer = new StringTokenizer(line, ",");
-			while (stringTokenizer.hasMoreTokens()) {
-				passengerName.add(stringTokenizer.nextToken());
-				numberOfTrips.add(Integer.parseInt(stringTokenizer.nextToken()));
+			if (stringTokenizer.hasMoreTokens()) {
+				passengerName = stringTokenizer.nextToken();
+				numberOfTrips = Integer.parseInt(stringTokenizer.nextToken());
+				passengers.add(new Passenger(passengerName, numberOfTrips));
 			}
 		}
+		return passengers;
 	}
 
 	public static ArrayList<Driver> readDriverFile() throws IOException {
@@ -142,14 +146,6 @@ public class FileReaderUtils {
 
 	public String[][] getDriverLogin() {
 		return driverLogin;
-	}
-
-	public ArrayList<String> getPassengerName() {
-		return passengerName;
-	}
-
-	public ArrayList<Integer> getNumberOfTrips() {
-		return numberOfTrips;
 	}
 
 }

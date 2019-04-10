@@ -2,7 +2,7 @@ package MapViewer;
 
 import java.io.IOException;
 
-import MapLogic.Passenger;
+import MapLogic.PassengerReader;
 import MapLogic.Validate;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -25,7 +25,7 @@ public class LoginForm {
 	DriverMenu driverMenu;
 	ManagerMenu managerMenu;
 	Validate validate = new Validate();
-	Passenger passenger = new Passenger();
+	PassengerReader passenger = new PassengerReader();
 	boolean showEmployee = false;
 	boolean showPassenger = false;
 	TextField userNameField = new TextField();
@@ -126,7 +126,7 @@ public class LoginForm {
 						} else if (validate.getAccountType() == 1) {
 							stage.setScene(driverMenu.getDriverScene());
 							driverMenu.setDriverLabel("Hello, " + userNameField.getText() + "!");
-							
+							//driverMenu.driverReader.setDriverName(userNameField.getText());
 						} else if (validate.getAccountType() == 2) {
 							stage.setScene(managerMenu.getManagerScene());
 							managerMenu.setManagerLabel("Hello, " + userNameField.getText() + "!");

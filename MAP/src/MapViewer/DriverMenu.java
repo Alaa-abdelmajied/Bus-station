@@ -56,7 +56,7 @@ public class DriverMenu {
 				driverReader.loadInfo();
 				DriverMenu.this.assignedTrips.clearListView();
 				ArrayList<String> assignedTrips = new ArrayList<String>();
-				assignedTrips = driverReader.getAssignedTrips(loginForm.userNameField.getText());
+				assignedTrips = driverReader.getAssignedTrips();
 				for (int i = 0; i < assignedTrips.size(); i++) {
 					DriverMenu.this.assignedTrips.setListView(assignedTrips.get(i));
 				}

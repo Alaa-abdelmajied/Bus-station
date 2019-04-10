@@ -1,40 +1,23 @@
 package MapLogic;
 
-import java.io.IOException;
-import java.util.ArrayList;
-
 public class Passenger {
+	
+	private final String passengerName;
+	private final int numberOfTrips;
+	
 
-	private ArrayList<String> passengerName = new ArrayList<String>();
-	private ArrayList<Integer> numberOfTrips = new ArrayList<Integer>();
-	int tripsNumber;
-
-	FileReaderUtils loader = new FileReaderUtils();
-
-	public Passenger() {
-		passengerName = loader.getPassengerName();
-		numberOfTrips = loader.getNumberOfTrips();
+	public Passenger(String passengerName , int numberOfTrips){
+		
+		this.passengerName = passengerName;
+		this.numberOfTrips = numberOfTrips;
 	}
 
-	public boolean vipCheck(String name) throws IOException {
-
-		loader.readVipFile();
-		for (int i = 0; i < passengerName.size(); i++) {
-			if (name.equals(passengerName.get(i))) {
-				tripsNumber = numberOfTrips.get(i);
-				if (numberOfTrips.get(i) >= 6) {
-					return true;
-
-				} else {
-					return false;
-				}
-			}
-		}
-		return false;
+	public String getPassengerName() {
+		return passengerName;
 	}
 
-	public int getTripsNumber() {
-		return tripsNumber;
+	public int getNumberOfTrips() {
+		return numberOfTrips;
 	}
-
+	
 }
