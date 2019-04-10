@@ -99,15 +99,9 @@ public class FileReaderUtils {
 
 	public static ArrayList<Driver> readDriverFile() throws IOException {
 
-		// ArrayList<String> driverName = new ArrayList<String>();
-		// ArrayList<String> driverGender = new ArrayList<String>();
-		// ArrayList<Integer> driverNumber = new ArrayList<Integer>();
-		// ArrayList<String> driverVehicle = new ArrayList<String>();
-		// ArrayList<ArrayList<String>> driverTrips = new
-		// ArrayList<ArrayList<String>>();
 		String driverName, driverGender;
 		int driverNumber;
-		ArrayList<String> assignedTrips = new ArrayList<String>();
+		
 		ArrayList<Driver> driverInfo = new ArrayList<Driver>();
 
 		File file = new File("DriverFile");
@@ -116,6 +110,7 @@ public class FileReaderUtils {
 		BufferedReader bufferedReader = new BufferedReader(fileReader);
 		String line;
 		while (bufferedReader.ready()) {
+			ArrayList<String> assignedTrips = new ArrayList<String>();
 			line = bufferedReader.readLine();
 			StringTokenizer stringTokenizer = new StringTokenizer(line, ",");
 			if (stringTokenizer.hasMoreTokens()) {

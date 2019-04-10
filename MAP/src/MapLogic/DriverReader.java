@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class DriverReader {
-	
+
 	private final ArrayList<Driver> driverInfo = new ArrayList<Driver>();
 
 	public void loadInfo() {
@@ -15,17 +15,15 @@ public class DriverReader {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public ArrayList<String> getAssignedTrips(String driverName) {
 		ArrayList<String> assignedTrips = new ArrayList<String>();
-		int index = 0;
 		for (int i = 0; i < driverInfo.size(); i++) {
-			if(driverName.equals(driverInfo.get(i).getDriverName())) {
-				index = i;
-				break;
+			if (driverName.equals(driverInfo.get(i).getDriverName())) {
+				for (int j = 0; j < driverInfo.get(i).getAssignedTrips().size(); j++)
+					assignedTrips.add(driverInfo.get(i).getAssignedTrips().get(j));
 			}
-		for(i = 0 ; i < index ; i ++)
-			assignedTrips.add(driverInfo.get(i).getAssignedTrips().get(i));
+
 		}
 		return assignedTrips;
 	}
