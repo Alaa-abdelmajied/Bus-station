@@ -101,7 +101,7 @@ public class FileReaderUtils {
 
 		String driverName, driverGender;
 		int driverNumber;
-		
+
 		ArrayList<Driver> driverInfo = new ArrayList<Driver>();
 
 		File file = new File("DriverFile");
