@@ -1,4 +1,4 @@
-Victoria,Faculty of Engineering,7.25,Bus,0,10,25
+Victoria,Faculty of Engineering,7.25,Bus,0,10,0
 Faculty of Engineering,Victoria,7.45,Bus,0,10,25
 El Montazah,Bahary,8.55,Bus,2,8,25
 Bahary,El Montazah,8.55,Bus,2,8,25

@@ -2,6 +2,7 @@ package MapViewer;
 
 import java.util.ArrayList;
 
+import MapLogic.Tickets;
 import MapLogic.Trip;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,6 +22,7 @@ public class RoundTicketScene {
 	Stage stage;
 	Scene roundTicketScene;
 	ConfirmationScene confirmationScene;
+	Tickets tickets = new Tickets();
 
 	TableView<Trip> tableView;
 
@@ -81,8 +83,9 @@ public class RoundTicketScene {
 				confirmationScene.setSource("Source: " + tableView.getSelectionModel().getSelectedItem().getSource());
 				confirmationScene.setDestination(
 						"Destination: " + tableView.getSelectionModel().getSelectedItem().getDestination());
-				confirmationScene.setPrice(
-						"Price: " + tableView.getSelectionModel().getSelectedItem().getTicketPrice() + " EGP");
+				confirmationScene.setPrice("Price: "
+						+ tickets.roundTicketPrice(tableView.getSelectionModel().getSelectedItem().getTicketPrice())
+						+ " EGP");
 				confirmationScene.getSeatsNum().setVisible(true);
 				confirmationScene.getNumOfSeats().setVisible(true);
 				confirmationScene.getAddSeat().setVisible(true);
@@ -116,5 +119,10 @@ public class RoundTicketScene {
 	public TableView<Trip> getTableView() {
 		return tableView;
 	}
+
+	public Tickets getTickets() {
+		return tickets;
+	}
+	
 
 }

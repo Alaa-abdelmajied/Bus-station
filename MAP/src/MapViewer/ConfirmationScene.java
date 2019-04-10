@@ -22,6 +22,7 @@ public class ConfirmationScene {
 	Scene confirmationScene;
 	BookingScene bookingScene;
 	RoundTicketScene roundTicketScene;
+	PassengerMenu passengerMenu;
 	Label ticketType = new Label("Please choose your ticket type:");
 	Button oneWay = new Button("One way ticket");
 	Button round = new Button("Round ticket");
@@ -147,7 +148,15 @@ public class ConfirmationScene {
 
 			@Override
 			public void handle(ActionEvent event) {
+				roundTicketScene.getTickets()
+						.setSeatNum(passengerMenu.getTrip().getNumberOfSeats(
+								bookingScene.tableView.getSelectionModel().getSelectedItem().getSource(),
+								bookingScene.tableView.getSelectionModel().getSelectedItem().getDestination(),
+								bookingScene.tableView.getSelectionModel().getSelectedItem().getVehicle()));
+				if (roundTicketScene.getTickets().availableSeatsCheck(seatNumber)) {
+					
 
+				}
 			}
 		});
 
@@ -257,6 +266,10 @@ public class ConfirmationScene {
 
 	public Button getBackRound() {
 		return backRound;
+	}
+
+	public void setPassengerMenu(PassengerMenu passengerMenu) {
+		this.passengerMenu = passengerMenu;
 	}
 
 }

@@ -21,7 +21,7 @@ public class TripReader {
 
 		for (int i = 0; i < this.trips.size(); i++) {
 			if (source != null && destination != null) {
-				if (source.equals(trips.get(i).getSource()) && destination.equals(trips.get(i).getDestination())) {
+				if (source.equals(trips.get(i).getSource()) || destination.equals(trips.get(i).getDestination())) {
 					searchResult.add(trips.get(i));
 				}
 			} else if (source == null && destination != null) {
@@ -75,5 +75,18 @@ public class TripReader {
 		}
 
 		return searchResult;
+	}
+	
+	public int getNumberOfSeats(String source, String destination, String vehicle) {
+		
+		int index = 0;
+		
+		for (int i = 0; i < this.trips.size(); i++) {
+			if (source.equals(trips.get(i).getSource()) && destination.equals(trips.get(i).getDestination())
+					&& vehicle.equals(trips.get(i).getVehicle())) {
+				index = i;
+			}
+		}
+		return trips.get(index).getNumberOfSeats();
 	}
 }
