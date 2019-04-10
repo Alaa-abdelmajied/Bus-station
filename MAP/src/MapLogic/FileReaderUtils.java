@@ -103,8 +103,8 @@ public class FileReaderUtils {
 
 	public static ArrayList<Driver> readDriverFile() throws IOException {
 
-		String driverName, driverGender;
-		int driverNumber;
+		String driverFirstName,driverLastName, driverGender,driverNumber;
+		
 
 		ArrayList<Driver> driverInfo = new ArrayList<Driver>();
 
@@ -118,14 +118,15 @@ public class FileReaderUtils {
 			line = bufferedReader.readLine();
 			StringTokenizer stringTokenizer = new StringTokenizer(line, ",");
 			if (stringTokenizer.hasMoreTokens()) {
-				driverName = stringTokenizer.nextToken();
+				driverFirstName = stringTokenizer.nextToken();
+				driverLastName=stringTokenizer.nextToken();
 				driverGender = stringTokenizer.nextToken();
-				driverNumber = Integer.parseInt(stringTokenizer.nextToken());
+				driverNumber = stringTokenizer.nextToken();
 				while (stringTokenizer.hasMoreTokens()) {
 
 					assignedTrips.add(stringTokenizer.nextToken());
 				}
-				driverInfo.add(new Driver(driverName, driverGender, driverNumber, assignedTrips));
+				driverInfo.add(new Driver(driverFirstName,driverLastName, driverGender, driverNumber, assignedTrips));
 			}
 		}
 		return driverInfo;

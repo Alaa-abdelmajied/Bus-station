@@ -125,8 +125,15 @@ public class LoginForm {
 							}
 						} else if (validate.getAccountType() == 1) {
 							stage.setScene(driverMenu.getDriverScene());
+							driverMenu.driverReader.loadInfo();
+							driverMenu.driverReader.setDriverFirstName(userNameField.getText());
 							driverMenu.setDriverLabel("Hello, " + userNameField.getText() + "!");
-							//driverMenu.driverReader.setDriverName(userNameField.getText());
+							driverMenu.setfName("First Name: " + userNameField.getText());
+							driverMenu.setlName("Last Name: " + driverMenu.driverReader.getDriverLastName());
+							driverMenu.setGender("Gender: " + driverMenu.driverReader.getDriverGender());
+							driverMenu.setNumber(
+									"Phone Number: " + driverMenu.driverReader.getDriverNumber());
+
 						} else if (validate.getAccountType() == 2) {
 							stage.setScene(managerMenu.getManagerScene());
 							managerMenu.setManagerLabel("Hello, " + userNameField.getText() + "!");
