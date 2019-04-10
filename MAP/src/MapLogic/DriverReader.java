@@ -4,8 +4,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class DriverReader {
-
-	private final ArrayList<Driver> driverInfo = new ArrayList<Driver>();
+	
+	private  ArrayList<Driver> driverInfo = new ArrayList<Driver>();
 
 	public void loadInfo() {
 		this.driverInfo.clear();
@@ -15,7 +15,7 @@ public class DriverReader {
 			e.printStackTrace();
 		}
 	}
-
+	
 	public ArrayList<String> getAssignedTrips(String driverName) {
 		ArrayList<String> assignedTrips = new ArrayList<String>();
 		for (int i = 0; i < driverInfo.size(); i++) {
