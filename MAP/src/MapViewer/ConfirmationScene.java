@@ -1,5 +1,11 @@
 package MapViewer;
 
+import java.util.ArrayList;
+
+import MapLogic.Trip;
+import MapLogic.TripReader;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
@@ -15,10 +21,22 @@ public class ConfirmationScene {
 	Stage stage;
 	Scene confirmationScene;
 	BookingScene bookingScene;
+	roundTicketScene roundTicketScene;
+	Label ticketType = new Label("Please choose your ticket type:");
+	Button oneWay = new Button("One way ticket");
+	Button round = new Button("Round ticket");
 	int seatNumber = 1;
-	Label source = new Label();
-	Label destination = new Label();
-	Label price = new Label();
+	Label source = new Label("Source: ");
+	Label destination = new Label("Destination: ");
+	Label price = new Label("Price: ");
+	Label seatsNum = new Label("No. of seats:");
+	Label numOfSeats = new Label(" 1 ");
+	Button addSeat = new Button("+");
+	Button removeSeat = new Button("-");
+	Button book = new Button("Confirm your trip");
+	Button back = new Button("Back");
+	Button backRound = new Button("back");
+	private final ObservableList<Trip> tripsData = FXCollections.observableArrayList();
 
 	public ConfirmationScene(Stage stage) {
 		this.stage = stage;
@@ -28,36 +46,79 @@ public class ConfirmationScene {
 	public void prepareScene() {
 
 		Label seats = new Label();
-		Label seatsNum = new Label("No. of seats:");
-		Label numOfSeats = new Label(" 1 ");
-		Button addSeat = new Button("+");
-		Button removeSeat = new Button("-");
-		Button back = new Button("Back");
-		Button book = new Button("Confirm your trip");
-		Label successfulBooking = new Label();
+		seatsNum.setVisible(false);
+		numOfSeats.setVisible(false);
+		addSeat.setVisible(false);
+		removeSeat.setVisible(false);
+		book.setVisible(false);
+		backRound.setVisible(false);
 
 		GridPane confirmationGrid = new GridPane();
-		confirmationGrid.add(source, 0, 0);
+
+		confirmationGrid.add(ticketType, 0, 0);
+		GridPane.setHalignment(ticketType, HPos.LEFT);
+		confirmationGrid.add(oneWay, 1, 0);
+		GridPane.setHalignment(oneWay, HPos.CENTER);
+		confirmationGrid.add(round, 2, 0);
+		GridPane.setHalignment(round, HPos.RIGHT);
+
+		confirmationGrid.add(source, 0, 1);
 		GridPane.setHalignment(source, HPos.LEFT);
-		confirmationGrid.add(destination, 0, 1);
+		confirmationGrid.add(destination, 0, 2);
 		GridPane.setHalignment(destination, HPos.LEFT);
-		confirmationGrid.add(price, 0, 2);
+		confirmationGrid.add(price, 0, 3);
 		GridPane.setHalignment(price, HPos.LEFT);
-		confirmationGrid.add(seatsNum, 0, 3);
+		confirmationGrid.add(seatsNum, 0, 4);
 		GridPane.setHalignment(seatsNum, HPos.LEFT);
-		confirmationGrid.add(removeSeat, 1, 3);
+		confirmationGrid.add(removeSeat, 1, 4);
 		GridPane.setHalignment(removeSeat, HPos.LEFT);
-		confirmationGrid.add(numOfSeats, 1, 3);
+		confirmationGrid.add(numOfSeats, 1, 4);
 		GridPane.setHalignment(numOfSeats, HPos.CENTER);
-		confirmationGrid.add(addSeat, 1, 3);
+		confirmationGrid.add(addSeat, 1, 4);
 		GridPane.setHalignment(addSeat, HPos.RIGHT);
-		confirmationGrid.add(back, 0, 4);
-		GridPane.setHalignment(back, HPos.CENTER);
-		confirmationGrid.add(book, 1, 4);
+		confirmationGrid.add(back, 0, 5);
+		GridPane.setHalignment(back, HPos.LEFT);
+		confirmationGrid.add(backRound, 0, 5);
+		GridPane.setHalignment(backRound, HPos.LEFT);
+		confirmationGrid.add(book, 1, 5);
 		GridPane.setHalignment(book, HPos.CENTER);
-		confirmationGrid.add(successfulBooking, 0, 5);
-		GridPane.setHalignment(successfulBooking, HPos.CENTER);
+
 		confirmationScene = new Scene(confirmationGrid, 500, 400);
+
+		oneWay.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+
+				setSource("Source: " + bookingScene.tableView.getSelectionModel().getSelectedItem().getSource());
+				setDestination("Destination: "
+						+ bookingScene.tableView.getSelectionModel().getSelectedItem().getDestination());
+				setPrice("Price: " + bookingScene.tableView.getSelectionModel().getSelectedItem().getTicketPrice()
+						+ " EGP");
+				seatsNum.setVisible(true);
+				numOfSeats.setVisible(true);
+				addSeat.setVisible(true);
+				removeSeat.setVisible(true);
+				book.setVisible(true);
+
+			}
+		});
+
+		round.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				stage.setScene(roundTicketScene.getRoundTicketScene());
+				ArrayList<Trip> trips = new ArrayList<Trip>();
+				trips = bookingScene.passengerMenu.getTrip().findRoundTrip(
+						bookingScene.tableView.getSelectionModel().getSelectedItem().getDestination(),
+						bookingScene.tableView.getSelectionModel().getSelectedItem().getSource(),
+						bookingScene.tableView.getSelectionModel().getSelectedItem().getVehicle());
+				tripsData.setAll(trips);
+				roundTicketScene.getTableView().setItems(tripsData);
+
+			}
+		});
 
 		addSeat.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -86,7 +147,7 @@ public class ConfirmationScene {
 
 			@Override
 			public void handle(ActionEvent event) {
-				successfulBooking.setText("You successfully booked your trip!");
+
 			}
 		});
 
@@ -94,10 +155,28 @@ public class ConfirmationScene {
 
 			@Override
 			public void handle(ActionEvent event) {
+				source.setText("Source: ");
+				destination.setText("Destination: ");
+				price.setText("Price: ");
+				seatsNum.setVisible(false);
+				numOfSeats.setVisible(false);
+				addSeat.setVisible(false);
+				removeSeat.setVisible(false);
+				book.setVisible(false);
+
 				stage.setScene(bookingScene.getBookingScene());
 			}
 		});
 
+		backRound.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				stage.setScene(roundTicketScene.getRoundTicketScene());
+				backRound.setVisible(false);
+				back.setVisible(true);
+			}
+		});
 	}
 
 	public Scene getConfirmationScene() {
@@ -106,6 +185,10 @@ public class ConfirmationScene {
 
 	public void setBookingScene(BookingScene bookingScene) {
 		this.bookingScene = bookingScene;
+	}
+
+	public void setRoundTicketScene(roundTicketScene roundTicketScene) {
+		this.roundTicketScene = roundTicketScene;
 	}
 
 	public void setSource(String text) {
@@ -118,6 +201,62 @@ public class ConfirmationScene {
 
 	public void setPrice(String text) {
 		this.price.setText(text);
+	}
+
+	public Label getSource() {
+		return source;
+	}
+
+	public Label getDestination() {
+		return destination;
+	}
+
+	public Label getPrice() {
+		return price;
+	}
+
+	public ObservableList<Trip> getTripsData() {
+		return tripsData;
+	}
+
+	public Label getTicketType() {
+		return ticketType;
+	}
+
+	public Button getOneWay() {
+		return oneWay;
+	}
+
+	public Button getRound() {
+		return round;
+	}
+
+	public Label getSeatsNum() {
+		return seatsNum;
+	}
+
+	public Label getNumOfSeats() {
+		return numOfSeats;
+	}
+
+	public Button getAddSeat() {
+		return addSeat;
+	}
+
+	public Button getRemoveSeat() {
+		return removeSeat;
+	}
+
+	public Button getBook() {
+		return book;
+	}
+
+	public Button getBack() {
+		return back;
+	}
+
+	public Button getBackRound() {
+		return backRound;
 	}
 
 }

@@ -130,12 +130,9 @@ public class BookingScene {
 					alert.setContentText("You must choose a trip first");
 					alert.showAndWait();
 				} else {
-					confirmationScene
-							.setSource("Source:  " + tableView.getSelectionModel().getSelectedItem().getSource());
-					confirmationScene.setDestination(
-							"Destination:  " + tableView.getSelectionModel().getSelectedItem().getDestination());
-					confirmationScene.setPrice(
-							"Price:  " + tableView.getSelectionModel().getSelectedItem().getTicketPrice() + " EGP");
+					confirmationScene.getTicketType().setVisible(true);
+					confirmationScene.getOneWay().setVisible(true);
+					confirmationScene.getRound().setVisible(true);
 					BookingScene.this.ticketPrice = tableView.getSelectionModel().getSelectedItem().getTicketPrice();
 					stage.setScene(confirmationScene.getConfirmationScene());
 				}
