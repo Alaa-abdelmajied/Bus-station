@@ -76,6 +76,8 @@ public class AllTrips {
 
 			@Override
 			public void handle(ActionEvent event) {
+				
+				stage.setScene(addTrip.getAddTrip());
 
 			}
 		});
