@@ -22,7 +22,7 @@ public class MapViewer extends Application {
 		AllTrips allTrips = new AllTrips(primaryStage);
 		ConfirmationScene confirmationScene = new ConfirmationScene(primaryStage);
 		AssignedTrips assignedTrips = new AssignedTrips(primaryStage);
-		roundTicketScene roundTicketScene = new roundTicketScene(primaryStage);
+		RoundTicketScene roundTicketScene = new RoundTicketScene(primaryStage);
 
 		loginForm.prepareScene();
 		passengerMenu.prepareScene();

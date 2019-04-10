@@ -21,7 +21,7 @@ public class ConfirmationScene {
 	Stage stage;
 	Scene confirmationScene;
 	BookingScene bookingScene;
-	roundTicketScene roundTicketScene;
+	RoundTicketScene roundTicketScene;
 	Label ticketType = new Label("Please choose your ticket type:");
 	Button oneWay = new Button("One way ticket");
 	Button round = new Button("Round ticket");
@@ -187,7 +187,7 @@ public class ConfirmationScene {
 		this.bookingScene = bookingScene;
 	}
 
-	public void setRoundTicketScene(roundTicketScene roundTicketScene) {
+	public void setRoundTicketScene(RoundTicketScene roundTicketScene) {
 		this.roundTicketScene = roundTicketScene;
 	}
 

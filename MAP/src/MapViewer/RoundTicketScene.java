@@ -16,7 +16,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-public class roundTicketScene {
+public class RoundTicketScene {
 
 	Stage stage;
 	Scene roundTicketScene;
@@ -24,7 +24,7 @@ public class roundTicketScene {
 
 	TableView<Trip> tableView;
 
-	public roundTicketScene(Stage stage) {
+	public RoundTicketScene(Stage stage) {
 		this.stage = stage;
 	}
 

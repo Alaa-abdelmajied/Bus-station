@@ -113,6 +113,7 @@ public class BookingScene {
 			public void handle(ActionEvent event) {
 				String sourceSearch = choiceBoxS.getValue();
 				String destination = choiceBoxD.getValue();
+
 				ArrayList<Trip> trips = passengerMenu.getTrip().findTrip(sourceSearch, destination);
 				tripsData.setAll(trips);
 				select.setVisible(true);
