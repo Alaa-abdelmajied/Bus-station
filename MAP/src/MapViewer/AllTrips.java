@@ -91,7 +91,7 @@ public class AllTrips {
 
 			@Override
 			public void handle(ActionEvent event) {
-
+				if(tableView.getSelectionModel().getSelectedItem() != null) {
 				passengerMenu.getTrip().deleteTrip(tableView.getSelectionModel().getSelectedItem().getSource(),
 						tableView.getSelectionModel().getSelectedItem().getDestination(),
 						tableView.getSelectionModel().getSelectedItem().getVehicle(),
@@ -107,6 +107,13 @@ public class AllTrips {
 				alert.setContentText("The trip has been deleted");
 				alert.showAndWait();
 				stage.setScene(managerMenu.getManagerScene());
+				}else {
+					Alert alert = new Alert(AlertType.WARNING);
+					alert.setTitle("WARNING");
+					alert.setHeaderText("");
+					alert.setContentText("Select a trip to delete");
+					alert.showAndWait();
+				}
 
 			}
 		});
@@ -126,6 +133,10 @@ public class AllTrips {
 
 	public void setManagerMenu(ManagerMenu managerMenu) {
 		this.managerMenu = managerMenu;
+	}
+
+	public void setPassengerMenu(PassengerMenu passengerMenu) {
+		this.passengerMenu = passengerMenu;
 	}
 
 	public void setAddTrip(AddTrip addTrip) {

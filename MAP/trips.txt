@@ -1,4 +1,4 @@
-Victoria,Faculty of Engineering,7.25,Bus,0,10.0,0
+Victoria,Faculty of Engineering,7.25,Bus,0,10.0,25
 Faculty of Engineering,Victoria,7.45,Bus,0,10.0,25
 El Montazah,Bahary,8.55,Bus,2,8.0,25
 Bahary,El Montazah,8.55,Bus,2,8.0,25
@@ -9,4 +9,3 @@ Cairo(Nasr City),Sidigaber,17.35,Bus,0,45.0,25
 Victoria,Faculty of Engineering,18.25,Car,0,12.0,4
 Faculty of Engineering,Victoria,15.05,Car,0,12.0,4
 Smouha,Victoria,16.20,Bus,1,12.0,25
-Smouha,El Montazah,15.15,Bus,2,15.0,25

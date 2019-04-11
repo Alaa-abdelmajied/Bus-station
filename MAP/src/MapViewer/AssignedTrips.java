@@ -1,10 +1,13 @@
 package MapViewer;
 
+import MapLogic.Trip;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
@@ -13,7 +16,7 @@ public class AssignedTrips {
 	Stage stage;
 	Scene assignedTripsScene;
 	DriverMenu driverMenu;
-	private ListView<String> listView;
+	TableView<Trip> tableView;
 
 	public AssignedTrips(Stage stage) {
 		this.stage = stage;
@@ -21,13 +24,31 @@ public class AssignedTrips {
 
 	public void prepareScene() {
 
-		listView = new ListView<>();
-		listView.setPrefSize(500, 200);
+		TableColumn<Trip, String> source = new TableColumn<Trip, String>("Source");
+		source.setCellValueFactory(new PropertyValueFactory<>("source"));
+		source.setMinWidth(200);
+		TableColumn<Trip, String> destination = new TableColumn<Trip, String>("Destination");
+		destination.setCellValueFactory(new PropertyValueFactory<>("destination"));
+		destination.setMinWidth(200);
+		TableColumn<Trip, Double> time = new TableColumn<Trip, Double>("Time");
+		time.setCellValueFactory(new PropertyValueFactory<>("time"));
+		time.setMinWidth(100);
+		TableColumn<Trip, String> vehicle = new TableColumn<Trip, String>("Vehicle");
+		vehicle.setCellValueFactory(new PropertyValueFactory<>("vehicle"));
+		vehicle.setMinWidth(100);
+		
+		
+		tableView = new TableView<>();
+		tableView.getColumns().add(source);
+		tableView.getColumns().add(destination);
+		tableView.getColumns().add(time);
+		tableView.getColumns().add(vehicle);
+		
 		Button backToDriver = new Button("Back");
 
 		GridPane assignedTripsGrid = new GridPane();
 
-		assignedTripsGrid.add(listView, 0, 0);
+		assignedTripsGrid.add(tableView, 0, 0);
 		assignedTripsGrid.add(backToDriver, 0, 1);
 
 		assignedTripsScene = new Scene(assignedTripsGrid, 500, 400);
@@ -51,12 +72,8 @@ public class AssignedTrips {
 		this.driverMenu = driverMenu;
 	}
 
-	public void setListView(String text) {
-		this.listView.getItems().add(text);
+	public TableView<Trip> getTableView() {
+		return tableView;
 	}
 	
-	public void clearListView() {
-		this.listView.getItems().clear();
-	}
-
 }

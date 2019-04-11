@@ -30,8 +30,8 @@ public class DriverReader {
 		return index;
 	}
 
-	public ArrayList<String> getAssignedTrips() {
-		ArrayList<String> assignedTrips = new ArrayList<String>();
+	public ArrayList<Trip> getAssignedTrips() {
+		ArrayList<Trip> assignedTrips = new ArrayList<Trip>();
 		for (int i = 0; i < driverInfo.get(DriverIndex()).getAssignedTrips().size(); i++)
 			assignedTrips.add(driverInfo.get(DriverIndex()).getAssignedTrips().get(i));
 		return assignedTrips;

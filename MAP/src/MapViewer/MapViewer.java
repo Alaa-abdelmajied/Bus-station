@@ -45,6 +45,7 @@ public class MapViewer extends Application {
 		passengerMenu.setLoginForm(loginForm);
 		driverMenu.setLoginForm(loginForm);
 		driverMenu.setAssignedTrips(assignedTrips);
+		driverMenu.setPassengerMenu(passengerMenu);
 		managerMenu.setLoginForm(loginForm);
 		managerMenu.setAllTrips(allTrips);
 		managerMenu.setPassengerMenu(passengerMenu);
@@ -52,6 +53,7 @@ public class MapViewer extends Application {
 		bookingScene.setConfirmationScene(confirmationScene);
 		allTrips.setManagerMenu(managerMenu);
 		allTrips.setAddTrip(addTrip);
+		allTrips.setPassengerMenu(passengerMenu);
 		confirmationScene.setBookingScene(bookingScene);
 		confirmationScene.setRoundTicketScene(roundTicketScene);
 		assignedTrips.setDriverMenu(driverMenu);

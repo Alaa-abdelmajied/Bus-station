@@ -22,14 +22,14 @@ public class ManagerMenu {
 	AllTrips allTrips;
 	PassengerMenu passengerMenu;
 	Label managerLabel = new Label();
-
+	Button Trips = new Button("Show All Trips");
 	public ManagerMenu(Stage stage) {
 		this.stage = stage;
 	}
 
 	public void prepareScene() {
 
-		Button Trips = new Button("Show All Trips");
+
 		Button assignTrips = new Button("Assign trips to drivers");
 		Button logoutManager = new Button("Logout");
 
@@ -94,5 +94,6 @@ public class ManagerMenu {
 	public void setPassengerMenu(PassengerMenu passengerMenu) {
 		this.passengerMenu = passengerMenu;
 	}
+	
 
 }

@@ -1,4 +1,5 @@
 package MapLogic;
+
 import java.io.IOException;
 
 public class Validate {
@@ -39,21 +40,28 @@ public class Validate {
 		counter = 0;
 		this.username = username;
 		this.password = password;
-		while (!isCorrect && counter < 100) {
-			if (this.username.equals(loginPassenger[counter][0]) && this.password.equals(loginPassenger[counter][1])) {
-				isCorrect = true;
-				accountType = 0;
-				return true;
-			} else if (this.username.equals(loginDriver[counter][0]) && this.password.equals(loginDriver[counter][1])) {
-				isCorrect = true;
-				accountType = 1;
-				return true;
-			} else if (this.username.equals(loginManager[counter][0]) && this.password.equals(loginManager[counter][1])) {
-				isCorrect = true;
-				accountType = 2;
-				return true;
-			} else
-				counter++;
+		if (username == null || password == null)
+			return false;
+		else {
+			while (!isCorrect && counter < 100) {
+				if (this.username.equals(loginPassenger[counter][0])
+						&& this.password.equals(loginPassenger[counter][1])) {
+					isCorrect = true;
+					accountType = 0;
+					return true;
+				} else if (this.username.equals(loginDriver[counter][0])
+						&& this.password.equals(loginDriver[counter][1])) {
+					isCorrect = true;
+					accountType = 1;
+					return true;
+				} else if (this.username.equals(loginManager[counter][0])
+						&& this.password.equals(loginManager[counter][1])) {
+					isCorrect = true;
+					accountType = 2;
+					return true;
+				} else
+					counter++;
+			}
 		}
 		return false;
 	}

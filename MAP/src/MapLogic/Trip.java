@@ -10,6 +10,15 @@ public class Trip {
 	private final double ticketPrice;
 	private int numberOfSeats;
 	
+	public Trip(String source, String destination, String vehicle, String time) {
+		this.source = source;
+		this.destination = destination;
+		this.vehicle = vehicle;
+		this.time = time;
+		this.numOfStops = 0;
+		this.ticketPrice = 0;
+	}
+	
 	public Trip(String source, String destination, String vehicle, int numOfStops, String time, double ticketPrice) {
 		this.source = source;
 		this.destination = destination;

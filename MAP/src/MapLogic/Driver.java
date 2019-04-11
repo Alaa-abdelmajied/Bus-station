@@ -8,10 +8,10 @@ public class Driver {
 	private final String driverLastName;
 	private final String driverGender;
 	private final String driverNumber;
-	private ArrayList<String> assignedTrips = new ArrayList<String>();
+	private ArrayList<Trip> assignedTrips = new ArrayList<Trip>();
 
 	public Driver(String driverFirstName, String driverLastName, String driverGender, String driverNumber,
-			ArrayList<String> assignedTrips) {
+			ArrayList<Trip> assignedTrips) {
 		this.driverFirstName = driverFirstName;
 		this.driverLastName = driverLastName;
 		this.driverGender = driverGender;
@@ -35,8 +35,10 @@ public class Driver {
 		return driverNumber;
 	}
 
-	public ArrayList<String> getAssignedTrips() {
+	public ArrayList<Trip> getAssignedTrips() {
 		return assignedTrips;
 	}
+
+
 
 }

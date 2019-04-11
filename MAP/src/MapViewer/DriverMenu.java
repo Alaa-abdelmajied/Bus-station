@@ -4,6 +4,9 @@ import java.awt.List;
 import java.util.ArrayList;
 
 import MapLogic.DriverReader;
+import MapLogic.Trip;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
@@ -22,8 +25,10 @@ public class DriverMenu {
 	LoginForm loginForm;
 	AssignedTrips assignedTrips;
 	DriverProfile driverProfile;
+	PassengerMenu passengerMenu;
 	DriverReader driverReader = new DriverReader();
 	Label driverLabel = new Label();
+	private final ObservableList<Trip> tripsData = FXCollections.observableArrayList();
 
 	public DriverMenu(Stage stage) {
 		this.stage = stage;
@@ -66,12 +71,11 @@ public class DriverMenu {
 
 			@Override
 			public void handle(ActionEvent event) {
-				DriverMenu.this.assignedTrips.clearListView();
-				ArrayList<String> assignedTrips = new ArrayList<String>();
-				assignedTrips = driverReader.getAssignedTrips();
-				for (int i = 0; i < assignedTrips.size(); i++) {
-					DriverMenu.this.assignedTrips.setListView(assignedTrips.get(i));
-				}
+				driverReader.loadInfo();
+				final ObservableList<Trip> tripsData = FXCollections.observableArrayList();
+				ArrayList<Trip> assignedTrips = driverReader.getAssignedTrips();
+				tripsData.setAll(assignedTrips);
+				DriverMenu.this.assignedTrips.getTableView().setItems(tripsData);
 				stage.setScene(DriverMenu.this.assignedTrips.getAssignedTripsScene());
 
 			}
@@ -112,5 +116,11 @@ public class DriverMenu {
 	public void setAssignedTrips(AssignedTrips assignedTrips) {
 		this.assignedTrips = assignedTrips;
 	}
+
+	public void setPassengerMenu(PassengerMenu passengerMenu) {
+		this.passengerMenu = passengerMenu;
+	}
+	
+	
 
 }
