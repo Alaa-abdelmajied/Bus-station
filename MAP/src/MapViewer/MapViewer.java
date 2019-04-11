@@ -26,8 +26,7 @@ public class MapViewer extends Application {
 		RoundTicketScene roundTicketScene = new RoundTicketScene(primaryStage);
 		AddTrip addTrip = new AddTrip(primaryStage);
 		YourTrips yourTripsScene = new YourTrips(primaryStage);
-		CurrentTripsTab currentTripsScene = new CurrentTripsTab(primaryStage);
-		HistoryTab historyTabScene = new HistoryTab(primaryStage);
+		ManagerAssignedTrips managerAssignedTrips = new ManagerAssignedTrips(primaryStage);
 
 		loginForm.prepareScene();
 		passengerMenu.prepareScene();
@@ -41,8 +40,7 @@ public class MapViewer extends Application {
 		roundTicketScene.prepareScene();
 		addTrip.prepareScene();
 		yourTripsScene.prepareScene();
-		currentTripsScene.prepareScene();
-		historyTabScene.prepareScene();
+		managerAssignedTrips.prepareScene();
 
 		loginForm.setPassengerMenu(passengerMenu);
 		loginForm.setDriverMenu(driverMenu);
@@ -55,6 +53,8 @@ public class MapViewer extends Application {
 		managerMenu.setLoginForm(loginForm);
 		managerMenu.setAllTrips(allTrips);
 		managerMenu.setPassengerMenu(passengerMenu);
+		managerMenu.setManagerAssignedTrips(managerAssignedTrips);
+		managerMenu.setDriverMenu(driverMenu);
 		bookingScene.setPassengerMenu(passengerMenu);
 		bookingScene.setConfirmationScene(confirmationScene);
 		allTrips.setManagerMenu(managerMenu);
@@ -73,6 +73,8 @@ public class MapViewer extends Application {
 		passengerMenu.setYourTripsScene(yourTripsScene);
 		yourTripsScene.setPassengerMenu(passengerMenu);
 		yourTripsScene.setLoginForm(loginForm);
+		managerAssignedTrips.setManagerMenu(managerMenu);
+		managerAssignedTrips.setPassengerMenu(passengerMenu);
 
 		primaryStage.setScene(loginForm.getLoginForm());
 		primaryStage.setTitle("MAP");

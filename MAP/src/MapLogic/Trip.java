@@ -9,7 +9,8 @@ public class Trip {
 	private final String time;
 	private final double ticketPrice;
 	private int numberOfSeats;
-	
+	private String driverName;
+
 	public Trip(String source, String destination, String vehicle, String time) {
 		this.source = source;
 		this.destination = destination;
@@ -18,7 +19,7 @@ public class Trip {
 		this.numOfStops = 0;
 		this.ticketPrice = 0;
 	}
-	
+
 	public Trip(String source, String destination, String vehicle, int numOfStops, String time, double ticketPrice) {
 		this.source = source;
 		this.destination = destination;
@@ -28,7 +29,8 @@ public class Trip {
 		this.ticketPrice = ticketPrice;
 	}
 
-	public Trip(String source, String destination, String vehicle, int numOfStops, String time, double ticketPrice, int numberOfSeats) {
+	public Trip(String source, String destination, String vehicle, int numOfStops, String time, double ticketPrice,
+			int numberOfSeats) {
 		this.source = source;
 		this.destination = destination;
 		this.vehicle = vehicle;
@@ -36,6 +38,18 @@ public class Trip {
 		this.time = time;
 		this.ticketPrice = ticketPrice;
 		this.numberOfSeats = numberOfSeats;
+	}
+	
+	public Trip(String source, String destination, String vehicle, int numOfStops, String time, double ticketPrice,
+			int numberOfSeats, String driverName) {
+		this.source = source;
+		this.destination = destination;
+		this.vehicle = vehicle;
+		this.numOfStops = numOfStops;
+		this.time = time;
+		this.ticketPrice = ticketPrice;
+		this.numberOfSeats = numberOfSeats;
+		this.driverName = driverName;
 	}
 
 	public String getSource() {
@@ -69,6 +83,15 @@ public class Trip {
 	public void setNumberOfSeats(int numberOfSeats) {
 		this.numberOfSeats = numberOfSeats;
 	}
+
+	public String getDriverName() {
+		return driverName;
+	}
+
+	public void setDriverName(String driverName) {
+		this.driverName = driverName;
+	}
 	
 	
+
 }

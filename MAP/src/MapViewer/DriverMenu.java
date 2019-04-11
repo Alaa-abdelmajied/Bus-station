@@ -36,7 +36,7 @@ public class DriverMenu {
 
 	public void prepareScene() {
 
-		Button profile = new Button("View your profile");
+		Button profile = new Button("Go to your profile");
 		Button assignedTrips = new Button("Assigned Trips");
 		Button logoutDriver = new Button("Logout");
 		GridPane driverGrid = new GridPane();
@@ -120,7 +120,10 @@ public class DriverMenu {
 	public void setPassengerMenu(PassengerMenu passengerMenu) {
 		this.passengerMenu = passengerMenu;
 	}
-	
+
+	public DriverReader getDriverReader() {
+		return driverReader;
+	}
 	
 
 }

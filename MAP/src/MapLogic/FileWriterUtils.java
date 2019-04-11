@@ -13,9 +13,16 @@ public class FileWriterUtils {
 		trip.addAll(trips);
 		BufferedWriter writer = new BufferedWriter(new FileWriter("trips.txt"));
 		for (int i = 0; i < trip.size(); i++) {
-			writer.write(trip.get(i).getSource() + "," + trip.get(i).getDestination() + "," + trip.get(i).getTime()
-					+ "," + trip.get(i).getVehicle() + "," + trip.get(i).getNumOfStops() + ","
-					+ trip.get(i).getTicketPrice() + "," + trip.get(i).getNumberOfSeats() + "\n");
+			if (trip.get(i).getDriverName().isEmpty()) {
+				writer.write(trip.get(i).getSource() + "," + trip.get(i).getDestination() + "," + trip.get(i).getTime()
+						+ "," + trip.get(i).getVehicle() + "," + trip.get(i).getNumOfStops() + ","
+						+ trip.get(i).getTicketPrice() + "," + trip.get(i).getNumberOfSeats() + "\n");
+			} else {
+				writer.write(trip.get(i).getSource() + "," + trip.get(i).getDestination() + "," + trip.get(i).getTime()
+						+ "," + trip.get(i).getVehicle() + "," + trip.get(i).getNumOfStops() + ","
+						+ trip.get(i).getTicketPrice() + "," + trip.get(i).getNumberOfSeats() + ","
+						+ trip.get(i).getDriverName() + "\n");
+			}
 		}
 		writer.close();
 	}
@@ -60,7 +67,7 @@ public class FileWriterUtils {
 		}
 		writer.close();
 	}
-	
+
 	public static void writeCurrentTripFile(ArrayList<Current> currents) throws IOException {
 
 		ArrayList<Current> current = new ArrayList<Current>();

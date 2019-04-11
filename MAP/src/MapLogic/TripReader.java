@@ -3,7 +3,7 @@ package MapLogic;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class TripReader implements Reader{
+public class TripReader implements Reader {
 
 	private int index = 0;
 	private final ArrayList<Trip> trips = new ArrayList<Trip>();
@@ -17,12 +17,12 @@ public class TripReader implements Reader{
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Override
 	public ArrayList<Trip> showTrips() {
 		return trips;
 	}
-	
+
 	public ArrayList<Trip> findTrip(String source, String destination) {
 		ArrayList<Trip> searchResult = new ArrayList<Trip>();
 
@@ -46,14 +46,22 @@ public class TripReader implements Reader{
 		return searchResult;
 	}
 
-
 	public void addTrip(String source, String destination, String time, String vehicle, int numberOfStops,
 			double ticketPrice, int numberOfSeats) {
 		trips.add(new Trip(source, destination, vehicle, numberOfStops, time, ticketPrice, numberOfSeats));
 	}
-	
+
+	public void assignTrip(String source, String destination, String time, String vehicle, String driverName) {
+		for (int i = 0; i < this.trips.size(); i++) {
+			if (source.equals(trips.get(i).getSource()) && destination.equals(trips.get(i).getDestination())
+					&& vehicle.equals(trips.get(i).getVehicle()) && time.equals(trips.get(i).getTime())) {
+				trips.get(i).setDriverName(driverName);
+			}
+		}
+	}
+
 	public void deleteTrip(String source, String destination, String vehicle, String time) {
-		
+
 		for (int i = 0; i < this.trips.size(); i++) {
 			if (source.equals(trips.get(i).getSource()) && destination.equals(trips.get(i).getDestination())
 					&& vehicle.equals(trips.get(i).getVehicle()) && time.equals(trips.get(i).getTime())) {
@@ -90,9 +98,9 @@ public class TripReader implements Reader{
 
 		return searchResult;
 	}
-	
+
 	public int getNumberOfSeats(String source, String destination, String vehicle) {
-		
+
 		for (int i = 0; i < this.trips.size(); i++) {
 			if (source.equals(trips.get(i).getSource()) && destination.equals(trips.get(i).getDestination())
 					&& vehicle.equals(trips.get(i).getVehicle())) {
@@ -101,7 +109,7 @@ public class TripReader implements Reader{
 		}
 		return trips.get(index).getNumberOfSeats();
 	}
-	
+
 	public void setNumberOfSeats(int bookedtickets) {
 		int numberOfSeats = 0;
 		numberOfSeats = trips.get(index).getNumberOfSeats();
@@ -111,7 +119,5 @@ public class TripReader implements Reader{
 	public ArrayList<Trip> getTrips() {
 		return trips;
 	}
-	
-	
 
 }

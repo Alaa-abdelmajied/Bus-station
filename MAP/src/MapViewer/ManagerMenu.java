@@ -2,6 +2,7 @@ package MapViewer;
 
 import java.util.ArrayList;
 
+import MapLogic.Driver;
 import MapLogic.Trip;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,16 +21,18 @@ public class ManagerMenu {
 	Scene managerScene;
 	LoginForm loginForm;
 	AllTrips allTrips;
+	ManagerAssignedTrips managerAssignedTrips;
 	PassengerMenu passengerMenu;
+	DriverMenu driverMenu;
 	Label managerLabel = new Label();
-	Button Trips = new Button("Show All Trips");
+
 	public ManagerMenu(Stage stage) {
 		this.stage = stage;
 	}
 
 	public void prepareScene() {
 
-
+		Button Trips = new Button("Show All Trips");
 		Button assignTrips = new Button("Assign trips to drivers");
 		Button logoutManager = new Button("Logout");
 
@@ -61,14 +64,32 @@ public class ManagerMenu {
 			}
 		});
 
+		assignTrips.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				passengerMenu.getTrip().load();
+				driverMenu.getDriverReader().loadInfo();
+				for (int i = 0; i < driverMenu.getDriverReader().getDriverFirstName().size(); i++) {
+					managerAssignedTrips.getDrivers().getItems()
+							.add(driverMenu.getDriverReader().getDriverFirstName().get(i));
+				}
+				final ObservableList<Trip> tripsData = FXCollections.observableArrayList();
+				ArrayList<Trip> trips = passengerMenu.getTrip().showTrips();
+				tripsData.setAll(trips);
+				managerAssignedTrips.getTableView().setItems(tripsData);
+				stage.setScene(managerAssignedTrips.getManagerAssignedTrips());
+			}
+		});
+
 		logoutManager.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
 			public void handle(ActionEvent event) {
 				loginForm.setUserNameField(null);
 				loginForm.setPasswordField(null);
-				//loginForm.setPassengerRB(null);
-			//	loginForm.setEmployeeRB(null);
+				// loginForm.setPassengerRB(null);
+				// loginForm.setEmployeeRB(null);
 				stage.setScene(loginForm.getLoginForm());
 
 			}
@@ -94,6 +115,13 @@ public class ManagerMenu {
 	public void setPassengerMenu(PassengerMenu passengerMenu) {
 		this.passengerMenu = passengerMenu;
 	}
-	
+
+	public void setManagerAssignedTrips(ManagerAssignedTrips managerAssignedTrips) {
+		this.managerAssignedTrips = managerAssignedTrips;
+	}
+
+	public void setDriverMenu(DriverMenu driverMenu) {
+		this.driverMenu = driverMenu;
+	}
 
 }
