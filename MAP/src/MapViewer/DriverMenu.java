@@ -9,8 +9,10 @@ import javafx.event.EventHandler;
 import javafx.geometry.HPos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class DriverMenu {
@@ -19,12 +21,9 @@ public class DriverMenu {
 	Scene driverScene;
 	LoginForm loginForm;
 	AssignedTrips assignedTrips;
+	DriverProfile driverProfile;
 	DriverReader driverReader = new DriverReader();
 	Label driverLabel = new Label();
-	Label fName = new Label();
-	Label lName = new Label();
-	Label gender = new Label();
-	Label number = new Label();
 
 	public DriverMenu(Stage stage) {
 		this.stage = stage;
@@ -32,30 +31,36 @@ public class DriverMenu {
 
 	public void prepareScene() {
 
+		Button profile = new Button("Go to your profile");
 		Button assignedTrips = new Button("Assigned Trips");
 		Button logoutDriver = new Button("Logout");
-		Label personalData = new Label("PERSONAL DATA");
 		GridPane driverGrid = new GridPane();
 		driverGrid.add(driverLabel, 0, 0);
 		GridPane.setHalignment(driverLabel, HPos.CENTER);
-		driverGrid.add(personalData, 0, 1);
-		GridPane.setHalignment(personalData, HPos.CENTER);
-		driverGrid.add(fName, 0, 2);
-		GridPane.setHalignment(fName, HPos.LEFT);
-		driverGrid.add(lName, 0, 3);
-		GridPane.setHalignment(lName, HPos.LEFT);
-		driverGrid.add(gender, 0, 4);
-		GridPane.setHalignment(gender, HPos.LEFT);
-		driverGrid.add(number, 0, 5);
-		GridPane.setHalignment(number, HPos.LEFT);
-		driverGrid.add(assignedTrips, 0, 6);
+		driverGrid.add(profile, 0, 1);
+		GridPane.setHalignment(profile, HPos.CENTER);
+		driverGrid.add(assignedTrips, 0, 7);
 		GridPane.setHalignment(assignedTrips, HPos.CENTER);
-		driverGrid.add(logoutDriver, 0, 7);
+		driverGrid.add(logoutDriver, 0, 8);
 		GridPane.setHalignment(logoutDriver, HPos.CENTER);
 
 		driverScene = new Scene(driverGrid, 300, 300);
 
 		// actions
+
+		profile.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				driverProfile.setPersonalData("WELCOME TO YOUR PROFILE");
+				driverProfile.setfName("First Name: " + loginForm.userNameField.getText());
+				driverProfile.setlName("Last Name: " + driverReader.getDriverLastName());
+				driverProfile.setGender("Gender: " + driverReader.getDriverGender());
+				driverProfile.setNumber("Phone Number: " + driverReader.getDriverNumber());
+				stage.setScene(driverProfile.getDriverProfileScene());
+
+			}
+		});
 
 		assignedTrips.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -79,7 +84,10 @@ public class DriverMenu {
 			public void handle(ActionEvent event) {
 				loginForm.setUserNameField(null);
 				loginForm.setPasswordField(null);
+				loginForm.setPassengerCB(null);
+				loginForm.setEmployeeCB(null);
 				stage.setScene(loginForm.getLoginForm());
+				
 
 			}
 		});
@@ -93,24 +101,12 @@ public class DriverMenu {
 		this.loginForm = loginForm;
 	}
 
+	public void setDriverProfile(DriverProfile driverProfile) {
+		this.driverProfile = driverProfile;
+	}
+
 	public void setDriverLabel(String text) {
 		this.driverLabel.setText(text);
-	}
-
-	public void setfName(String text) {
-		this.fName.setText(text);
-	}
-
-	public void setlName(String text) {
-		this.lName.setText(text);
-	}
-
-	public void setGender(String text) {
-		this.gender.setText(text);
-	}
-
-	public void setNumber(String text) {
-		this.number.setText(text);
 	}
 
 	public void setAssignedTrips(AssignedTrips assignedTrips) {

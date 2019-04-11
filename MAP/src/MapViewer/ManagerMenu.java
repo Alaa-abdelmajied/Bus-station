@@ -67,6 +67,8 @@ public class ManagerMenu {
 			public void handle(ActionEvent event) {
 				loginForm.setUserNameField(null);
 				loginForm.setPasswordField(null);
+				loginForm.setPassengerCB(null);
+				loginForm.setEmployeeCB(null);
 				stage.setScene(loginForm.getLoginForm());
 
 			}
