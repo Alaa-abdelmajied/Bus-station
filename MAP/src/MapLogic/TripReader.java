@@ -3,12 +3,13 @@ package MapLogic;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class TripReader {
+public class TripReader implements Reader{
 
 	private int index = 0;
 	private final ArrayList<Trip> trips = new ArrayList<Trip>();
 
-	public void loadTrips() {
+	@Override
+	public void load() {
 		this.trips.clear();
 		try {
 			this.trips.addAll(FileReaderUtils.readTripFile());
@@ -16,7 +17,12 @@ public class TripReader {
 			e.printStackTrace();
 		}
 	}
-
+	
+	@Override
+	public ArrayList<Trip> showTrips() {
+		return trips;
+	}
+	
 	public ArrayList<Trip> findTrip(String source, String destination) {
 		ArrayList<Trip> searchResult = new ArrayList<Trip>();
 
@@ -40,9 +46,6 @@ public class TripReader {
 		return searchResult;
 	}
 
-	public ArrayList<Trip> showTrips() {
-		return trips;
-	}
 
 	public void addTrip(String source, String destination, String time, String vehicle, int numberOfStops,
 			double ticketPrice, int numberOfSeats) {

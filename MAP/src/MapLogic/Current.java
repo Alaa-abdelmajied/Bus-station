@@ -2,12 +2,12 @@ package MapLogic;
 
 import java.util.ArrayList;
 
-public class History {
+public class Current {
 	
 	private final String name;
 	private ArrayList<Trip> trips = new ArrayList<Trip>();
 	
-	public History(String name, ArrayList<Trip> trips) {
+	public Current(String name, ArrayList<Trip> trips) {
 		
 		this.name = name;
 		this.trips = trips;
@@ -20,5 +20,5 @@ public class History {
 	public ArrayList<Trip> getTrips() {
 		return trips;
 	}
-	
+
 }

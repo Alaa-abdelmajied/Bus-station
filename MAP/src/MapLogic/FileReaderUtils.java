@@ -9,6 +9,8 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
+import javax.print.attribute.standard.MediaSize.JIS;
+
 public class FileReaderUtils {
 
 	private String[][] passengerLogin = new String[100][2];
@@ -62,7 +64,7 @@ public class FileReaderUtils {
 		String line;
 		String source = null, destination = null, vehicle = null, time = null;
 		double ticketPrice = 0.0;
-		int numberOfStops = 0 , numberOfSeats = 0;
+		int numberOfStops = 0, numberOfSeats = 0;
 		while (bufferedReader.ready()) {
 			line = bufferedReader.readLine();
 			StringTokenizer stringTokenizer = new StringTokenizer(line, ":,");
@@ -104,8 +106,7 @@ public class FileReaderUtils {
 
 	public static ArrayList<Driver> readDriverFile() throws IOException {
 
-		String driverFirstName,driverLastName, driverGender,driverNumber;
-		
+		String driverFirstName, driverLastName, driverGender, driverNumber;
 
 		ArrayList<Driver> driverInfo = new ArrayList<Driver>();
 
@@ -120,19 +121,100 @@ public class FileReaderUtils {
 			StringTokenizer stringTokenizer = new StringTokenizer(line, ",");
 			if (stringTokenizer.hasMoreTokens()) {
 				driverFirstName = stringTokenizer.nextToken();
-				driverLastName=stringTokenizer.nextToken();
+				driverLastName = stringTokenizer.nextToken();
 				driverGender = stringTokenizer.nextToken();
 				driverNumber = stringTokenizer.nextToken();
 				while (stringTokenizer.hasMoreTokens()) {
 
 					assignedTrips.add(stringTokenizer.nextToken());
 				}
-				driverInfo.add(new Driver(driverFirstName,driverLastName, driverGender, driverNumber, assignedTrips));
+				driverInfo.add(new Driver(driverFirstName, driverLastName, driverGender, driverNumber, assignedTrips));
 			}
 		}
 		return driverInfo;
 	}
+
+	public static ArrayList<History> readHistoryTripsFile() throws IOException {
+
+		String passengerName = null, source = null, destination = null, vehicle = null, time = null;
+		double ticketPrice = 0.0;
+		int numberOfStops = 0;
+		ArrayList<Trip> trips = new ArrayList<Trip>();
+		ArrayList<History> histories = new ArrayList<History>();
+
+		File file = new File("HistoryTrips");
+
+		FileReader fileReader = new FileReader(file);
+		BufferedReader bufferedReader = new BufferedReader(fileReader);
+		String line;
+		while (bufferedReader.ready()) {
+			line = bufferedReader.readLine();
+			StringTokenizer stringTokenizer = new StringTokenizer(line, ",");
+			if (stringTokenizer.hasMoreTokens()) {
+				passengerName = stringTokenizer.nextToken();
+				source = stringTokenizer.nextToken();
+				destination = stringTokenizer.nextToken();
+				time = stringTokenizer.nextToken();
+				vehicle = stringTokenizer.nextToken();
+				numberOfStops = Integer.parseInt(stringTokenizer.nextToken());
+				ticketPrice = Double.parseDouble(stringTokenizer.nextToken());
+				trips.add(new Trip(source, destination, vehicle, numberOfStops, time, ticketPrice));
+				while (stringTokenizer.hasMoreTokens()) {
+					passengerName = stringTokenizer.nextToken();
+					source = stringTokenizer.nextToken();
+					destination = stringTokenizer.nextToken();
+					time = stringTokenizer.nextToken();
+					vehicle = stringTokenizer.nextToken();
+					numberOfStops = Integer.parseInt(stringTokenizer.nextToken());
+					ticketPrice = Double.parseDouble(stringTokenizer.nextToken());
+					trips.add(new Trip(source, destination, vehicle, numberOfStops, time, ticketPrice));
+				}
+				histories.add(new History(passengerName, trips));
+			}
+		}
+		return histories;
+	}
 	
+	public static ArrayList<Current> readCurrentTripsFile() throws IOException {
+
+		String passengerName = null, source = null, destination = null, vehicle = null, time = null;
+		double ticketPrice = 0.0;
+		int numberOfStops = 0;
+		ArrayList<Trip> trips = new ArrayList<Trip>();
+		ArrayList<Current> currents = new ArrayList<Current>();
+
+		File file = new File("CurrentTrips");
+
+		FileReader fileReader = new FileReader(file);
+		BufferedReader bufferedReader = new BufferedReader(fileReader);
+		String line;
+		while (bufferedReader.ready()) {
+			line = bufferedReader.readLine();
+			StringTokenizer stringTokenizer = new StringTokenizer(line, ",");
+			if (stringTokenizer.hasMoreTokens()) {
+				passengerName = stringTokenizer.nextToken();
+				source = stringTokenizer.nextToken();
+				destination = stringTokenizer.nextToken();
+				time = stringTokenizer.nextToken();
+				vehicle = stringTokenizer.nextToken();
+				numberOfStops = Integer.parseInt(stringTokenizer.nextToken());
+				ticketPrice = Double.parseDouble(stringTokenizer.nextToken());
+				trips.add(new Trip(source, destination, vehicle, numberOfStops, time, ticketPrice));
+				while (stringTokenizer.hasMoreTokens()) {
+					passengerName = stringTokenizer.nextToken();
+					source = stringTokenizer.nextToken();
+					destination = stringTokenizer.nextToken();
+					time = stringTokenizer.nextToken();
+					vehicle = stringTokenizer.nextToken();
+					numberOfStops = Integer.parseInt(stringTokenizer.nextToken());
+					ticketPrice = Double.parseDouble(stringTokenizer.nextToken());
+					trips.add(new Trip(source, destination, vehicle, numberOfStops, time, ticketPrice));
+				}
+				currents.add(new Current(passengerName, trips));
+			}
+		}
+		return currents;
+	}
 	
 
 	public String[][] getPassengerLogin() {
