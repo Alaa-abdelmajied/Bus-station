@@ -51,7 +51,7 @@ public class ManagerMenu {
 
 			@Override
 			public void handle(ActionEvent event) {
-				passengerMenu.getTrip().loadTrips();
+				passengerMenu.getTrip().load();
 				final ObservableList<Trip> tripsData = FXCollections.observableArrayList();
 				ArrayList<Trip> trips = passengerMenu.getTrip().showTrips();
 				tripsData.setAll(trips);
@@ -67,8 +67,8 @@ public class ManagerMenu {
 			public void handle(ActionEvent event) {
 				loginForm.setUserNameField(null);
 				loginForm.setPasswordField(null);
-				loginForm.setPassengerRB(null);
-				loginForm.setEmployeeRB(null);
+				//loginForm.setPassengerRB(null);
+			//	loginForm.setEmployeeRB(null);
 				stage.setScene(loginForm.getLoginForm());
 
 			}

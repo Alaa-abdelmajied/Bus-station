@@ -84,8 +84,8 @@ public class DriverMenu {
 			public void handle(ActionEvent event) {
 				loginForm.setUserNameField(null);
 				loginForm.setPasswordField(null);
-				loginForm.setPassengerRB(null);
-				loginForm.setEmployeeRB(null);
+				//loginForm.setPassengerRB(null);
+				//loginForm.setEmployeeRB(null);
 				stage.setScene(loginForm.getLoginForm());
 				
 

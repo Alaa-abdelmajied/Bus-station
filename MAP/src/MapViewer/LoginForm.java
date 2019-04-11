@@ -34,8 +34,8 @@ public class LoginForm {
 	PasswordField passwordField = new PasswordField();
 	// CheckBox passengerCB = new CheckBox("Passenger");
 	// CheckBox employeeCB = new CheckBox("Employee");
-	RadioButton passengerRB = new RadioButton("Passenger");
-	RadioButton empolyeeRB = new RadioButton("Employee");
+	// RadioButton passengerRB = new RadioButton("Passenger");
+	// RadioButton empolyeeRB = new RadioButton("Employee");
 
 	public LoginForm(Stage stage) {
 		this.stage = stage;
@@ -47,15 +47,18 @@ public class LoginForm {
 		Label space2 = new Label("   ");
 		Label space3 = new Label("   ");
 		Label space4 = new Label("   ");
-		// Button passenger = new Button("Passenger");
-		// Button employee = new Button("Employee");
+		Button passenger = new Button("Passenger");
+		Button employee = new Button("Employee");
 		Button login = new Button("Login");
 		Alert alert = new Alert(AlertType.WARNING);
 		userNameField.setPromptText("username");
 		passwordField.setPromptText("password");
 
-		GridPane.setHalignment(passengerRB, HPos.LEFT);
-		GridPane.setHalignment(empolyeeRB, HPos.RIGHT);
+		// GridPane.setHalignment(passengerRB, HPos.LEFT);
+		// GridPane.setHalignment(empolyeeRB, HPos.RIGHT);
+
+		GridPane.setHalignment(passenger, HPos.LEFT);
+		GridPane.setHalignment(employee, HPos.RIGHT);
 		GridPane.setHalignment(userNameField, HPos.CENTER);
 		GridPane.setHalignment(passwordField, HPos.CENTER);
 		GridPane.setHalignment(login, HPos.RIGHT);
@@ -69,14 +72,46 @@ public class LoginForm {
 		loginGrid.add(login, 2, 3);
 		loginGrid.add(space3, 1, 4);
 		loginGrid.add(space4, 1, 5);
-		loginGrid.add(passengerRB, 0, 6);
-		loginGrid.add(empolyeeRB, 2, 6);
+		// loginGrid.add(passengerRB, 0, 6);
+		// loginGrid.add(empolyeeRB, 2, 6);
+		loginGrid.add(passenger, 0, 6);
+		loginGrid.add(employee, 2, 6);
 
 		loginForm = new Scene(loginGrid, 360, 200);
 
 		// actions
 
-		passengerRB.setOnAction(new EventHandler<ActionEvent>() {
+		/*
+		 * passengerRB.setOnAction(new EventHandler<ActionEvent>() {
+		 * 
+		 * @Override public void handle(ActionEvent event) {
+		 * 
+		 * userNameField.setText(null); passwordField.setText(null);
+		 * userNameField.setPromptText("Passenger's username");
+		 * validate.setType("Passenger"); validate.setLoginData(); showPassenger = true;
+		 * if (!passengerRB.isSelected()) { userNameField.setPromptText("username");
+		 * passwordField.setPromptText("password"); } empolyeeRB.setSelected(false);
+		 * 
+		 * }
+		 * 
+		 * });
+		 */
+
+		/*
+		 * empolyeeRB.setOnAction(new EventHandler<ActionEvent>() {
+		 * 
+		 * @Override public void handle(ActionEvent event) {
+		 * 
+		 * userNameField.setText(null); passwordField.setText(null);
+		 * userNameField.setPromptText("Employee's username");
+		 * validate.setType("Employee"); validate.setLoginData(); showEmployee = true;
+		 * if (!passengerRB.isSelected()) { userNameField.setPromptText("username");
+		 * passwordField.setPromptText("password"); } passengerRB.setSelected(false); }
+		 * 
+		 * });
+		 */
+
+		passenger.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
 			public void handle(ActionEvent event) {
@@ -87,12 +122,11 @@ public class LoginForm {
 				validate.setType("Passenger");
 				validate.setLoginData();
 				showPassenger = true;
-				empolyeeRB.setSelected(false);
 			}
 
 		});
 
-		empolyeeRB.setOnAction(new EventHandler<ActionEvent>() {
+		employee.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
 			public void handle(ActionEvent event) {
@@ -103,7 +137,6 @@ public class LoginForm {
 				validate.setType("Employee");
 				validate.setLoginData();
 				showEmployee = true;
-				passengerRB.setSelected(false);
 			}
 
 		});
@@ -183,13 +216,14 @@ public class LoginForm {
 		this.passwordField.setText(text);
 	}
 
-	public void setPassengerRB(CheckBox passengerRB) {
-		this.passengerRB.setSelected(false);
-	}
+	/*
+	 * public void setPassengerRB(CheckBox passengerRB) {
+	 * this.passengerRB.setSelected(false); }
+	 */
 
-	public void setEmployeeRB(CheckBox empolyeeRB) {
-		// this.employeeCB = employeeCB;
-		this.empolyeeRB.setSelected(false);
-	}
+	/*
+	 * public void setEmployeeRB(CheckBox empolyeeRB) { // this.employeeCB =
+	 * employeeCB; this.empolyeeRB.setSelected(false); }
+	 */
 
 }

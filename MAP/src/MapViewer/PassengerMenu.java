@@ -59,7 +59,7 @@ public class PassengerMenu {
 
 			@Override
 			public void handle(ActionEvent event) {
-				trip.loadTrips();
+				trip.load();
 				// int i = 0;
 				bookingScene.choiceBoxS.getItems().clear();
 				bookingScene.choiceBoxD.getItems().clear();
@@ -108,8 +108,8 @@ public class PassengerMenu {
 
 				loginForm.setUserNameField(null);
 				loginForm.setPasswordField(null);
-				loginForm.setPassengerRB(null);
-				loginForm.setEmployeeRB(null);
+				//loginForm.setPassengerRB(null);
+				//loginForm.setEmployeeRB(null);
 				stage.setScene(loginForm.getLoginForm());
 
 			}
