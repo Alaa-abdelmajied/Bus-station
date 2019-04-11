@@ -107,7 +107,7 @@ public class AddTrip {
 					Alert alert = new Alert(AlertType.WARNING);
 					alert.setTitle("WARNING");
 					alert.setHeaderText("");
-					alert.setContentText("Please, Enter fill all feilds");
+					alert.setContentText("Please, Fill all feilds");
 					alert.showAndWait();
 				} else {
 					passengerMenu.getTrip().addTrip(sourceText.getText(), destinationText.getText(),

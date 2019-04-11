@@ -36,7 +36,7 @@ public class CurrentTripsReader implements Reader {
 	}
 	
 	public void confirmTrip(String name,String source, String destination, String time, String vehicle, int numberOfStops,
-			double ticketPrice, int numberOfSeats) {
+			double ticketPrice) {
 		for(int i = 0 ; i < currents.size() ; i++) {
 			if(name.equals(currents.get(i).getName())) {
 			currents.get(i).getTrips().add(new Trip(source, destination, vehicle, numberOfStops, time, ticketPrice));

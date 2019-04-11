@@ -3,6 +3,7 @@ package MapViewer;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import MapLogic.CurrentTripsReader;
 import MapLogic.FileWriterUtils;
 import MapLogic.Trip;
 import javafx.collections.FXCollections;
@@ -25,6 +26,8 @@ public class ConfirmationScene {
 	BookingScene bookingScene;
 	RoundTicketScene roundTicketScene;
 	PassengerMenu passengerMenu;
+	LoginForm loginForm;
+	CurrentTripsReader currentTrips = new CurrentTripsReader();
 	Label ticketType = new Label("Please choose your ticket type:");
 	Button oneWay = new Button("One way ticket");
 	Button round = new Button("Round ticket");
@@ -161,16 +164,23 @@ public class ConfirmationScene {
 						FileWriterUtils.writeTripFile(passengerMenu.getTrip().getTrips());
 					} catch (IOException e) {
 						e.printStackTrace();
-						
+
 					}
+
 					Alert alert = new Alert(AlertType.INFORMATION);
 					alert.setTitle("Confirmation");
 					alert.setHeaderText(null);
 					alert.setContentText("The trip has been booked");
 					alert.showAndWait();
+					currentTrips.confirmTrip(loginForm.userNameField.getText(),
+							bookingScene.tableView.getSelectionModel().getSelectedItem().getSource(),
+							bookingScene.tableView.getSelectionModel().getSelectedItem().getDestination(),
+							bookingScene.tableView.getSelectionModel().getSelectedItem().getTime(),
+							bookingScene.tableView.getSelectionModel().getSelectedItem().getVehicle(),
+							bookingScene.tableView.getSelectionModel().getSelectedItem().getNumOfStops(),
+							bookingScene.tableView.getSelectionModel().getSelectedItem().getTicketPrice());
 					stage.setScene(passengerMenu.getPassengerScene());
-				}
-				else {
+				} else {
 					Alert alert = new Alert(AlertType.WARNING);
 					alert.setTitle("WARNING");
 					alert.setHeaderText("");
@@ -290,6 +300,10 @@ public class ConfirmationScene {
 
 	public void setPassengerMenu(PassengerMenu passengerMenu) {
 		this.passengerMenu = passengerMenu;
+	}
+
+	public void setLoginForm(LoginForm loginForm) {
+		this.loginForm = loginForm;
 	}
 
 }
