@@ -19,6 +19,9 @@ public class PassengerMenu {
 	Scene passengerScene;
 	LoginForm loginForm;
 	BookingScene bookingScene;
+	YourTrips yourTripsScene;
+	CurrentTripsTab currentTripsTab;
+	HistoryTab historyTab;
 	TripReader trip = new TripReader();
 	Label passengerLabel = new Label();
 	Button becomeVip = new Button("Become a vip");
@@ -72,6 +75,15 @@ public class PassengerMenu {
 			}
 		});
 
+		trips.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				trip.load();
+				stage.setScene(yourTripsScene.getYourTripsScene());
+			}
+		});
+
 		becomeVip.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
@@ -108,8 +120,8 @@ public class PassengerMenu {
 
 				loginForm.setUserNameField(null);
 				loginForm.setPasswordField(null);
-				//loginForm.setPassengerRB(null);
-				//loginForm.setEmployeeRB(null);
+				// loginForm.setPassengerRB(null);
+				// loginForm.setEmployeeRB(null);
 				stage.setScene(loginForm.getLoginForm());
 
 			}
@@ -129,12 +141,24 @@ public class PassengerMenu {
 		this.bookingScene = bookingScene;
 	}
 
+	public void setYourTripsScene(YourTrips yourTripsScene) {
+		this.yourTripsScene = yourTripsScene;
+	}
+
 	public TripReader getTrip() {
 		return trip;
 	}
 
 	public void setPassengerLabel(String text) {
 		this.passengerLabel.setText(text);
+	}
+
+	public void setCurrentTripsTab(CurrentTripsTab currentTripsTab) {
+		this.currentTripsTab = currentTripsTab;
+	}
+
+	public void setHistoryTab(HistoryTab historyTab) {
+		this.historyTab = historyTab;
 	}
 
 }

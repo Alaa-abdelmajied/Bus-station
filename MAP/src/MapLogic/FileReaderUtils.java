@@ -157,7 +157,6 @@ public class FileReaderUtils {
 			if (stringTokenizer.hasMoreTokens()) {
 				passengerName = stringTokenizer.nextToken();
 				while (stringTokenizer.hasMoreTokens()) {
-					passengerName = stringTokenizer.nextToken();
 					source = stringTokenizer.nextToken();
 					destination = stringTokenizer.nextToken();
 					time = stringTokenizer.nextToken();
@@ -191,7 +190,6 @@ public class FileReaderUtils {
 			if (stringTokenizer.hasMoreTokens()) {
 				passengerName = stringTokenizer.nextToken();
 				while (stringTokenizer.hasMoreTokens()) {
-					passengerName = stringTokenizer.nextToken();
 					source = stringTokenizer.nextToken();
 					destination = stringTokenizer.nextToken();
 					time = stringTokenizer.nextToken();

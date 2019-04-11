@@ -104,6 +104,7 @@ public class BookingScene {
 				ArrayList<Trip> trips = passengerMenu.getTrip().showTrips();
 				tripsData.setAll(trips);
 				select.setVisible(true);
+
 			}
 		});
 
