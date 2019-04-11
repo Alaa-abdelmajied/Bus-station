@@ -8,7 +8,7 @@ public class Trip {
 	private final int numOfStops;
 	private final String time;
 	private final double ticketPrice;
-	private final int numberOfSeats;
+	private int numberOfSeats;
 
 	public Trip(String source, String destination, String vehicle, int numOfStops, String time, double ticketPrice, int numberOfSeats) {
 		this.source = source;
@@ -47,5 +47,10 @@ public class Trip {
 	public int getNumberOfSeats() {
 		return numberOfSeats;
 	}
+
+	public void setNumberOfSeats(int numberOfSeats) {
+		this.numberOfSeats = numberOfSeats;
+	}
+	
 	
 }

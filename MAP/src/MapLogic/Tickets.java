@@ -10,7 +10,7 @@ public class Tickets {
 
 	public boolean availableSeatsCheck(int numOfSeats) {
 
-		if (seatNum - numOfSeats > 0) {
+		if (seatNum - numOfSeats >= 0) {
 
 			return true;
 		} else

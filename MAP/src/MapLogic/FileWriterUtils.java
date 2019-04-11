@@ -15,7 +15,7 @@ public class FileWriterUtils {
 		for (int i = 0; i < trip.size(); i++) {
 			writer.write(trip.get(i).getSource() + "," + trip.get(i).getDestination() + "," + trip.get(i).getTime()
 					+ "," + trip.get(i).getVehicle() + "," + trip.get(i).getNumOfStops() + ","
-					+ trip.get(i).getTicketPrice() + "\n");
+					+ trip.get(i).getTicketPrice() +"," + trip.get(i).getNumberOfSeats() + "\n");
 		}
 		writer.close();
 	}

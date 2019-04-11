@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 public class TripReader {
 
+	private int index = 0;
 	private final ArrayList<Trip> trips = new ArrayList<Trip>();
 
 	public void loadTrips() {
@@ -79,8 +80,6 @@ public class TripReader {
 	
 	public int getNumberOfSeats(String source, String destination, String vehicle) {
 		
-		int index = 0;
-		
 		for (int i = 0; i < this.trips.size(); i++) {
 			if (source.equals(trips.get(i).getSource()) && destination.equals(trips.get(i).getDestination())
 					&& vehicle.equals(trips.get(i).getVehicle())) {
@@ -89,4 +88,17 @@ public class TripReader {
 		}
 		return trips.get(index).getNumberOfSeats();
 	}
+	
+	public void setNumberOfSeats(int bookedtickets) {
+		int numberOfSeats = 0;
+		numberOfSeats = trips.get(index).getNumberOfSeats();
+		trips.get(index).setNumberOfSeats(numberOfSeats - bookedtickets);
+	}
+
+	public ArrayList<Trip> getTrips() {
+		return trips;
+	}
+	
+	
+
 }

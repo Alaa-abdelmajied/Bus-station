@@ -1,20 +1,22 @@
 package MapViewer;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
+import MapLogic.FileWriterUtils;
 import MapLogic.Trip;
-import MapLogic.TripReader;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.TableView;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import javafx.scene.control.Alert.AlertType;
 
 public class ConfirmationScene {
 
@@ -154,8 +156,26 @@ public class ConfirmationScene {
 								bookingScene.tableView.getSelectionModel().getSelectedItem().getDestination(),
 								bookingScene.tableView.getSelectionModel().getSelectedItem().getVehicle()));
 				if (roundTicketScene.getTickets().availableSeatsCheck(seatNumber)) {
-					
-
+					passengerMenu.getTrip().setNumberOfSeats(seatNumber);
+					try {
+						FileWriterUtils.writeTripFile(passengerMenu.getTrip().getTrips());
+					} catch (IOException e) {
+						e.printStackTrace();
+						
+					}
+					Alert alert = new Alert(AlertType.INFORMATION);
+					alert.setTitle("Confirmation");
+					alert.setHeaderText(null);
+					alert.setContentText("The trip has been booked");
+					alert.showAndWait();
+					stage.setScene(passengerMenu.getPassengerScene());
+				}
+				else {
+					Alert alert = new Alert(AlertType.WARNING);
+					alert.setTitle("WARNING");
+					alert.setHeaderText("");
+					alert.setContentText("No seats left");
+					alert.showAndWait();
 				}
 			}
 		});
