@@ -59,8 +59,7 @@ public class FileWriterUtils {
 						+ history.get(i).getTrips().get(i).getTime() + ","
 						+ history.get(i).getTrips().get(i).getVehicle() + ","
 						+ history.get(i).getTrips().get(i).getNumOfStops() + ","
-						+ history.get(i).getTrips().get(i).getTicketPrice() + ","
-						+ history.get(i).getTrips().get(i).getNumberOfSeats());
+						+ history.get(i).getTrips().get(i).getTicketPrice());
 			}
 			writer.write("\n");
 		}
@@ -80,8 +79,7 @@ public class FileWriterUtils {
 						+ current.get(i).getTrips().get(j).getTime() + ","
 						+ current.get(i).getTrips().get(j).getVehicle() + ","
 						+ current.get(i).getTrips().get(j).getNumOfStops() + ","
-						+ current.get(i).getTrips().get(j).getTicketPrice() + ","
-						+ current.get(i).getTrips().get(j).getNumberOfSeats());
+						+ current.get(i).getTrips().get(j).getTicketPrice());
 			}
 			writer.write("\n");
 		}
