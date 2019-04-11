@@ -166,6 +166,7 @@ public class ConfirmationScene {
 						e.printStackTrace();
 
 					}
+					currentTrips.load();
 					currentTrips.confirmTrip(loginForm.userNameField.getText(),
 							bookingScene.tableView.getSelectionModel().getSelectedItem().getSource(),
 							bookingScene.tableView.getSelectionModel().getSelectedItem().getDestination(),
