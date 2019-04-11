@@ -48,6 +48,16 @@ public class TripReader {
 			double ticketPrice, int numberOfSeats) {
 		trips.add(new Trip(source, destination, vehicle, numberOfStops, time, ticketPrice, numberOfSeats));
 	}
+	
+	public void deleteTrip(String source, String destination, String vehicle, String time) {
+		
+		for (int i = 0; i < this.trips.size(); i++) {
+			if (source.equals(trips.get(i).getSource()) && destination.equals(trips.get(i).getDestination())
+					&& vehicle.equals(trips.get(i).getVehicle()) && time.equals(trips.get(i).getTime())) {
+				trips.remove(i);
+			}
+		}
+	}
 
 	public ArrayList<String> getSource() {
 		ArrayList<String> sources = new ArrayList<String>();

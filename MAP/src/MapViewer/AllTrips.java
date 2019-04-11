@@ -1,13 +1,18 @@
 package MapViewer;
 
+import java.io.IOException;
+
+import MapLogic.FileWriterUtils;
 import MapLogic.Trip;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -76,7 +81,7 @@ public class AllTrips {
 
 			@Override
 			public void handle(ActionEvent event) {
-				
+
 				stage.setScene(addTrip.getAddTrip());
 
 			}
@@ -86,7 +91,22 @@ public class AllTrips {
 
 			@Override
 			public void handle(ActionEvent event) {
-				tableView.getSelectionModel().getSelectedItem();
+
+				passengerMenu.getTrip().deleteTrip(tableView.getSelectionModel().getSelectedItem().getSource(),
+						tableView.getSelectionModel().getSelectedItem().getDestination(),
+						tableView.getSelectionModel().getSelectedItem().getVehicle(),
+						tableView.getSelectionModel().getSelectedItem().getTime());
+				try {
+					FileWriterUtils.writeTripFile(passengerMenu.getTrip().getTrips());
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				Alert alert = new Alert(AlertType.INFORMATION);
+				alert.setTitle("Confirmation");
+				alert.setHeaderText(null);
+				alert.setContentText("The trip has been deleted");
+				alert.showAndWait();
+				stage.setScene(managerMenu.getManagerScene());
 
 			}
 		});
