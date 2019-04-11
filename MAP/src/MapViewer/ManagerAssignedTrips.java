@@ -1,5 +1,8 @@
 package MapViewer;
 
+import java.io.IOException;
+
+import MapLogic.FileWriterUtils;
 import MapLogic.Trip;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -20,6 +23,7 @@ public class ManagerAssignedTrips {
 	Scene managerAssignedTrips;
 	ManagerMenu managerMenu;
 	PassengerMenu passengerMenu;
+	DriverMenu driverMenu;
 	TableView<Trip> tableView;
 	ChoiceBox<String> drivers = new ChoiceBox<String>();
 
@@ -89,6 +93,17 @@ public class ManagerAssignedTrips {
 						tableView.getSelectionModel().getSelectedItem().getDestination(),
 						tableView.getSelectionModel().getSelectedItem().getTime(),
 						tableView.getSelectionModel().getSelectedItem().getVehicle(), drivers.getValue());
+				driverMenu.getDriverReader().setDriverFirstName(drivers.getValue());
+				driverMenu.getDriverReader().addAssignedTrips(tableView.getSelectionModel().getSelectedItem().getSource(),
+						tableView.getSelectionModel().getSelectedItem().getDestination(),
+						tableView.getSelectionModel().getSelectedItem().getTime(),
+						tableView.getSelectionModel().getSelectedItem().getVehicle());
+				
+				try {
+					FileWriterUtils.writeDriverFile(driverMenu.getDriverReader().getDriverInfo());
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 
 			}
 		});
@@ -123,4 +138,8 @@ public class ManagerAssignedTrips {
 		return drivers;
 	}
 
+	public void setDriverMenu(DriverMenu driverMenu) {
+		this.driverMenu = driverMenu;
+	}
+	
 }

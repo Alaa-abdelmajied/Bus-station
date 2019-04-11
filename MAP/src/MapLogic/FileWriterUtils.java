@@ -36,14 +36,12 @@ public class FileWriterUtils {
 			writer.write(trip.get(i).getDriverFirstName() + "," + trip.get(i).getDriverLastName() + ","
 					+ trip.get(i).getDriverGender() + "," + trip.get(i).getDriverNumber());
 			for (int j = 0; j < trip.get(i).getAssignedTrips().size(); j++) {
-				writer.write("," + trip.get(i).getAssignedTrips().get(i).getSource() + ","
-						+ trip.get(i).getAssignedTrips().get(i).getDestination() + ","
-						+ trip.get(i).getAssignedTrips().get(i).getTime() + ","
-						+ trip.get(i).getAssignedTrips().get(i).getVehicle() + ","
-						+ trip.get(i).getAssignedTrips().get(i).getNumOfStops() + ","
-						+ trip.get(i).getAssignedTrips().get(i).getTicketPrice() + ","
-						+ trip.get(i).getAssignedTrips().get(i).getNumberOfSeats() + "\n");
+				writer.write("," + trip.get(i).getAssignedTrips().get(j).getSource() + ","
+						+ trip.get(i).getAssignedTrips().get(j).getDestination() + ","
+						+ trip.get(i).getAssignedTrips().get(j).getTime() + ","
+						+ trip.get(i).getAssignedTrips().get(j).getVehicle());
 			}
+			writer.write("\n");
 		}
 		writer.close();
 	}
@@ -62,8 +60,9 @@ public class FileWriterUtils {
 						+ history.get(i).getTrips().get(i).getVehicle() + ","
 						+ history.get(i).getTrips().get(i).getNumOfStops() + ","
 						+ history.get(i).getTrips().get(i).getTicketPrice() + ","
-						+ history.get(i).getTrips().get(i).getNumberOfSeats() + "\n");
+						+ history.get(i).getTrips().get(i).getNumberOfSeats());
 			}
+			writer.write("\n");
 		}
 		writer.close();
 	}
@@ -82,8 +81,9 @@ public class FileWriterUtils {
 						+ current.get(i).getTrips().get(i).getVehicle() + ","
 						+ current.get(i).getTrips().get(i).getNumOfStops() + ","
 						+ current.get(i).getTrips().get(i).getTicketPrice() + ","
-						+ current.get(i).getTrips().get(i).getNumberOfSeats() + "\n");
+						+ current.get(i).getTrips().get(i).getNumberOfSeats());
 			}
+			writer.write("\n");
 		}
 		writer.close();
 	}

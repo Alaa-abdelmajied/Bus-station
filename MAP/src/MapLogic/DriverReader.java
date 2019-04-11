@@ -45,10 +45,9 @@ public class DriverReader {
 		return assignedTrips;
 	}
 
-	/*public void addAssignedTrips(String driverName) {
-		setDriverFirstName(driverFirstName);
-		driverInfo.get(driverIndex()).getAssignedTrips().add();
-	}*/
+	public void addAssignedTrips(String source, String destination, String vehicle, String time) {
+		driverInfo.get(driverIndex()).getAssignedTrips().add(new Trip(source, destination, vehicle, time));
+	}
 
 	public String getDriverLastName() {
 
@@ -63,4 +62,10 @@ public class DriverReader {
 	public String getDriverNumber() {
 		return driverInfo.get(driverIndex()).getDriverNumber();
 	}
+
+	public ArrayList<Driver> getDriverInfo() {
+		return driverInfo;
+	}
+	
+	
 }
