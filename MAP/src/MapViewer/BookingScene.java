@@ -33,6 +33,7 @@ public class BookingScene {
 	ChoiceBox<String> choiceBoxD = new ChoiceBox<String>();
 	private final ObservableList<Trip> tripsData = FXCollections.observableArrayList();
 	double ticketPrice;
+	
 
 	public BookingScene(Stage stage) {
 		this.stage = stage;

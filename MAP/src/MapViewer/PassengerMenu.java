@@ -63,7 +63,6 @@ public class PassengerMenu {
 			@Override
 			public void handle(ActionEvent event) {
 				trip.load();
-				// int i = 0;
 				bookingScene.choiceBoxS.getItems().clear();
 				bookingScene.choiceBoxD.getItems().clear();
 				for (int i = 0; i < trip.getSource().size(); i++) {
