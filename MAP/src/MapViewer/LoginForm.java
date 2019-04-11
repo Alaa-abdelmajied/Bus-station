@@ -13,6 +13,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.GridPane;
@@ -31,8 +32,10 @@ public class LoginForm {
 	boolean showPassenger = false;
 	TextField userNameField = new TextField();
 	PasswordField passwordField = new PasswordField();
-	CheckBox passengerCB = new CheckBox("Passenger");
-	CheckBox employeeCB = new CheckBox("Employee");
+	// CheckBox passengerCB = new CheckBox("Passenger");
+	// CheckBox employeeCB = new CheckBox("Employee");
+	RadioButton passengerRB = new RadioButton("Passenger");
+	RadioButton empolyeeRB = new RadioButton("Employee");
 
 	public LoginForm(Stage stage) {
 		this.stage = stage;
@@ -51,8 +54,8 @@ public class LoginForm {
 		userNameField.setPromptText("username");
 		passwordField.setPromptText("password");
 
-		GridPane.setHalignment(passengerCB, HPos.LEFT);
-		GridPane.setHalignment(employeeCB, HPos.RIGHT);
+		GridPane.setHalignment(passengerRB, HPos.LEFT);
+		GridPane.setHalignment(empolyeeRB, HPos.RIGHT);
 		GridPane.setHalignment(userNameField, HPos.CENTER);
 		GridPane.setHalignment(passwordField, HPos.CENTER);
 		GridPane.setHalignment(login, HPos.RIGHT);
@@ -66,14 +69,14 @@ public class LoginForm {
 		loginGrid.add(login, 2, 3);
 		loginGrid.add(space3, 1, 4);
 		loginGrid.add(space4, 1, 5);
-		loginGrid.add(passengerCB, 0, 6);
-		loginGrid.add(employeeCB, 2, 6);
+		loginGrid.add(passengerRB, 0, 6);
+		loginGrid.add(empolyeeRB, 2, 6);
 
 		loginForm = new Scene(loginGrid, 360, 200);
 
 		// actions
 
-		passengerCB.setOnAction(new EventHandler<ActionEvent>() {
+		passengerRB.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
 			public void handle(ActionEvent event) {
@@ -84,12 +87,12 @@ public class LoginForm {
 				validate.setType("Passenger");
 				validate.setLoginData();
 				showPassenger = true;
-				employeeCB.setSelected(false);
+				empolyeeRB.setSelected(false);
 			}
 
 		});
 
-		employeeCB.setOnAction(new EventHandler<ActionEvent>() {
+		empolyeeRB.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
 			public void handle(ActionEvent event) {
@@ -100,7 +103,7 @@ public class LoginForm {
 				validate.setType("Employee");
 				validate.setLoginData();
 				showEmployee = true;
-				passengerCB.setSelected(false);
+				passengerRB.setSelected(false);
 			}
 
 		});
@@ -180,14 +183,13 @@ public class LoginForm {
 		this.passwordField.setText(text);
 	}
 
-	public void setPassengerCB(CheckBox passengerCB) {
-		this.passengerCB.setSelected(false);
+	public void setPassengerRB(CheckBox passengerRB) {
+		this.passengerRB.setSelected(false);
 	}
 
-	public void setEmployeeCB(CheckBox employeeCB) {
-		//this.employeeCB = employeeCB;
-		this.employeeCB.setSelected(false);
+	public void setEmployeeRB(CheckBox empolyeeRB) {
+		// this.employeeCB = employeeCB;
+		this.empolyeeRB.setSelected(false);
 	}
-	
 
 }

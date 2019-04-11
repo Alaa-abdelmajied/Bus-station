@@ -108,8 +108,8 @@ public class PassengerMenu {
 
 				loginForm.setUserNameField(null);
 				loginForm.setPasswordField(null);
-				loginForm.setPassengerCB(null);
-				loginForm.setEmployeeCB(null);
+				loginForm.setPassengerRB(null);
+				loginForm.setEmployeeRB(null);
 				stage.setScene(loginForm.getLoginForm());
 
 			}
