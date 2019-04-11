@@ -9,7 +9,7 @@ public class Trip {
 	private final String time;
 	private final double ticketPrice;
 	private int numberOfSeats;
-	private String driverName;
+	private String driverName = null;
 
 	public Trip(String source, String destination, String vehicle, String time) {
 		this.source = source;

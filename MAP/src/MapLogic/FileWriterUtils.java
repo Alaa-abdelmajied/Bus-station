@@ -13,7 +13,7 @@ public class FileWriterUtils {
 		trip.addAll(trips);
 		BufferedWriter writer = new BufferedWriter(new FileWriter("trips.txt"));
 		for (int i = 0; i < trip.size(); i++) {
-			if (trip.get(i).getDriverName().isEmpty()) {
+			if (trip.get(i).getDriverName() == null) {
 				writer.write(trip.get(i).getSource() + "," + trip.get(i).getDestination() + "," + trip.get(i).getTime()
 						+ "," + trip.get(i).getVehicle() + "," + trip.get(i).getNumOfStops() + ","
 						+ trip.get(i).getTicketPrice() + "," + trip.get(i).getNumberOfSeats() + "\n");
@@ -75,13 +75,13 @@ public class FileWriterUtils {
 		for (int i = 0; i < current.size(); i++) {
 			writer.write(current.get(i).getName());
 			for (int j = 0; j < current.get(i).getTrips().size(); j++) {
-				writer.write("," + current.get(i).getTrips().get(i).getSource() + ","
-						+ current.get(i).getTrips().get(i).getDestination() + ","
-						+ current.get(i).getTrips().get(i).getTime() + ","
-						+ current.get(i).getTrips().get(i).getVehicle() + ","
-						+ current.get(i).getTrips().get(i).getNumOfStops() + ","
-						+ current.get(i).getTrips().get(i).getTicketPrice() + ","
-						+ current.get(i).getTrips().get(i).getNumberOfSeats());
+				writer.write("," + current.get(i).getTrips().get(j).getSource() + ","
+						+ current.get(i).getTrips().get(j).getDestination() + ","
+						+ current.get(i).getTrips().get(j).getTime() + ","
+						+ current.get(i).getTrips().get(j).getVehicle() + ","
+						+ current.get(i).getTrips().get(j).getNumOfStops() + ","
+						+ current.get(i).getTrips().get(j).getTicketPrice() + ","
+						+ current.get(i).getTrips().get(j).getNumberOfSeats());
 			}
 			writer.write("\n");
 		}

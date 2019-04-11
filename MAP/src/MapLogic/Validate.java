@@ -27,11 +27,18 @@ public class Validate {
 	public void setLoginData() {
 		if (type.equals("Passenger")) {
 			this.loginPassenger = loader.getPassengerLogin();
+			for(int i = 0; i < 100 ; i++) {
+				loginManager[i][0] =	" " ;
+				loginDriver[i][0] =	" " ;
+			}
 		}
 
 		if (type.equals("Employee")) {
 			this.loginDriver = loader.getDriverLogin();
 			this.loginManager = loader.getMangerLogin();
+			for(int i = 0; i < 100 ; i++) {
+				loginPassenger[i][0] =	" " ;
+			}
 		}
 	}
 

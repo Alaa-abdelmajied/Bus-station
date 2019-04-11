@@ -62,7 +62,7 @@ public class FileReaderUtils {
 		BufferedReader bufferedReader = new BufferedReader(fileReader);
 		ArrayList<Trip> trips = new ArrayList<Trip>();
 		String line;
-		String source = null, destination = null, vehicle = null, time = null;
+		String source = null, destination = null, vehicle = null, time = null, driverName;
 		double ticketPrice = 0.0;
 		int numberOfStops = 0, numberOfSeats = 0;
 		while (bufferedReader.ready()) {
@@ -76,7 +76,13 @@ public class FileReaderUtils {
 				numberOfStops = Integer.parseInt(stringTokenizer.nextToken());
 				ticketPrice = Double.parseDouble(stringTokenizer.nextToken());
 				numberOfSeats = Integer.parseInt(stringTokenizer.nextToken());
-				trips.add(new Trip(source, destination, vehicle, numberOfStops, time, ticketPrice, numberOfSeats));
+				if (stringTokenizer.hasMoreTokens()) {
+					driverName = stringTokenizer.nextToken();
+					trips.add(new Trip(source, destination, vehicle, numberOfStops, time, ticketPrice, numberOfSeats,
+							driverName));
+				} else {
+					trips.add(new Trip(source, destination, vehicle, numberOfStops, time, ticketPrice, numberOfSeats));
+				}
 			}
 		}
 		return trips;
@@ -170,7 +176,7 @@ public class FileReaderUtils {
 		}
 		return histories;
 	}
-	
+
 	public static ArrayList<Current> readCurrentTripsFile() throws IOException {
 
 		String passengerName = null, source = null, destination = null, vehicle = null, time = null;
@@ -203,7 +209,6 @@ public class FileReaderUtils {
 		}
 		return currents;
 	}
-	
 
 	public String[][] getPassengerLogin() {
 		return passengerLogin;

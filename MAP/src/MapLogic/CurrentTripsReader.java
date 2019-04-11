@@ -43,4 +43,10 @@ public class CurrentTripsReader implements Reader {
 			}
 		}		
 	}
+
+	public ArrayList<Current> getCurrents() {
+		return currents;
+	}
+	
+	
 }

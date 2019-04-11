@@ -166,12 +166,6 @@ public class ConfirmationScene {
 						e.printStackTrace();
 
 					}
-
-					Alert alert = new Alert(AlertType.INFORMATION);
-					alert.setTitle("Confirmation");
-					alert.setHeaderText(null);
-					alert.setContentText("The trip has been booked");
-					alert.showAndWait();
 					currentTrips.confirmTrip(loginForm.userNameField.getText(),
 							bookingScene.tableView.getSelectionModel().getSelectedItem().getSource(),
 							bookingScene.tableView.getSelectionModel().getSelectedItem().getDestination(),
@@ -179,6 +173,18 @@ public class ConfirmationScene {
 							bookingScene.tableView.getSelectionModel().getSelectedItem().getVehicle(),
 							bookingScene.tableView.getSelectionModel().getSelectedItem().getNumOfStops(),
 							bookingScene.tableView.getSelectionModel().getSelectedItem().getTicketPrice());
+
+					try {
+						FileWriterUtils.writeCurrentTripFile(currentTrips.getCurrents());
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+					
+					Alert alert = new Alert(AlertType.INFORMATION);
+					alert.setTitle("Confirmation");
+					alert.setHeaderText(null);
+					alert.setContentText("The trip has been booked");
+					alert.showAndWait();
 					stage.setScene(passengerMenu.getPassengerScene());
 				} else {
 					Alert alert = new Alert(AlertType.WARNING);
