@@ -77,6 +77,7 @@ public class MapViewer extends Application {
 		managerAssignedTrips.setPassengerMenu(passengerMenu);
 		managerAssignedTrips.setDriverMenu(driverMenu);
 		confirmationScene.setLoginForm(loginForm);
+		yourTripsScene.setConfirmationScene(confirmationScene);
 
 		primaryStage.setScene(loginForm.getLoginForm());
 		primaryStage.setTitle("MAP");

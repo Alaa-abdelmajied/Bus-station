@@ -1,8 +1,10 @@
 package MapViewer;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import MapLogic.CurrentTripsReader;
+import MapLogic.FileWriterUtils;
 import MapLogic.HistoryTripsReader;
 import MapLogic.Trip;
 import javafx.collections.FXCollections;
@@ -11,9 +13,11 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -24,9 +28,9 @@ public class YourTrips {
 	Scene yourTripsScene;
 	PassengerMenu passengerMenu;
 	LoginForm loginForm;
+	ConfirmationScene confirmationScene;
 	TableView<Trip> tableView;
 	HistoryTripsReader history = new HistoryTripsReader();
-	CurrentTripsReader current = new CurrentTripsReader();
 
 	public YourTrips(Stage stage) {
 		this.stage = stage;
@@ -67,6 +71,8 @@ public class YourTrips {
 		tableView.getColumns().add(ticketPrice);
 
 		Button back = new Button("Back");
+		Button cancel = new Button("Cancel Trip");
+		cancel.setVisible(false);
 
 		passengerTripsGrid.add(current, 0, 0);
 		GridPane.setHalignment(current, HPos.LEFT);
@@ -74,6 +80,9 @@ public class YourTrips {
 		GridPane.setHalignment(history, HPos.RIGHT);
 		passengerTripsGrid.add(tableView, 0, 1);
 		passengerTripsGrid.add(back, 0, 2);
+		GridPane.setHalignment(back, HPos.LEFT);
+		passengerTripsGrid.add(cancel, 0, 2);
+		GridPane.setHalignment(cancel, HPos.RIGHT);
 
 		yourTripsScene = new Scene(passengerTripsGrid, 600, 500);
 
@@ -82,16 +91,18 @@ public class YourTrips {
 
 			@Override
 			public void handle(ActionEvent event) {
-				YourTrips.this.current.setName(loginForm.userNameField.getText());
-				YourTrips.this.current.load();
+
+				confirmationScene.currentTrips.setName(loginForm.userNameField.getText());
+				confirmationScene.currentTrips.load();
 				final ObservableList<Trip> currentData = FXCollections.observableArrayList();
-				ArrayList<Trip> current = YourTrips.this.current.showTrips();
+				ArrayList<Trip> current = confirmationScene.currentTrips.showTrips();
 				currentData.setAll(current);
 				tableView.setItems(currentData);
+				cancel.setVisible(true);
 
 			}
 		});
-		
+
 		history.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
@@ -102,6 +113,7 @@ public class YourTrips {
 				ArrayList<Trip> history = YourTrips.this.history.showTrips();
 				historyData.setAll(history);
 				tableView.setItems(historyData);
+				cancel.setVisible(false);
 
 			}
 
@@ -110,8 +122,40 @@ public class YourTrips {
 
 			@Override
 			public void handle(ActionEvent event) {
-
+				tableView.getItems().clear();
 				stage.setScene(passengerMenu.getPassengerScene());
+			}
+		});
+
+		cancel.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				if (tableView.getSelectionModel().getSelectedItem() != null) {
+					confirmationScene.currentTrips.cancelTrip(loginForm.userNameField.getText(),
+							tableView.getSelectionModel().getSelectedItem().getSource(),
+							tableView.getSelectionModel().getSelectedItem().getDestination(),
+							tableView.getSelectionModel().getSelectedItem().getTime(),
+							tableView.getSelectionModel().getSelectedItem().getVehicle());
+
+					try {
+						FileWriterUtils.writeCurrentTripFile(confirmationScene.currentTrips.getCurrents());
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+					Alert alert = new Alert(AlertType.INFORMATION);
+					alert.setTitle("Cancellation");
+					alert.setHeaderText(null);
+					alert.setContentText("The trip has been cancelled");
+					alert.showAndWait();
+				} else {
+					Alert alert = new Alert(AlertType.WARNING);
+					alert.setTitle("WARNING");
+					alert.setHeaderText("");
+					alert.setContentText("Select a trip to cancel");
+					alert.showAndWait();
+				}
+
 			}
 		});
 
@@ -128,6 +172,9 @@ public class YourTrips {
 	public void setLoginForm(LoginForm loginForm) {
 		this.loginForm = loginForm;
 	}
-	
+
+	public void setConfirmationScene(ConfirmationScene confirmationScene) {
+		this.confirmationScene = confirmationScene;
+	}
 
 }

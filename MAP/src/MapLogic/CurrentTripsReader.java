@@ -34,19 +34,34 @@ public class CurrentTripsReader implements Reader {
 		}
 		return trips;
 	}
-	
-	public void confirmTrip(String name,String source, String destination, String time, String vehicle, int numberOfStops,
-			double ticketPrice) {
-		for(int i = 0 ; i < currents.size() ; i++) {
-			if(name.equals(currents.get(i).getName())) {
-			currents.get(i).getTrips().add(new Trip(source, destination, vehicle, numberOfStops, time, ticketPrice));
+
+	public void confirmTrip(String name, String source, String destination, String time, String vehicle,
+			int numberOfStops, double ticketPrice) {
+		for (int i = 0; i < currents.size(); i++) {
+			if (name.equals(currents.get(i).getName())) {
+				currents.get(i).getTrips()
+						.add(new Trip(source, destination, vehicle, numberOfStops, time, ticketPrice));
 			}
-		}		
+		}
+	}
+
+	public void cancelTrip(String name, String source, String destination, String time, String vehicle) {
+		for (int i = 0; i < currents.size(); i++) {
+			if (name.equals(currents.get(i).getName())) {
+				for (int j = 0; j < showTrips().size(); i++) {
+					if (source.equals(currents.get(i).getTrips().get(j).getSource())
+							&& destination.equals(currents.get(i).getTrips().get(j).getDestination())
+							&& vehicle.equals(currents.get(i).getTrips().get(j).getVehicle())
+							&& time.equals(currents.get(i).getTrips().get(j).getTime())) {
+						currents.get(i).getTrips().remove(j);
+					}
+				}
+			}
+		}
 	}
 
 	public ArrayList<Current> getCurrents() {
 		return currents;
 	}
-	
-	
+
 }

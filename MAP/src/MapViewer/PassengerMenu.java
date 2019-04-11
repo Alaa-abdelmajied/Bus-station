@@ -20,8 +20,6 @@ public class PassengerMenu {
 	LoginForm loginForm;
 	BookingScene bookingScene;
 	YourTrips yourTripsScene;
-	CurrentTripsTab currentTripsTab;
-	HistoryTab historyTab;
 	TripReader trip = new TripReader();
 	Label passengerLabel = new Label();
 	Button becomeVip = new Button("Become a vip");
@@ -152,12 +150,6 @@ public class PassengerMenu {
 		this.passengerLabel.setText(text);
 	}
 
-	public void setCurrentTripsTab(CurrentTripsTab currentTripsTab) {
-		this.currentTripsTab = currentTripsTab;
-	}
 
-	public void setHistoryTab(HistoryTab historyTab) {
-		this.historyTab = historyTab;
-	}
 
 }
