@@ -25,6 +25,7 @@ public class ManagerMenu {
 	PassengerMenu passengerMenu;
 	DriverMenu driverMenu;
 	Label managerLabel = new Label();
+	Button assignTrips = new Button("Assign trips to drivers");
 
 	public ManagerMenu(Stage stage) {
 		this.stage = stage;
@@ -33,7 +34,6 @@ public class ManagerMenu {
 	public void prepareScene() {
 
 		Button Trips = new Button("Show All Trips");
-		Button assignTrips = new Button("Assign trips to drivers");
 		Button logoutManager = new Button("Logout");
 
 		GridPane managerGrid = new GridPane();
@@ -74,7 +74,7 @@ public class ManagerMenu {
 					managerAssignedTrips.getDrivers().getItems()
 							.add(driverMenu.getDriverReader().getDriverFirstName().get(i));
 				}
-				final ObservableList<Trip> tripsData = FXCollections.observableArrayList();
+				ObservableList<Trip> tripsData = FXCollections.observableArrayList();
 				ArrayList<Trip> trips = passengerMenu.getTrip().showTrips();
 				tripsData.setAll(trips);
 				managerAssignedTrips.getTableView().setItems(tripsData);
@@ -123,5 +123,10 @@ public class ManagerMenu {
 	public void setDriverMenu(DriverMenu driverMenu) {
 		this.driverMenu = driverMenu;
 	}
+
+	public Button getAssignTrips() {
+		return assignTrips;
+	}
+	
 
 }

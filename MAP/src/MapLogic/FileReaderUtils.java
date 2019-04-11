@@ -149,7 +149,6 @@ public class FileReaderUtils {
 		String passengerName = null, source = null, destination = null, vehicle = null, time = null;
 		double ticketPrice = 0.0;
 		int numberOfStops = 0;
-		ArrayList<Trip> trips = new ArrayList<Trip>();
 		ArrayList<History> histories = new ArrayList<History>();
 
 		File file = new File("HistoryTrips");
@@ -158,6 +157,7 @@ public class FileReaderUtils {
 		BufferedReader bufferedReader = new BufferedReader(fileReader);
 		String line;
 		while (bufferedReader.ready()) {
+			ArrayList<Trip> trips = new ArrayList<Trip>();
 			line = bufferedReader.readLine();
 			StringTokenizer stringTokenizer = new StringTokenizer(line, ",");
 			if (stringTokenizer.hasMoreTokens()) {

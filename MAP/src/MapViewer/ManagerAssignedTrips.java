@@ -1,13 +1,18 @@
 package MapViewer;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import MapLogic.FileWriterUtils;
 import MapLogic.Trip;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
@@ -44,6 +49,9 @@ public class ManagerAssignedTrips {
 		TableColumn<Trip, String> destination = new TableColumn<Trip, String>("Destination");
 		destination.setCellValueFactory(new PropertyValueFactory<>("destination"));
 		destination.setMinWidth(200);
+		TableColumn<Trip, String> driverName = new TableColumn<Trip, String>("Driver");
+		driverName.setCellValueFactory(new PropertyValueFactory<>("driverName"));
+		driverName.setMinWidth(150);
 		TableColumn<Trip, Double> time = new TableColumn<Trip, Double>("Time");
 		time.setCellValueFactory(new PropertyValueFactory<>("time"));
 		time.setMinWidth(100);
@@ -56,18 +64,16 @@ public class ManagerAssignedTrips {
 		TableColumn<Trip, Double> ticketPrice = new TableColumn<Trip, Double>("Price");
 		ticketPrice.setCellValueFactory(new PropertyValueFactory<>("ticketPrice"));
 		ticketPrice.setMinWidth(100);
-		TableColumn<Trip, String> DriverName = new TableColumn<Trip, String>("Driver");
-		ticketPrice.setCellValueFactory(new PropertyValueFactory<>("driverName"));
-		ticketPrice.setMinWidth(150);
 
 		tableView = new TableView<>();
 		tableView.getColumns().add(source);
 		tableView.getColumns().add(destination);
+		tableView.getColumns().add(driverName);
 		tableView.getColumns().add(time);
 		tableView.getColumns().add(vehicle);
 		tableView.getColumns().add(numberOfStops);
 		tableView.getColumns().add(ticketPrice);
-		tableView.getColumns().add(DriverName);
+
 
 		GridPane mangerAssignGrid = new GridPane();
 
@@ -88,23 +94,36 @@ public class ManagerAssignedTrips {
 
 			@Override
 			public void handle(ActionEvent event) {
+				if (drivers.getValue() == null || tableView.getSelectionModel().isEmpty()) {
+					Alert alert = new Alert(AlertType.WARNING);
+					alert.setTitle("WARNING");
+					alert.setHeaderText("");
+					alert.setContentText("Please, Select a driver and a trip");
+					alert.showAndWait();
+				} else {
+					passengerMenu.getTrip().assignTrip(tableView.getSelectionModel().getSelectedItem().getSource(),
+							tableView.getSelectionModel().getSelectedItem().getDestination(),
+							tableView.getSelectionModel().getSelectedItem().getTime(),
+							tableView.getSelectionModel().getSelectedItem().getVehicle(), drivers.getValue());
+					driverMenu.getDriverReader().setDriverFirstName(drivers.getValue());
+					driverMenu.getDriverReader().addAssignedTrips(
+							tableView.getSelectionModel().getSelectedItem().getSource(),
+							tableView.getSelectionModel().getSelectedItem().getDestination(),
+							tableView.getSelectionModel().getSelectedItem().getTime(),
+							tableView.getSelectionModel().getSelectedItem().getVehicle());
 
-				passengerMenu.getTrip().assignTrip(tableView.getSelectionModel().getSelectedItem().getSource(),
-						tableView.getSelectionModel().getSelectedItem().getDestination(),
-						tableView.getSelectionModel().getSelectedItem().getTime(),
-						tableView.getSelectionModel().getSelectedItem().getVehicle(), drivers.getValue());
-				driverMenu.getDriverReader().setDriverFirstName(drivers.getValue());
-				driverMenu.getDriverReader().addAssignedTrips(tableView.getSelectionModel().getSelectedItem().getSource(),
-						tableView.getSelectionModel().getSelectedItem().getDestination(),
-						tableView.getSelectionModel().getSelectedItem().getTime(),
-						tableView.getSelectionModel().getSelectedItem().getVehicle());
-				
-				try {
-					FileWriterUtils.writeDriverFile(driverMenu.getDriverReader().getDriverInfo());
-				} catch (IOException e) {
-					e.printStackTrace();
+					try {
+						FileWriterUtils.writeDriverFile(driverMenu.getDriverReader().getDriverInfo());
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+					Alert alert = new Alert(AlertType.INFORMATION);
+					alert.setTitle("Confirmation");
+					alert.setHeaderText(null);
+					alert.setContentText("The driver has been assigned");
+					alert.showAndWait();
+					stage.setScene(managerMenu.getManagerScene());
 				}
-
 			}
 		});
 
@@ -141,5 +160,5 @@ public class ManagerAssignedTrips {
 	public void setDriverMenu(DriverMenu driverMenu) {
 		this.driverMenu = driverMenu;
 	}
-	
+
 }

@@ -35,4 +35,22 @@ public class HistoryTripsReader implements Reader {
 		return trips;
 	}
 
+	public void addHistroy(ArrayList<Current> currentTrips) {
+
+		int index = 0;
+		for(int j = 0 ; j < currentTrips.size() ; j++) {
+			if(name.equals(currentTrips.get(j).getName()))
+				index = j;
+		}	
+		for (int i = 0; i < history.size(); i++) {
+			if (name.equals(history.get(i).getName())) {
+				if (currentTrips.size() > 6) {
+					history.get(i).getTrips().add(currentTrips.get(index).getTrips().get(0));
+					currentTrips.get(index).getTrips().remove(0);
+				}
+			}
+		}
+
+	}
+
 }
