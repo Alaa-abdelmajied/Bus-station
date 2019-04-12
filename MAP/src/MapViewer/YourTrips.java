@@ -2,10 +2,7 @@ package MapViewer;
 
 import java.io.IOException;
 import java.util.ArrayList;
-
-import MapLogic.CurrentTripsReader;
 import MapLogic.FileWriterUtils;
-import MapLogic.HistoryTripsReader;
 import MapLogic.Trip;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

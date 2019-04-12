@@ -1,9 +1,6 @@
 package MapViewer;
 
 import java.util.ArrayList;
-
-import javax.security.auth.callback.ChoiceCallback;
-
 import MapLogic.Trip;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

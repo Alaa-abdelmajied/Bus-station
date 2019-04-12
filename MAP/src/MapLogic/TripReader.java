@@ -18,13 +18,6 @@ public class TripReader implements Reader {
 		}
 	}
 	
-/*public boolean isNumeric(String text) {
-	
-			return true;
-		}
-		return false;
-		
-	}*/
 
 	@Override
 	public ArrayList<Trip> showTrips() {

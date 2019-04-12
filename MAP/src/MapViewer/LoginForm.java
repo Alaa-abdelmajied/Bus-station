@@ -10,10 +10,8 @@ import javafx.geometry.HPos;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.GridPane;
@@ -32,10 +30,6 @@ public class LoginForm {
 	boolean showPassenger = false;
 	TextField userNameField = new TextField();
 	PasswordField passwordField = new PasswordField();
-	// CheckBox passengerCB = new CheckBox("Passenger");
-	// CheckBox employeeCB = new CheckBox("Employee");
-	// RadioButton passengerRB = new RadioButton("Passenger");
-	// RadioButton empolyeeRB = new RadioButton("Employee");
 
 	public LoginForm(Stage stage) {
 		this.stage = stage;
@@ -54,8 +48,6 @@ public class LoginForm {
 		userNameField.setPromptText("username");
 		passwordField.setPromptText("password");
 
-		// GridPane.setHalignment(passengerRB, HPos.LEFT);
-		// GridPane.setHalignment(empolyeeRB, HPos.RIGHT);
 
 		GridPane.setHalignment(passenger, HPos.LEFT);
 		GridPane.setHalignment(employee, HPos.RIGHT);
@@ -72,8 +64,6 @@ public class LoginForm {
 		loginGrid.add(login, 2, 3);
 		loginGrid.add(space3, 1, 4);
 		loginGrid.add(space4, 1, 5);
-		// loginGrid.add(passengerRB, 0, 6);
-		// loginGrid.add(empolyeeRB, 2, 6);
 		loginGrid.add(passenger, 0, 6);
 		loginGrid.add(employee, 2, 6);
 
@@ -81,35 +71,6 @@ public class LoginForm {
 
 		// actions
 
-		/*
-		 * passengerRB.setOnAction(new EventHandler<ActionEvent>() {
-		 * 
-		 * @Override public void handle(ActionEvent event) {
-		 * 
-		 * userNameField.setText(null); passwordField.setText(null);
-		 * userNameField.setPromptText("Passenger's username");
-		 * validate.setType("Passenger"); validate.setLoginData(); showPassenger = true;
-		 * if (!passengerRB.isSelected()) { userNameField.setPromptText("username");
-		 * passwordField.setPromptText("password"); } empolyeeRB.setSelected(false);
-		 * 
-		 * }
-		 * 
-		 * });
-		 */
-
-		/*
-		 * empolyeeRB.setOnAction(new EventHandler<ActionEvent>() {
-		 * 
-		 * @Override public void handle(ActionEvent event) {
-		 * 
-		 * userNameField.setText(null); passwordField.setText(null);
-		 * userNameField.setPromptText("Employee's username");
-		 * validate.setType("Employee"); validate.setLoginData(); showEmployee = true;
-		 * if (!passengerRB.isSelected()) { userNameField.setPromptText("username");
-		 * passwordField.setPromptText("password"); } passengerRB.setSelected(false); }
-		 * 
-		 * });
-		 */
 
 		passenger.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -219,16 +180,5 @@ public class LoginForm {
 	public PassengerReader getPassenger() {
 		return passenger;
 	}
-	
-
-	/*
-	 * public void setPassengerRB(CheckBox passengerRB) {
-	 * this.passengerRB.setSelected(false); }
-	 */
-
-	/*
-	 * public void setEmployeeRB(CheckBox empolyeeRB) { // this.employeeCB =
-	 * employeeCB; this.empolyeeRB.setSelected(false); }
-	 */
 
 }

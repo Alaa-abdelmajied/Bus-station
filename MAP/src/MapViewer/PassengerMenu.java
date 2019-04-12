@@ -11,7 +11,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -130,8 +129,6 @@ public class PassengerMenu {
 
 				loginForm.setUserNameField(null);
 				loginForm.setPasswordField(null);
-				// loginForm.setPassengerRB(null);
-				// loginForm.setEmployeeRB(null);
 				stage.setScene(loginForm.getLoginForm());
 
 			}

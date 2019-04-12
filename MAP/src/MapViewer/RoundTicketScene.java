@@ -1,11 +1,7 @@
 package MapViewer;
 
-import java.util.ArrayList;
-
 import MapLogic.Tickets;
 import MapLogic.Trip;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;

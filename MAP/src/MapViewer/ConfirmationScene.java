@@ -56,7 +56,6 @@ public class ConfirmationScene {
 
 	public void prepareScene() {
 
-		Label seats = new Label();
 		seatsNum.setVisible(false);
 		numOfSeats.setVisible(false);
 		addSeat.setVisible(false);

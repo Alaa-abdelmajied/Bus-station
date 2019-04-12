@@ -1,12 +1,8 @@
 package MapViewer;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import MapLogic.FileWriterUtils;
 import MapLogic.Trip;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
@@ -122,7 +118,7 @@ public class ManagerAssignedTrips {
 					alert.setHeaderText(null);
 					alert.setContentText("The driver has been assigned");
 					alert.showAndWait();
-					stage.setScene(managerMenu.getManagerScene());
+					managerMenu.getAssignTrips().fireEvent(event);
 				}
 			}
 		});

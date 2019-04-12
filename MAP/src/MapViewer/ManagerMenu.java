@@ -1,8 +1,6 @@
 package MapViewer;
 
 import java.util.ArrayList;
-
-import MapLogic.Driver;
 import MapLogic.Trip;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

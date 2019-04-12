@@ -1,8 +1,6 @@
 package MapViewer;
 
-import java.awt.List;
 import java.util.ArrayList;
-
 import MapLogic.DriverReader;
 import MapLogic.Trip;
 import javafx.collections.FXCollections;
@@ -12,10 +10,8 @@ import javafx.event.EventHandler;
 import javafx.geometry.HPos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class DriverMenu {
@@ -28,7 +24,6 @@ public class DriverMenu {
 	PassengerMenu passengerMenu;
 	DriverReader driverReader = new DriverReader();
 	Label driverLabel = new Label();
-	private final ObservableList<Trip> tripsData = FXCollections.observableArrayList();
 
 	public DriverMenu(Stage stage) {
 		this.stage = stage;
@@ -36,7 +31,7 @@ public class DriverMenu {
 
 	public void prepareScene() {
 
-		Button profile = new Button("Go to your profile");
+		Button profile = new Button("View your profile");
 		Button assignedTrips = new Button("Assigned Trips");
 		Button logoutDriver = new Button("Logout");
 		GridPane driverGrid = new GridPane();
@@ -88,8 +83,6 @@ public class DriverMenu {
 			public void handle(ActionEvent event) {
 				loginForm.setUserNameField(null);
 				loginForm.setPasswordField(null);
-				//loginForm.setPassengerRB(null);
-				//loginForm.setEmployeeRB(null);
 				stage.setScene(loginForm.getLoginForm());
 				
 
