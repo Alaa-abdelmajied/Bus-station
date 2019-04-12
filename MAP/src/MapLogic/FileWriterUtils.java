@@ -11,7 +11,7 @@ public class FileWriterUtils {
 
 		ArrayList<Trip> trip = new ArrayList<Trip>();
 		trip.addAll(trips);
-		BufferedWriter writer = new BufferedWriter(new FileWriter("trips.txt"));
+		BufferedWriter writer = new BufferedWriter(new FileWriter("trips"));
 		for (int i = 0; i < trip.size(); i++) {
 			if (trip.get(i).getDriverName() == null) {
 				writer.write(trip.get(i).getSource() + "," + trip.get(i).getDestination() + "," + trip.get(i).getTime()

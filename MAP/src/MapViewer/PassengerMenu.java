@@ -52,7 +52,7 @@ public class PassengerMenu {
 		passengerGrid.add(logoutPassenger, 0, 4);
 		GridPane.setHalignment(logoutPassenger, HPos.CENTER);
 
-		passengerScene = new Scene(passengerGrid, 300, 300);
+		passengerScene = new Scene(passengerGrid, 250, 250);
 
 		limo.setVisible(false);
 		becomeVip.setVisible(false);
@@ -70,7 +70,6 @@ public class PassengerMenu {
 					bookingScene.setChoiceBoxS(trip.getSource().get(i));
 					bookingScene.setChoiceBoxD(trip.getDestination().get(i));
 				}
-
 				stage.setScene(bookingScene.getBookingScene());
 			}
 		});

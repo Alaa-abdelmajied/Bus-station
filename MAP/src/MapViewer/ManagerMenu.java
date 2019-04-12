@@ -44,7 +44,7 @@ public class ManagerMenu {
 		managerGrid.add(logoutManager, 0, 3);
 		GridPane.setHalignment(logoutManager, HPos.CENTER);
 
-		managerScene = new Scene(managerGrid, 500, 300);
+		managerScene = new Scene(managerGrid, 300, 300);
 
 		// actions
 

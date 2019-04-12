@@ -24,7 +24,7 @@ public class FileReaderUtils {
 		int managerCounter = 0;
 		String accountType;
 
-		File file = new File("login.txt");
+		File file = new File("login");
 
 		FileReader fileReader = new FileReader(file);
 		BufferedReader bufferedReader = new BufferedReader(fileReader);
@@ -56,7 +56,7 @@ public class FileReaderUtils {
 
 	public static ArrayList<Trip> readTripFile() throws IOException {
 
-		File file = new File("trips.txt");
+		File file = new File("trips");
 
 		FileReader fileReader = new FileReader(file);
 		BufferedReader bufferedReader = new BufferedReader(fileReader);

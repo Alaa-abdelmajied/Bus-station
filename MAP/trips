@@ -1,0 +1,15 @@
+Victoria,Faculty of Engineering,7.25,Bus,0,10.0,23,Mostafa
+Faculty of Engineering,Victoria,7.45,Bus,0,10.0,25,Mahmoud
+El Montazah,Bahary,8.55,Bus,2,8.0,19,Tarek
+Bahary,El Montazah,8.55,Bus,2,8.0,22,Tarek
+Victoria,Faculty of Engineering,11.05,Minibus,0,10.0,4,Tarek
+Faculty of Engineering,Victoria,11.35,Minibus,0,10.0,10,Magdy
+Sidigaber,Cairo(Nasr City),13.15,Bus,0,45.0,24,Abdelsalam
+Cairo(Nasr City),Sidigaber,17.35,Bus,0,45.0,19,Abdelsalam
+Victoria,Faculty of Engineering,18.25,Car,0,12.0,1,Mostafa
+Faculty of Engineering,Victoria,15.05,Car,0,12.0,4
+Smouha,Victoria,16.20,Bus,1,12.0,24,Mahmoud
+Miami,Mahtet Elraml,10.15,Minbus,4,10.0,11
+Smouha,Elmanshia,13.15,Minbus,2,10.0,12
+El Mandara,El Manshia,10.00,Bus,4,15.0,25,Mahmoud
+Sharm ElSheikh,Sidigaber,9.00,Bus,0,50.0,25
