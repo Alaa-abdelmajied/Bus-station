@@ -60,6 +60,20 @@ public class CurrentTripsReader implements Reader {
 		}
 	}
 
+	public void cancelTripFromManger(String source, String destination, String time, String vehicle) {
+		for (int i = 0; i < currents.size(); i++) {
+			for (int j = 0; j < currents.get(i).getTrips().size(); j++) {
+				if (source.equals(currents.get(i).getTrips().get(j).getSource())
+						&& destination.equals(currents.get(i).getTrips().get(j).getDestination())
+						&& vehicle.equals(currents.get(i).getTrips().get(j).getVehicle())
+						&& time.equals(currents.get(i).getTrips().get(j).getTime())) {
+					System.out.println("ok");
+					currents.get(i).getTrips().remove(j);
+				}
+			}
+		}
+	}
+
 	public ArrayList<Current> getCurrents() {
 		return currents;
 	}

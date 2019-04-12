@@ -23,6 +23,7 @@ public class AllTrips {
 	Scene alltrips;
 	ManagerMenu managerMenu;
 	PassengerMenu passengerMenu;
+	ConfirmationScene confirmationScene;
 	AddTrip addTrip;
 	TableView<Trip> tableView;
 
@@ -96,8 +97,14 @@ public class AllTrips {
 							tableView.getSelectionModel().getSelectedItem().getDestination(),
 							tableView.getSelectionModel().getSelectedItem().getVehicle(),
 							tableView.getSelectionModel().getSelectedItem().getTime());
+					confirmationScene.currentTrips.load();
+					confirmationScene.currentTrips.cancelTripFromManger(tableView.getSelectionModel().getSelectedItem().getSource(),
+							tableView.getSelectionModel().getSelectedItem().getDestination(),
+							tableView.getSelectionModel().getSelectedItem().getVehicle(),
+							tableView.getSelectionModel().getSelectedItem().getTime());
 					try {
 						FileWriterUtils.writeTripFile(passengerMenu.getTrip().getTrips());
+						FileWriterUtils.writeCurrentTripFile(confirmationScene.currentTrips.getCurrents());
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
@@ -107,7 +114,6 @@ public class AllTrips {
 					alert.setContentText("The trip has been deleted");
 					alert.showAndWait();
 					tableView.getItems().remove(tableView.getSelectionModel().getSelectedItem());
-					// loginForm.getPassenger().deleteTripsNumber(loginForm.userNameField.getText());
 				} else {
 					Alert alert = new Alert(AlertType.WARNING);
 					alert.setTitle("WARNING");
@@ -147,5 +153,10 @@ public class AllTrips {
 	public TableView<Trip> getTableView() {
 		return tableView;
 	}
+
+	public void setConfirmationScene(ConfirmationScene confirmationScene) {
+		this.confirmationScene = confirmationScene;
+	}
+	
 
 }
