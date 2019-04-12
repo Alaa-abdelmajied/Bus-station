@@ -10,4 +10,6 @@ Victoria,Faculty of Engineering,18.25,Car,0,12.0,1
 Faculty of Engineering,Victoria,15.05,Car,0,12.0,4
 Smouha,Victoria,16.20,Bus,1,12.0,24
 Miami,Mahtet Elraml,10.15,Minbus,4,10.0,11
-Elmanshia,Elmontazah,13,Minbus,4,10.0,12
+Smouha,Elmanshia,13.15,Minbus,2,10.0,12
+El Mandara,El Manshia,10.00,Bus,4,15.0,25
+Sharm ElSheikh,Sidigaber,9.00,Bus,0,50.0,25

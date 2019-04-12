@@ -98,7 +98,8 @@ public class AllTrips {
 							tableView.getSelectionModel().getSelectedItem().getVehicle(),
 							tableView.getSelectionModel().getSelectedItem().getTime());
 					confirmationScene.currentTrips.load();
-					confirmationScene.currentTrips.cancelTripFromManger(tableView.getSelectionModel().getSelectedItem().getSource(),
+					confirmationScene.currentTrips.cancelTripFromManger(
+							tableView.getSelectionModel().getSelectedItem().getSource(),
 							tableView.getSelectionModel().getSelectedItem().getDestination(),
 							tableView.getSelectionModel().getSelectedItem().getVehicle(),
 							tableView.getSelectionModel().getSelectedItem().getTime());
@@ -113,7 +114,7 @@ public class AllTrips {
 					alert.setHeaderText(null);
 					alert.setContentText("The trip has been deleted");
 					alert.showAndWait();
-					tableView.getItems().remove(tableView.getSelectionModel().getSelectedItem());
+					managerMenu.getTrips().fireEvent(event);
 				} else {
 					Alert alert = new Alert(AlertType.WARNING);
 					alert.setTitle("WARNING");
@@ -157,6 +158,5 @@ public class AllTrips {
 	public void setConfirmationScene(ConfirmationScene confirmationScene) {
 		this.confirmationScene = confirmationScene;
 	}
-	
 
 }

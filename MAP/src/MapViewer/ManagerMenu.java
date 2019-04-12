@@ -25,6 +25,7 @@ public class ManagerMenu {
 	PassengerMenu passengerMenu;
 	DriverMenu driverMenu;
 	Label managerLabel = new Label();
+	Button Trips = new Button("Show All Trips");
 	Button assignTrips = new Button("Assign trips to drivers");
 
 	public ManagerMenu(Stage stage) {
@@ -32,7 +33,7 @@ public class ManagerMenu {
 	}
 
 	public void prepareScene() {
-		Button Trips = new Button("Show All Trips");
+
 		Button logoutManager = new Button("Logout");
 
 		GridPane managerGrid = new GridPane();
@@ -120,6 +121,10 @@ public class ManagerMenu {
 
 	public void setDriverMenu(DriverMenu driverMenu) {
 		this.driverMenu = driverMenu;
+	}
+
+	public Button getTrips() {
+		return Trips;
 	}
 
 	public Button getAssignTrips() {

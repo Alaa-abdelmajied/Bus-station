@@ -148,7 +148,7 @@ public class YourTrips {
 					alert.setContentText("The trip has been cancelled");
 					alert.showAndWait();
 					tableView.getItems().remove(tableView.getSelectionModel().getSelectedItem());
-					loginForm.getPassenger().deleteTripsNumber(loginForm.userNameField.getText());
+					current.fireEvent(event);
 					try {
 						FileWriterUtils.writeVipFile(loginForm.getPassenger().getPassengers());
 					} catch (IOException e) {

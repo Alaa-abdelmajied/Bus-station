@@ -115,10 +115,10 @@ public class AddTrip {
 					alert.setHeaderText("");
 					alert.setContentText("Please, Fill all feilds");
 					alert.showAndWait();
-				} else if (!Pattern.matches("[a-zA-Z]+", sourceText.getText())
-						|| !Pattern.matches("[a-zA-Z]+", destinationText.getText())
-						|| !Pattern.matches("[0-9]+", timeText.getText())
-						|| !Pattern.matches("[0-9]+", priceText.getText())
+				} else if (!Pattern.matches("[a-zA-Z- ]+", sourceText.getText())
+						|| !Pattern.matches("[a-zA-Z- ]+", destinationText.getText())
+						|| !Pattern.matches("[0-9.]+", timeText.getText())
+						|| !Pattern.matches("[0-9.]+", priceText.getText())
 						|| !Pattern.matches("[0-9]+", numberOfSeatsText.getText())) {
 					Alert alert = new Alert(AlertType.WARNING);
 					alert.setTitle("WARNING");
@@ -147,7 +147,7 @@ public class AddTrip {
 					alert.setHeaderText(null);
 					alert.setContentText("The trip has been added");
 					alert.showAndWait();
-					stage.setScene(allTrips.getAlltrips());
+					managerMenu.getTrips().fireEvent(event);
 				}
 			}
 		});
