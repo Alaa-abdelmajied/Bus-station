@@ -113,6 +113,7 @@ public class ManagerAssignedTrips {
 
 					try {
 						FileWriterUtils.writeDriverFile(driverMenu.getDriverReader().getDriverInfo());
+						FileWriterUtils.writeTripFile(passengerMenu.getTrip().getTrips());
 					} catch (IOException e) {
 						e.printStackTrace();
 					}

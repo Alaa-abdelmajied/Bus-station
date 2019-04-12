@@ -32,7 +32,6 @@ public class ManagerMenu {
 	}
 
 	public void prepareScene() {
-
 		Button Trips = new Button("Show All Trips");
 		Button logoutManager = new Button("Logout");
 
@@ -70,6 +69,7 @@ public class ManagerMenu {
 			public void handle(ActionEvent event) {
 				passengerMenu.getTrip().load();
 				driverMenu.getDriverReader().loadInfo();
+				managerAssignedTrips.getDrivers().getItems().clear();
 				for (int i = 0; i < driverMenu.getDriverReader().getDriverFirstName().size(); i++) {
 					managerAssignedTrips.getDrivers().getItems()
 							.add(driverMenu.getDriverReader().getDriverFirstName().get(i));
@@ -88,8 +88,6 @@ public class ManagerMenu {
 			public void handle(ActionEvent event) {
 				loginForm.setUserNameField(null);
 				loginForm.setPasswordField(null);
-				// loginForm.setPassengerRB(null);
-				// loginForm.setEmployeeRB(null);
 				stage.setScene(loginForm.getLoginForm());
 
 			}
@@ -127,6 +125,5 @@ public class ManagerMenu {
 	public Button getAssignTrips() {
 		return assignTrips;
 	}
-	
 
 }

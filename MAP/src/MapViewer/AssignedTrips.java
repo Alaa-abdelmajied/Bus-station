@@ -36,14 +36,13 @@ public class AssignedTrips {
 		TableColumn<Trip, String> vehicle = new TableColumn<Trip, String>("Vehicle");
 		vehicle.setCellValueFactory(new PropertyValueFactory<>("vehicle"));
 		vehicle.setMinWidth(100);
-		
-		
+
 		tableView = new TableView<>();
 		tableView.getColumns().add(source);
 		tableView.getColumns().add(destination);
 		tableView.getColumns().add(time);
 		tableView.getColumns().add(vehicle);
-		
+
 		Button backToDriver = new Button("Back");
 
 		GridPane assignedTripsGrid = new GridPane();
@@ -75,5 +74,5 @@ public class AssignedTrips {
 	public TableView<Trip> getTableView() {
 		return tableView;
 	}
-	
+
 }

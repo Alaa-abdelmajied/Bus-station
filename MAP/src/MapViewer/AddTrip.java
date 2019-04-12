@@ -133,9 +133,7 @@ public class AddTrip {
 					priceText.setText(null);
 					numberOfSeatsText.setText(null);
 
-				}
-
-				else {
+				}else {
 					passengerMenu.getTrip().addTrip(sourceText.getText(), destinationText.getText(), timeText.getText(),
 							vehicleSelection.getValue(), numberOfStopsSelection.getValue(),
 							Double.parseDouble(priceText.getText()), Integer.parseInt(numberOfSeatsText.getText()));
