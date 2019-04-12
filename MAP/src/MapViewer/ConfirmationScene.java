@@ -16,6 +16,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableView;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.scene.control.Alert.AlertType;
@@ -379,6 +380,7 @@ public class ConfirmationScene {
 				book.setVisible(false);
 				nextRound.setVisible(false);
 				numOfSeats.setText("1");
+				bookingScene.tableView.getSelectionModel().clearSelection();
 				stage.setScene(bookingScene.getBookingScene());
 			}
 		});
