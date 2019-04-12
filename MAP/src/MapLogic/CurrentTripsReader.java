@@ -65,8 +65,8 @@ public class CurrentTripsReader implements Reader {
 			for (int j = 0; j < currents.get(i).getTrips().size(); j++) {
 				if (source.equals(currents.get(i).getTrips().get(j).getSource())
 						&& destination.equals(currents.get(i).getTrips().get(j).getDestination())
-						&& vehicle.equals(currents.get(i).getTrips().get(j).getVehicle())
-						&& time.equals(currents.get(i).getTrips().get(j).getTime())) {
+						&& time.equals(currents.get(i).getTrips().get(j).getTime())
+						&& vehicle.equals(currents.get(i).getTrips().get(j).getVehicle())) {
 					System.out.println("ok");
 					currents.get(i).getTrips().remove(j);
 				}
