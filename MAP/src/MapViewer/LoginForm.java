@@ -216,6 +216,11 @@ public class LoginForm {
 		this.passwordField.setText(text);
 	}
 
+	public PassengerReader getPassenger() {
+		return passenger;
+	}
+	
+
 	/*
 	 * public void setPassengerRB(CheckBox passengerRB) {
 	 * this.passengerRB.setSelected(false); }

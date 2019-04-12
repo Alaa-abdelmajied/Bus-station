@@ -27,6 +27,17 @@ public class FileWriterUtils {
 		writer.close();
 	}
 
+	public static void writeVipFile(ArrayList<Passenger> passengers) throws IOException {
+
+		ArrayList<Passenger> passenger = new ArrayList<Passenger>();
+		passenger.addAll(passengers);
+		BufferedWriter writer = new BufferedWriter(new FileWriter("vipPassengers"));
+		for (int i = 0; i < passenger.size(); i++) {
+			writer.write(passenger.get(i).getPassengerName() + "," + passenger.get(i).getNumberOfTrips() + "\n");
+		}
+		writer.close();
+	}
+
 	public static void writeDriverFile(ArrayList<Driver> trips) throws IOException {
 
 		ArrayList<Driver> trip = new ArrayList<Driver>();

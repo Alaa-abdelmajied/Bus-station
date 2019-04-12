@@ -10,9 +10,11 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
@@ -75,7 +77,7 @@ public class RoundTicketScene {
 
 			@Override
 			public void handle(ActionEvent event) {
-
+				if(!tableView.getSelectionModel().isEmpty()) {
 				stage.setScene(confirmationScene.getConfirmationScene());
 				confirmationScene.getOneWay().setVisible(false);
 				confirmationScene.getRound().setVisible(false);
@@ -90,9 +92,19 @@ public class RoundTicketScene {
 				confirmationScene.getNumOfSeats().setVisible(true);
 				confirmationScene.getAddSeat().setVisible(true);
 				confirmationScene.getRemoveSeat().setVisible(true);
-				confirmationScene.getBook().setVisible(true);
+				confirmationScene.getBookRound().setVisible(true);
 				confirmationScene.getBack().setVisible(false);
 				confirmationScene.getBackRound().setVisible(true);
+				confirmationScene.getNextRound().setVisible(false);
+				confirmationScene.setOnewaycheck(true);
+				confirmationScene.setRoundPrice(true);
+				}else {
+					Alert alert = new Alert(AlertType.WARNING);
+					alert.setTitle("WARNING");
+					alert.setHeaderText("");
+					alert.setContentText("Select a trip");
+					alert.showAndWait();
+				}
 
 			}
 		});

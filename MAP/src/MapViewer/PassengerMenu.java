@@ -1,5 +1,8 @@
 package MapViewer;
 
+import java.io.IOException;
+
+import MapLogic.FileWriterUtils;
 import MapLogic.TripReader;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -20,6 +23,7 @@ public class PassengerMenu {
 	LoginForm loginForm;
 	BookingScene bookingScene;
 	YourTrips yourTripsScene;
+	ConfirmationScene confirmationScene;
 	TripReader trip = new TripReader();
 	Label passengerLabel = new Label();
 	Button becomeVip = new Button("Become a vip");
@@ -87,9 +91,8 @@ public class PassengerMenu {
 			public void handle(ActionEvent event) {
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("Become a VIP");
-				alert.setHeaderText("You made " + loginForm.passenger.getTripsNumber() + "/6 trips");
+				alert.setHeaderText("You made " + loginForm.passenger.getTripsNumber(loginForm.userNameField.getText()) + "/6 trips");
 				alert.setContentText("Complete 6 rides to become a VIP.");
-
 				alert.showAndWait();
 
 			}
@@ -104,8 +107,15 @@ public class PassengerMenu {
 				alert.setTitle("Book a limousine");
 				alert.setHeaderText("");
 				alert.setContentText("The limousine is on the way to you");
-
 				alert.showAndWait();
+				confirmationScene.getHistory().load();
+				confirmationScene.getHistory().setName(loginForm.userNameField.getText());
+				confirmationScene.getHistory().limoHistory();
+				try {
+					FileWriterUtils.writeHistoryTripFile(confirmationScene.getHistory().getHistory());
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 
 			}
 		});
@@ -148,6 +158,10 @@ public class PassengerMenu {
 
 	public void setPassengerLabel(String text) {
 		this.passengerLabel.setText(text);
+	}
+
+	public void setConfirmationScene(ConfirmationScene confirmationScene) {
+		this.confirmationScene = confirmationScene;
 	}
 
 

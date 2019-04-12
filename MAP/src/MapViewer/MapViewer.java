@@ -47,6 +47,7 @@ public class MapViewer extends Application {
 		loginForm.setManagerMenu(managerMenu);
 		passengerMenu.setBookingScene(bookingScene);
 		passengerMenu.setLoginForm(loginForm);
+		passengerMenu.setConfirmationScene(confirmationScene);
 		driverMenu.setLoginForm(loginForm);
 		driverMenu.setAssignedTrips(assignedTrips);
 		driverMenu.setPassengerMenu(passengerMenu);

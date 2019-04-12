@@ -52,6 +52,15 @@ public class HistoryTripsReader implements Reader {
 		}
 
 	}
+	
+	public void limoHistory() {
+		
+		Trip limoTrip = new Trip("Your location", "You guided the driver", "Limousine", 0, " ", 50.0);
+		for(int i = 0 ; i < history.size() ; i++) {
+			if(name.equals(history.get(i).getName()))
+				history.get(i).getTrips().add(limoTrip);
+		}	
+	}
 
 	public ArrayList<History> getHistory() {
 		return history;

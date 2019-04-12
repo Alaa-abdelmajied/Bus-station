@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class PassengerReader {
 
 	private ArrayList<Passenger> passengers = new ArrayList<Passenger>();
-	int tripsNumber;
+
 
 	public void loadpassengers() {
 		this.passengers.clear();
@@ -18,7 +18,8 @@ public class PassengerReader {
 	}
 
 	public boolean vipCheck(String name) throws IOException {
-
+		
+		int tripsNumber;
 		loadpassengers();
 		for (int i = 0; i < passengers.size(); i++) {
 			if (name.equals(passengers.get(i).getPassengerName())) {
@@ -34,8 +35,27 @@ public class PassengerReader {
 		return false;
 	}
 
-	public int getTripsNumber() {
+	public void setTripsNumber(String name) {
+
+		for (int i = 0; i < passengers.size(); i++) {
+			if (name.equals(passengers.get(i).getPassengerName())) {
+				passengers.get(i).setNumberOfTrips(passengers.get(i).getNumberOfTrips() + 1);
+			}
+		}
+	}
+
+	public int getTripsNumber(String name) {
+		int tripsNumber = 0;
+		for (int i = 0; i < passengers.size(); i++) {
+			if (name.equals(passengers.get(i).getPassengerName())) {
+			tripsNumber = passengers.get(i).getNumberOfTrips();
+			}
+		}
 		return tripsNumber;
+	}
+
+	public ArrayList<Passenger> getPassengers() {
+		return passengers;
 	}
 
 }

@@ -44,7 +44,10 @@ public class ConfirmationScene {
 	Button book = new Button("Confirm your trip");
 	Button back = new Button("Back");
 	Button backRound = new Button("back");
+	Button bookRound = new Button("Confirm your trip");
+	Button nextRound = new Button("next");
 	private final ObservableList<Trip> tripsData = FXCollections.observableArrayList();
+	boolean onewaycheck = false, roundwaycheck = false, roundPrice = false;
 
 	public ConfirmationScene(Stage stage) {
 		this.stage = stage;
@@ -60,6 +63,8 @@ public class ConfirmationScene {
 		removeSeat.setVisible(false);
 		book.setVisible(false);
 		backRound.setVisible(false);
+		bookRound.setVisible(false);
+		nextRound.setVisible(false);
 
 		GridPane confirmationGrid = new GridPane();
 
@@ -90,6 +95,10 @@ public class ConfirmationScene {
 		GridPane.setHalignment(backRound, HPos.LEFT);
 		confirmationGrid.add(book, 1, 5);
 		GridPane.setHalignment(book, HPos.CENTER);
+		confirmationGrid.add(bookRound, 1, 5);
+		GridPane.setHalignment(bookRound, HPos.CENTER);
+		confirmationGrid.add(nextRound, 1, 5);
+		GridPane.setHalignment(nextRound, HPos.CENTER);
 
 		confirmationScene = new Scene(confirmationGrid, 500, 400);
 
@@ -97,6 +106,9 @@ public class ConfirmationScene {
 
 			@Override
 			public void handle(ActionEvent event) {
+
+				onewaycheck = true;
+				roundwaycheck = false;
 
 				setSource("Source: " + bookingScene.tableView.getSelectionModel().getSelectedItem().getSource());
 				setDestination("Destination: "
@@ -108,7 +120,7 @@ public class ConfirmationScene {
 				addSeat.setVisible(true);
 				removeSeat.setVisible(true);
 				book.setVisible(true);
-
+				nextRound.setVisible(false);
 			}
 		});
 
@@ -116,7 +128,10 @@ public class ConfirmationScene {
 
 			@Override
 			public void handle(ActionEvent event) {
-				stage.setScene(roundTicketScene.getRoundTicketScene());
+
+				onewaycheck = false;
+				roundwaycheck = true;
+
 				ArrayList<Trip> trips = new ArrayList<Trip>();
 				trips = bookingScene.passengerMenu.getTrip().findRoundTrip(
 						bookingScene.tableView.getSelectionModel().getSelectedItem().getDestination(),
@@ -124,7 +139,16 @@ public class ConfirmationScene {
 						bookingScene.tableView.getSelectionModel().getSelectedItem().getVehicle());
 				tripsData.setAll(trips);
 				roundTicketScene.getTableView().setItems(tripsData);
-
+				setSource("Source: " + bookingScene.tableView.getSelectionModel().getSelectedItem().getSource());
+				setDestination("Destination: "
+						+ bookingScene.tableView.getSelectionModel().getSelectedItem().getDestination());
+				setPrice("Round Trip");
+				seatsNum.setVisible(true);
+				numOfSeats.setVisible(true);
+				addSeat.setVisible(true);
+				removeSeat.setVisible(true);
+				nextRound.setVisible(true);
+				book.setVisible(false);
 			}
 		});
 
@@ -135,7 +159,13 @@ public class ConfirmationScene {
 				if (seatNumber < 4)
 					seatNumber++;
 				numOfSeats.setText(" " + String.valueOf(seatNumber) + " ");
-				price.setText("Price:  " + String.valueOf(seatNumber * bookingScene.getTicketPrice()) + " EGP");
+				if (onewaycheck)
+					price.setText("Price:  " + String.valueOf(seatNumber * bookingScene.getTicketPrice()) + " EGP");
+				if (roundPrice)
+					price.setText("Price:  "
+							+ String.valueOf(seatNumber * roundTicketScene.getTickets().roundTicketPrice(
+									roundTicketScene.tableView.getSelectionModel().getSelectedItem().getTicketPrice()))
+							+ " EGP");
 			}
 		});
 
@@ -146,12 +176,89 @@ public class ConfirmationScene {
 				if (seatNumber > 1)
 					seatNumber--;
 				numOfSeats.setText(" " + String.valueOf(seatNumber) + " ");
-				price.setText("Price:  " + String.valueOf(seatNumber * bookingScene.getTicketPrice()) + " EGP");
+				if (onewaycheck)
+					price.setText("Price:  " + String.valueOf(seatNumber * bookingScene.getTicketPrice()) + " EGP");
+				if (roundPrice)
+					price.setText("Price:  "
+							+ String.valueOf(seatNumber * roundTicketScene.getTickets().roundTicketPrice(
+									roundTicketScene.tableView.getSelectionModel().getSelectedItem().getTicketPrice()))
+							+ " EGP");
 
 			}
 		});
 
 		book.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				if (roundwaycheck || onewaycheck) {
+					roundTicketScene.getTickets()
+							.setSeatNum(passengerMenu.getTrip().getNumberOfSeats(
+									bookingScene.tableView.getSelectionModel().getSelectedItem().getSource(),
+									bookingScene.tableView.getSelectionModel().getSelectedItem().getDestination(),
+									bookingScene.tableView.getSelectionModel().getSelectedItem().getVehicle()));
+					if (roundTicketScene.getTickets().availableSeatsCheck(seatNumber)) {
+						passengerMenu.getTrip().setNumberOfSeats(seatNumber);
+						try {
+							FileWriterUtils.writeTripFile(passengerMenu.getTrip().getTrips());
+						} catch (IOException e) {
+							e.printStackTrace();
+
+						}
+						currentTrips.load();
+						for (int i = 0; i < seatNumber; i++) {
+							currentTrips.confirmTrip(loginForm.userNameField.getText(),
+									bookingScene.tableView.getSelectionModel().getSelectedItem().getSource(),
+									bookingScene.tableView.getSelectionModel().getSelectedItem().getDestination(),
+									bookingScene.tableView.getSelectionModel().getSelectedItem().getTime(),
+									bookingScene.tableView.getSelectionModel().getSelectedItem().getVehicle(),
+									bookingScene.tableView.getSelectionModel().getSelectedItem().getNumOfStops(),
+									bookingScene.tableView.getSelectionModel().getSelectedItem().getTicketPrice());
+
+							history.load();
+							history.setName(loginForm.userNameField.getText());
+							history.addHistroy(currentTrips.getCurrents());
+							loginForm.getPassenger().setTripsNumber(loginForm.userNameField.getText());
+						}
+						try {
+							FileWriterUtils.writeCurrentTripFile(currentTrips.getCurrents());
+							FileWriterUtils.writeHistoryTripFile(history.getHistory());
+							FileWriterUtils.writeVipFile(loginForm.getPassenger().getPassengers());
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+						Alert alert = new Alert(AlertType.INFORMATION);
+						alert.setTitle("Confirmation");
+						alert.setHeaderText(null);
+						alert.setContentText("The trip has been booked");
+						alert.showAndWait();
+						try {
+							if(loginForm.getPassenger().vipCheck(loginForm.userNameField.getText())) {
+								passengerMenu.limo.setVisible(true);
+								passengerMenu.becomeVip.setVisible(false);
+							}
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+						stage.setScene(passengerMenu.getPassengerScene());
+					} else {
+						Alert alert = new Alert(AlertType.WARNING);
+						alert.setTitle("WARNING");
+						alert.setHeaderText("");
+						alert.setContentText("No seats left");
+						alert.showAndWait();
+					}
+				} else {
+					Alert alert = new Alert(AlertType.WARNING);
+					alert.setTitle("WARNING");
+					alert.setHeaderText("");
+					alert.setContentText("Select ticket type");
+					alert.showAndWait();
+				}
+			}
+		});
+
+		nextRound.setOnAction(new EventHandler<ActionEvent>() {
 
 			@Override
 			public void handle(ActionEvent event) {
@@ -162,6 +269,50 @@ public class ConfirmationScene {
 								bookingScene.tableView.getSelectionModel().getSelectedItem().getVehicle()));
 				if (roundTicketScene.getTickets().availableSeatsCheck(seatNumber)) {
 					passengerMenu.getTrip().setNumberOfSeats(seatNumber);
+					currentTrips.load();
+					for (int i = 0; i <= seatNumber; i++) {
+						currentTrips.confirmTrip(loginForm.userNameField.getText(),
+								bookingScene.tableView.getSelectionModel().getSelectedItem().getSource(),
+								bookingScene.tableView.getSelectionModel().getSelectedItem().getDestination(),
+								bookingScene.tableView.getSelectionModel().getSelectedItem().getTime(),
+								bookingScene.tableView.getSelectionModel().getSelectedItem().getVehicle(),
+								bookingScene.tableView.getSelectionModel().getSelectedItem().getNumOfStops(),
+								bookingScene.tableView.getSelectionModel().getSelectedItem().getTicketPrice());
+
+						history.load();
+						history.setName(loginForm.userNameField.getText());
+						history.addHistroy(currentTrips.getCurrents());
+						loginForm.getPassenger().setTripsNumber(loginForm.userNameField.getText());
+					}
+
+					Alert alert = new Alert(AlertType.INFORMATION);
+					alert.setTitle("Confirmation");
+					alert.setHeaderText(null);
+					alert.setContentText("The trip has been booked");
+					alert.showAndWait();
+					stage.setScene(roundTicketScene.getRoundTicketScene());
+				} else {
+					Alert alert = new Alert(AlertType.WARNING);
+					alert.setTitle("WARNING");
+					alert.setHeaderText("");
+					alert.setContentText("No seats left");
+					alert.showAndWait();
+				}
+
+			}
+		});
+
+		bookRound.setOnAction(new EventHandler<ActionEvent>() {
+
+			@Override
+			public void handle(ActionEvent event) {
+				roundTicketScene.getTickets()
+						.setSeatNum(passengerMenu.getTrip().getNumberOfSeats(
+								roundTicketScene.tableView.getSelectionModel().getSelectedItem().getSource(),
+								roundTicketScene.tableView.getSelectionModel().getSelectedItem().getDestination(),
+								roundTicketScene.tableView.getSelectionModel().getSelectedItem().getVehicle()));
+				if (roundTicketScene.getTickets().availableSeatsCheck(seatNumber)) {
+					passengerMenu.getTrip().setNumberOfSeats(seatNumber);
 					try {
 						FileWriterUtils.writeTripFile(passengerMenu.getTrip().getTrips());
 					} catch (IOException e) {
@@ -169,30 +320,41 @@ public class ConfirmationScene {
 
 					}
 					currentTrips.load();
-					currentTrips.confirmTrip(loginForm.userNameField.getText(),
-							bookingScene.tableView.getSelectionModel().getSelectedItem().getSource(),
-							bookingScene.tableView.getSelectionModel().getSelectedItem().getDestination(),
-							bookingScene.tableView.getSelectionModel().getSelectedItem().getTime(),
-							bookingScene.tableView.getSelectionModel().getSelectedItem().getVehicle(),
-							bookingScene.tableView.getSelectionModel().getSelectedItem().getNumOfStops(),
-							bookingScene.tableView.getSelectionModel().getSelectedItem().getTicketPrice());
-					
-					history.load();
-					history.setName(loginForm.userNameField.getText());
-					history.addHistroy(currentTrips.getCurrents());
-					
+					for (int i = 0; i <= seatNumber; i++) {
+						currentTrips.confirmTrip(loginForm.userNameField.getText(),
+								roundTicketScene.tableView.getSelectionModel().getSelectedItem().getSource(),
+								roundTicketScene.tableView.getSelectionModel().getSelectedItem().getDestination(),
+								roundTicketScene.tableView.getSelectionModel().getSelectedItem().getTime(),
+								roundTicketScene.tableView.getSelectionModel().getSelectedItem().getVehicle(),
+								roundTicketScene.tableView.getSelectionModel().getSelectedItem().getNumOfStops(),
+								roundTicketScene.getTickets().roundTicketPrice(roundTicketScene.tableView
+										.getSelectionModel().getSelectedItem().getTicketPrice()));
+
+						history.load();
+						history.setName(loginForm.userNameField.getText());
+						history.addHistroy(currentTrips.getCurrents());
+						loginForm.getPassenger().setTripsNumber(loginForm.userNameField.getText());
+					}
 					try {
 						FileWriterUtils.writeCurrentTripFile(currentTrips.getCurrents());
 						FileWriterUtils.writeHistoryTripFile(history.getHistory());
+						FileWriterUtils.writeVipFile(loginForm.getPassenger().getPassengers());
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
-					
 					Alert alert = new Alert(AlertType.INFORMATION);
 					alert.setTitle("Confirmation");
 					alert.setHeaderText(null);
 					alert.setContentText("The trip has been booked");
 					alert.showAndWait();
+					try {
+						if(loginForm.getPassenger().vipCheck(loginForm.userNameField.getText())) {
+							passengerMenu.limo.setVisible(true);
+							passengerMenu.becomeVip.setVisible(false);
+						}
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
 					stage.setScene(passengerMenu.getPassengerScene());
 				} else {
 					Alert alert = new Alert(AlertType.WARNING);
@@ -201,6 +363,7 @@ public class ConfirmationScene {
 					alert.setContentText("No seats left");
 					alert.showAndWait();
 				}
+
 			}
 		});
 
@@ -228,6 +391,8 @@ public class ConfirmationScene {
 				stage.setScene(roundTicketScene.getRoundTicketScene());
 				backRound.setVisible(false);
 				back.setVisible(true);
+				onewaycheck = false;
+				roundPrice = false;
 			}
 		});
 	}
@@ -323,7 +488,21 @@ public class ConfirmationScene {
 	public HistoryTripsReader getHistory() {
 		return history;
 	}
-	
-	
+
+	public Button getBookRound() {
+		return bookRound;
+	}
+
+	public Button getNextRound() {
+		return nextRound;
+	}
+
+	public void setOnewaycheck(boolean onewaycheck) {
+		this.onewaycheck = onewaycheck;
+	}
+
+	public void setRoundPrice(boolean roundPrice) {
+		this.roundPrice = roundPrice;
+	}
 
 }
