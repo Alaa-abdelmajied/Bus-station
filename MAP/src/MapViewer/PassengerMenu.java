@@ -91,7 +91,8 @@ public class PassengerMenu {
 			public void handle(ActionEvent event) {
 				Alert alert = new Alert(AlertType.INFORMATION);
 				alert.setTitle("Become a VIP");
-				alert.setHeaderText("You made " + loginForm.passenger.getTripsNumber(loginForm.userNameField.getText()) + "/6 trips");
+				alert.setHeaderText("You made " + loginForm.passenger.getTripsNumber(loginForm.userNameField.getText())
+						+ "/6 trips");
 				alert.setContentText("Complete 6 rides to become a VIP.");
 				alert.showAndWait();
 
@@ -111,8 +112,10 @@ public class PassengerMenu {
 				confirmationScene.getHistory().load();
 				confirmationScene.getHistory().setName(loginForm.userNameField.getText());
 				confirmationScene.getHistory().limoHistory();
+				loginForm.getPassenger().addTripsNumber(loginForm.userNameField.getText());
 				try {
 					FileWriterUtils.writeHistoryTripFile(confirmationScene.getHistory().getHistory());
+					FileWriterUtils.writeVipFile(loginForm.getPassenger().getPassengers());
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -163,7 +166,5 @@ public class PassengerMenu {
 	public void setConfirmationScene(ConfirmationScene confirmationScene) {
 		this.confirmationScene = confirmationScene;
 	}
-
-
 
 }

@@ -1,8 +1,12 @@
 package MapViewer;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 import MapLogic.FileWriterUtils;
+import MapLogic.Tickets;
+import MapLogic.Trip;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.HPos;
@@ -48,6 +52,7 @@ public class AddTrip {
 		TextField priceText = new TextField();
 		priceText.setPromptText("Enter price");
 		TextField numberOfSeatsText = new TextField();
+		numberOfSeatsText.setPromptText("Enter number of seats");
 		ChoiceBox<String> vehicleSelection = new ChoiceBox<String>();
 		ChoiceBox<Integer> numberOfStopsSelection = new ChoiceBox<Integer>();
 		Button add = new Button("Finish");
@@ -101,7 +106,8 @@ public class AddTrip {
 
 			@Override
 			public void handle(ActionEvent event) {
-				if (sourceText.getText().isEmpty() || destinationText.getText().isEmpty() || timeText.getText().isEmpty()|| vehicleSelection.getValue() == null
+				if (sourceText.getText().isEmpty() || destinationText.getText().isEmpty()
+						|| timeText.getText().isEmpty() || vehicleSelection.getValue() == null
 						|| numberOfStopsSelection.getValue() == null || priceText.getText().isEmpty()
 						|| numberOfSeatsText.getText().isEmpty()) {
 					Alert alert = new Alert(AlertType.WARNING);
@@ -109,9 +115,29 @@ public class AddTrip {
 					alert.setHeaderText("");
 					alert.setContentText("Please, Fill all feilds");
 					alert.showAndWait();
-				} else {
-					passengerMenu.getTrip().addTrip(sourceText.getText(), destinationText.getText(),
-							timeText.getText(), vehicleSelection.getValue(), numberOfStopsSelection.getValue(),
+				} else if (!Pattern.matches("[a-zA-Z]+", sourceText.getText())
+						|| !Pattern.matches("[a-zA-Z]+", destinationText.getText())
+						|| !Pattern.matches("[0-9]+", timeText.getText())
+						|| !Pattern.matches("[0-9]+", priceText.getText())
+						|| !Pattern.matches("[0-9]+", numberOfSeatsText.getText())) {
+					Alert alert = new Alert(AlertType.WARNING);
+					alert.setTitle("WARNING");
+					alert.setHeaderText("");
+					alert.setContentText("Invalid inputs");
+					alert.showAndWait();
+					sourceText.setText(null);
+					destinationText.setText(null);
+					timeText.setText(null);
+					vehicleSelection.getSelectionModel().clearSelection();
+					numberOfStopsSelection.getSelectionModel().clearSelection();
+					priceText.setText(null);
+					numberOfSeatsText.setText(null);
+
+				}
+
+				else {
+					passengerMenu.getTrip().addTrip(sourceText.getText(), destinationText.getText(), timeText.getText(),
+							vehicleSelection.getValue(), numberOfStopsSelection.getValue(),
 							Double.parseDouble(priceText.getText()), Integer.parseInt(numberOfSeatsText.getText()));
 					try {
 						FileWriterUtils.writeTripFile(passengerMenu.getTrip().getTrips());
@@ -123,9 +149,8 @@ public class AddTrip {
 					alert.setHeaderText(null);
 					alert.setContentText("The trip has been added");
 					alert.showAndWait();
-					stage.setScene(managerMenu.getManagerScene());
+					stage.setScene(allTrips.getAlltrips());
 				}
-
 			}
 		});
 
@@ -133,6 +158,13 @@ public class AddTrip {
 
 			@Override
 			public void handle(ActionEvent event) {
+				sourceText.setText(null);
+				destinationText.setText(null);
+				timeText.setText(null);
+				vehicleSelection.getSelectionModel().clearSelection();
+				numberOfStopsSelection.getSelectionModel().clearSelection();
+				priceText.setText(null);
+				numberOfSeatsText.setText(null);
 				stage.setScene(allTrips.getAlltrips());
 			}
 		});
@@ -154,6 +186,5 @@ public class AddTrip {
 	public void setManagerMenu(ManagerMenu managerMenu) {
 		this.managerMenu = managerMenu;
 	}
-	
 
 }

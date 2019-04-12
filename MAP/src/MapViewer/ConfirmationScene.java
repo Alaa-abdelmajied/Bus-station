@@ -218,7 +218,7 @@ public class ConfirmationScene {
 							history.load();
 							history.setName(loginForm.userNameField.getText());
 							history.addHistroy(currentTrips.getCurrents());
-							loginForm.getPassenger().setTripsNumber(loginForm.userNameField.getText());
+							loginForm.getPassenger().addTripsNumber(loginForm.userNameField.getText());
 						}
 						try {
 							FileWriterUtils.writeCurrentTripFile(currentTrips.getCurrents());
@@ -233,14 +233,13 @@ public class ConfirmationScene {
 						alert.setContentText("The trip has been booked");
 						alert.showAndWait();
 						try {
-							if(loginForm.getPassenger().vipCheck(loginForm.userNameField.getText())) {
+							if (loginForm.getPassenger().vipCheck(loginForm.userNameField.getText())) {
 								passengerMenu.limo.setVisible(true);
 								passengerMenu.becomeVip.setVisible(false);
 							}
 						} catch (IOException e) {
 							e.printStackTrace();
 						}
-						stage.setScene(passengerMenu.getPassengerScene());
 					} else {
 						Alert alert = new Alert(AlertType.WARNING);
 						alert.setTitle("WARNING");
@@ -282,13 +281,13 @@ public class ConfirmationScene {
 						history.load();
 						history.setName(loginForm.userNameField.getText());
 						history.addHistroy(currentTrips.getCurrents());
-						loginForm.getPassenger().setTripsNumber(loginForm.userNameField.getText());
+						loginForm.getPassenger().addTripsNumber(loginForm.userNameField.getText());
 					}
 
 					Alert alert = new Alert(AlertType.INFORMATION);
 					alert.setTitle("Confirmation");
 					alert.setHeaderText(null);
-					alert.setContentText("The trip has been booked");
+					alert.setContentText("Select your round trip");
 					alert.showAndWait();
 					stage.setScene(roundTicketScene.getRoundTicketScene());
 				} else {
@@ -333,7 +332,7 @@ public class ConfirmationScene {
 						history.load();
 						history.setName(loginForm.userNameField.getText());
 						history.addHistroy(currentTrips.getCurrents());
-						loginForm.getPassenger().setTripsNumber(loginForm.userNameField.getText());
+						loginForm.getPassenger().addTripsNumber(loginForm.userNameField.getText());
 					}
 					try {
 						FileWriterUtils.writeCurrentTripFile(currentTrips.getCurrents());
@@ -348,14 +347,14 @@ public class ConfirmationScene {
 					alert.setContentText("The trip has been booked");
 					alert.showAndWait();
 					try {
-						if(loginForm.getPassenger().vipCheck(loginForm.userNameField.getText())) {
+						if (loginForm.getPassenger().vipCheck(loginForm.userNameField.getText())) {
 							passengerMenu.limo.setVisible(true);
 							passengerMenu.becomeVip.setVisible(false);
 						}
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
-					stage.setScene(passengerMenu.getPassengerScene());
+
 				} else {
 					Alert alert = new Alert(AlertType.WARNING);
 					alert.setTitle("WARNING");
@@ -379,7 +378,8 @@ public class ConfirmationScene {
 				addSeat.setVisible(false);
 				removeSeat.setVisible(false);
 				book.setVisible(false);
-
+				nextRound.setVisible(false);
+				numOfSeats.setText("1");
 				stage.setScene(bookingScene.getBookingScene());
 			}
 		});

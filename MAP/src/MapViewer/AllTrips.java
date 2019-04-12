@@ -91,23 +91,24 @@ public class AllTrips {
 
 			@Override
 			public void handle(ActionEvent event) {
-				if(tableView.getSelectionModel().getSelectedItem() != null) {
-				passengerMenu.getTrip().deleteTrip(tableView.getSelectionModel().getSelectedItem().getSource(),
-						tableView.getSelectionModel().getSelectedItem().getDestination(),
-						tableView.getSelectionModel().getSelectedItem().getVehicle(),
-						tableView.getSelectionModel().getSelectedItem().getTime());
-				try {
-					FileWriterUtils.writeTripFile(passengerMenu.getTrip().getTrips());
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-				Alert alert = new Alert(AlertType.INFORMATION);
-				alert.setTitle("Confirmation");
-				alert.setHeaderText(null);
-				alert.setContentText("The trip has been deleted");
-				alert.showAndWait();
-				stage.setScene(managerMenu.getManagerScene());
-				}else {
+				if (tableView.getSelectionModel().getSelectedItem() != null) {
+					passengerMenu.getTrip().deleteTrip(tableView.getSelectionModel().getSelectedItem().getSource(),
+							tableView.getSelectionModel().getSelectedItem().getDestination(),
+							tableView.getSelectionModel().getSelectedItem().getVehicle(),
+							tableView.getSelectionModel().getSelectedItem().getTime());
+					try {
+						FileWriterUtils.writeTripFile(passengerMenu.getTrip().getTrips());
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+					Alert alert = new Alert(AlertType.INFORMATION);
+					alert.setTitle("Confirmation");
+					alert.setHeaderText(null);
+					alert.setContentText("The trip has been deleted");
+					alert.showAndWait();
+					tableView.getItems().remove(tableView.getSelectionModel().getSelectedItem());
+					// loginForm.getPassenger().deleteTripsNumber(loginForm.userNameField.getText());
+				} else {
 					Alert alert = new Alert(AlertType.WARNING);
 					alert.setTitle("WARNING");
 					alert.setHeaderText("");

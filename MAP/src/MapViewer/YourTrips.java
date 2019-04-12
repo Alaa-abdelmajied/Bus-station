@@ -98,7 +98,6 @@ public class YourTrips {
 				currentData.setAll(current);
 				tableView.setItems(currentData);
 				cancel.setVisible(true);
-				
 
 			}
 		});
@@ -148,7 +147,22 @@ public class YourTrips {
 					alert.setHeaderText(null);
 					alert.setContentText("The trip has been cancelled");
 					alert.showAndWait();
-					current.fireEvent(event);
+					tableView.getItems().remove(tableView.getSelectionModel().getSelectedItem());
+					loginForm.getPassenger().deleteTripsNumber(loginForm.userNameField.getText());
+					try {
+						FileWriterUtils.writeVipFile(loginForm.getPassenger().getPassengers());
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+					try {
+						if (!loginForm.getPassenger().vipCheck(loginForm.userNameField.getText())) {
+							passengerMenu.limo.setVisible(false);
+							passengerMenu.becomeVip.setVisible(true);
+						}
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+
 				} else {
 					Alert alert = new Alert(AlertType.WARNING);
 					alert.setTitle("WARNING");

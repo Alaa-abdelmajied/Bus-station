@@ -17,6 +17,14 @@ public class TripReader implements Reader {
 			e.printStackTrace();
 		}
 	}
+	
+/*public boolean isNumeric(String text) {
+	
+			return true;
+		}
+		return false;
+		
+	}*/
 
 	@Override
 	public ArrayList<Trip> showTrips() {
@@ -109,6 +117,7 @@ public class TripReader implements Reader {
 		}
 		return trips.get(index).getNumberOfSeats();
 	}
+	
 
 	public void setNumberOfSeats(int bookedtickets) {
 		int numberOfSeats = 0;

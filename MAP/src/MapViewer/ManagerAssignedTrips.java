@@ -74,7 +74,6 @@ public class ManagerAssignedTrips {
 		tableView.getColumns().add(numberOfStops);
 		tableView.getColumns().add(ticketPrice);
 
-
 		GridPane mangerAssignGrid = new GridPane();
 
 		mangerAssignGrid.add(select, 0, 0);
@@ -131,6 +130,8 @@ public class ManagerAssignedTrips {
 
 			@Override
 			public void handle(ActionEvent event) {
+				drivers.getSelectionModel().clearSelection();
+				drivers.setValue(null);
 				stage.setScene(managerMenu.getManagerScene());
 			}
 		});

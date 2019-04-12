@@ -7,7 +7,6 @@ public class PassengerReader {
 
 	private ArrayList<Passenger> passengers = new ArrayList<Passenger>();
 
-
 	public void loadpassengers() {
 		this.passengers.clear();
 		try {
@@ -18,7 +17,7 @@ public class PassengerReader {
 	}
 
 	public boolean vipCheck(String name) throws IOException {
-		
+
 		int tripsNumber;
 		loadpassengers();
 		for (int i = 0; i < passengers.size(); i++) {
@@ -35,7 +34,7 @@ public class PassengerReader {
 		return false;
 	}
 
-	public void setTripsNumber(String name) {
+	public void addTripsNumber(String name) {
 
 		for (int i = 0; i < passengers.size(); i++) {
 			if (name.equals(passengers.get(i).getPassengerName())) {
@@ -44,11 +43,20 @@ public class PassengerReader {
 		}
 	}
 
+	public void deleteTripsNumber(String name) {
+
+		for (int i = 0; i < passengers.size(); i++) {
+			if (name.equals(passengers.get(i).getPassengerName())) {
+				passengers.get(i).setNumberOfTrips(passengers.get(i).getNumberOfTrips() - 1);
+			}
+		}
+	}
+
 	public int getTripsNumber(String name) {
 		int tripsNumber = 0;
 		for (int i = 0; i < passengers.size(); i++) {
 			if (name.equals(passengers.get(i).getPassengerName())) {
-			tripsNumber = passengers.get(i).getNumberOfTrips();
+				tripsNumber = passengers.get(i).getNumberOfTrips();
 			}
 		}
 		return tripsNumber;

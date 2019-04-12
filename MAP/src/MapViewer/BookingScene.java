@@ -33,7 +33,6 @@ public class BookingScene {
 	ChoiceBox<String> choiceBoxD = new ChoiceBox<String>();
 	private final ObservableList<Trip> tripsData = FXCollections.observableArrayList();
 	double ticketPrice;
-	
 
 	public BookingScene(Stage stage) {
 		this.stage = stage;
@@ -113,11 +112,20 @@ public class BookingScene {
 
 			@Override
 			public void handle(ActionEvent event) {
-				String sourceSearch = choiceBoxS.getValue();
-				String destination = choiceBoxD.getValue();
-				ArrayList<Trip> trips = passengerMenu.getTrip().findTrip(sourceSearch, destination);
-				tripsData.setAll(trips);
-				select.setVisible(true);
+				if (choiceBoxS.getSelectionModel().isEmpty() && choiceBoxD.getSelectionModel().isEmpty()) {
+					alert.setTitle("WARNING");
+					alert.setHeaderText("");
+					alert.setContentText("Choose your source and destination or show all trips");
+					alert.showAndWait();
+				} else {
+					String sourceSearch = choiceBoxS.getValue();
+					String destination = choiceBoxD.getValue();
+					ArrayList<Trip> trips = passengerMenu.getTrip().findTrip(sourceSearch, destination);
+					tripsData.setAll(trips);
+					select.setVisible(true);
+					
+				}
+
 			}
 
 		});
