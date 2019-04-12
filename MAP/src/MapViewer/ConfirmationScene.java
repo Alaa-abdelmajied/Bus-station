@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import MapLogic.CurrentTripsReader;
 import MapLogic.FileWriterUtils;
+import MapLogic.HistoryTripsReader;
 import MapLogic.Trip;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -28,6 +29,7 @@ public class ConfirmationScene {
 	PassengerMenu passengerMenu;
 	LoginForm loginForm;
 	CurrentTripsReader currentTrips = new CurrentTripsReader();
+	HistoryTripsReader history = new HistoryTripsReader();
 	Label ticketType = new Label("Please choose your ticket type:");
 	Button oneWay = new Button("One way ticket");
 	Button round = new Button("Round ticket");
@@ -174,9 +176,14 @@ public class ConfirmationScene {
 							bookingScene.tableView.getSelectionModel().getSelectedItem().getVehicle(),
 							bookingScene.tableView.getSelectionModel().getSelectedItem().getNumOfStops(),
 							bookingScene.tableView.getSelectionModel().getSelectedItem().getTicketPrice());
-
+					
+					history.load();
+					history.setName(loginForm.userNameField.getText());
+					history.addHistroy(currentTrips.getCurrents());
+					
 					try {
 						FileWriterUtils.writeCurrentTripFile(currentTrips.getCurrents());
+						FileWriterUtils.writeHistoryTripFile(history.getHistory());
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
@@ -312,5 +319,11 @@ public class ConfirmationScene {
 	public void setLoginForm(LoginForm loginForm) {
 		this.loginForm = loginForm;
 	}
+
+	public HistoryTripsReader getHistory() {
+		return history;
+	}
+	
+	
 
 }

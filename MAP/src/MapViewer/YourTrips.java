@@ -30,7 +30,6 @@ public class YourTrips {
 	LoginForm loginForm;
 	ConfirmationScene confirmationScene;
 	TableView<Trip> tableView;
-	HistoryTripsReader history = new HistoryTripsReader();
 
 	public YourTrips(Stage stage) {
 		this.stage = stage;
@@ -99,6 +98,7 @@ public class YourTrips {
 				currentData.setAll(current);
 				tableView.setItems(currentData);
 				cancel.setVisible(true);
+				
 
 			}
 		});
@@ -107,10 +107,10 @@ public class YourTrips {
 
 			@Override
 			public void handle(ActionEvent event) {
-				YourTrips.this.history.setName(loginForm.userNameField.getText());
-				YourTrips.this.history.load();
+				confirmationScene.getHistory().setName(loginForm.userNameField.getText());
+				confirmationScene.getHistory().load();
 				final ObservableList<Trip> historyData = FXCollections.observableArrayList();
-				ArrayList<Trip> history = YourTrips.this.history.showTrips();
+				ArrayList<Trip> history = confirmationScene.getHistory().showTrips();
 				historyData.setAll(history);
 				tableView.setItems(historyData);
 				cancel.setVisible(false);
@@ -148,6 +148,7 @@ public class YourTrips {
 					alert.setHeaderText(null);
 					alert.setContentText("The trip has been cancelled");
 					alert.showAndWait();
+					current.fireEvent(event);
 				} else {
 					Alert alert = new Alert(AlertType.WARNING);
 					alert.setTitle("WARNING");

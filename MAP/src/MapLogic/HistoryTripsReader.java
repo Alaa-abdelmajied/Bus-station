@@ -44,7 +44,7 @@ public class HistoryTripsReader implements Reader {
 		}	
 		for (int i = 0; i < history.size(); i++) {
 			if (name.equals(history.get(i).getName())) {
-				if (currentTrips.size() > 6) {
+				while(currentTrips.get(index).getTrips().size() > 4) {
 					history.get(i).getTrips().add(currentTrips.get(index).getTrips().get(0));
 					currentTrips.get(index).getTrips().remove(0);
 				}
@@ -52,5 +52,11 @@ public class HistoryTripsReader implements Reader {
 		}
 
 	}
+
+	public ArrayList<History> getHistory() {
+		return history;
+	}
+	
+	
 
 }

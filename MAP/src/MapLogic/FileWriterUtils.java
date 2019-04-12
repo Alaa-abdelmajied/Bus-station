@@ -54,12 +54,12 @@ public class FileWriterUtils {
 		for (int i = 0; i < history.size(); i++) {
 			writer.write(history.get(i).getName());
 			for (int j = 0; j < history.get(i).getTrips().size(); j++) {
-				writer.write("," + history.get(i).getTrips().get(i).getSource() + ","
-						+ history.get(i).getTrips().get(i).getDestination() + ","
-						+ history.get(i).getTrips().get(i).getTime() + ","
-						+ history.get(i).getTrips().get(i).getVehicle() + ","
-						+ history.get(i).getTrips().get(i).getNumOfStops() + ","
-						+ history.get(i).getTrips().get(i).getTicketPrice());
+				writer.write("," + history.get(i).getTrips().get(j).getSource() + ","
+						+ history.get(i).getTrips().get(j).getDestination() + ","
+						+ history.get(i).getTrips().get(j).getTime() + ","
+						+ history.get(i).getTrips().get(j).getVehicle() + ","
+						+ history.get(i).getTrips().get(j).getNumOfStops() + ","
+						+ history.get(i).getTrips().get(j).getTicketPrice());
 			}
 			writer.write("\n");
 		}

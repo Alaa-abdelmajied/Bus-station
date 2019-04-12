@@ -48,7 +48,7 @@ public class CurrentTripsReader implements Reader {
 	public void cancelTrip(String name, String source, String destination, String time, String vehicle) {
 		for (int i = 0; i < currents.size(); i++) {
 			if (name.equals(currents.get(i).getName())) {
-				for (int j = 0; j < showTrips().size(); i++) {
+				for (int j = 0; j < showTrips().size(); j++) {
 					if (source.equals(currents.get(i).getTrips().get(j).getSource())
 							&& destination.equals(currents.get(i).getTrips().get(j).getDestination())
 							&& vehicle.equals(currents.get(i).getTrips().get(j).getVehicle())
