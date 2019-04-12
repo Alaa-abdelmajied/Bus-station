@@ -158,6 +158,7 @@ public class AddTrip {
 				numberOfStopsSelection.getSelectionModel().clearSelection();
 				priceText.setText(null);
 				numberOfSeatsText.setText(null);
+				allTrips.getTableView().getSelectionModel().clearSelection();
 				stage.setScene(allTrips.getAlltrips());
 			}
 		});

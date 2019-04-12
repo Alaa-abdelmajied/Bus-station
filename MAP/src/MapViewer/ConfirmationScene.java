@@ -240,6 +240,7 @@ public class ConfirmationScene {
 						} catch (IOException e) {
 							e.printStackTrace();
 						}
+						stage.setScene(passengerMenu.getPassengerScene());
 					} else {
 						Alert alert = new Alert(AlertType.WARNING);
 						alert.setTitle("WARNING");
@@ -277,6 +278,7 @@ public class ConfirmationScene {
 								bookingScene.tableView.getSelectionModel().getSelectedItem().getVehicle(),
 								bookingScene.tableView.getSelectionModel().getSelectedItem().getNumOfStops(),
 								bookingScene.tableView.getSelectionModel().getSelectedItem().getTicketPrice());
+						
 
 						history.load();
 						history.setName(loginForm.userNameField.getText());
@@ -354,7 +356,7 @@ public class ConfirmationScene {
 					} catch (IOException e) {
 						e.printStackTrace();
 					}
-
+					stage.setScene(passengerMenu.getPassengerScene());
 				} else {
 					Alert alert = new Alert(AlertType.WARNING);
 					alert.setTitle("WARNING");
